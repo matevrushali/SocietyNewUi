@@ -1,0 +1,54 @@
+<div class="col-md-1 col-sm-1 side">
+	
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+
+	<div class="content col-md-12 col-sm-12">
+		<div class="col-md-3 col-sm-2 a">
+			<div class="col-md-12 col-sm-12 user">
+				<div class="image col-md-12" >
+					
+				</div>
+			<h4>{{ ledgers.accountName }}</h4>
+			</div>
+
+		</div>
+		<div class="col-md-9 col-sm-9 b">
+			<h4>Details of Ledgers: </h4>
+			<table class="table  role  col-md-12 col-sm-12">
+
+				<tr>
+					<th>Account Name :</th>
+					<td>{{ ledgers.accountName }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Amount Type :</th>
+					<td>{{ ledgers.amountType }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Opening Balance:</th>
+					<td>{{ ledgers.openingBalance }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Group Details :</th>
+					<td>{{ ledgers.groupIdFk.groupName }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="3"><a *ngIf="showUpdateButton()" (click)="rediectToUpdateDetails('ledgers/update_ledger', ledgers.ledgersId)"><i class="fa fa-edit"
+								style="font-size:30px"></i></a>
+					<button *ngIf="showDeleteButton()" style="font-size:14px" (click)="callSweetAlert(ledgers.ledgersId)" ng-confirm-click="do you relly want to delete this?" type="button" class="btn btn-link"><i class="material-icons">delete</i></button>
+					<button style="font-size:20px" class="btn btn-link" (click)="rediectToListDetails('ledgers/ledgers_list')"><i class="fa fa-arrow-left" aria-hidden="true"></i></button></td>
+
+				</tr>
+
+				
+			</table>
+		</div>
+	</div>
+
+</div>

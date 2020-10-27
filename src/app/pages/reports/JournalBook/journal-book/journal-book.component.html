@@ -1,0 +1,53 @@
+
+<div class="col-md-1 col-sm-1 side">
+  
+  </div>
+  <div class="col-md-10 col-sm-10 mid">
+  
+  
+    <div class="header">
+  
+      <h5>Journal Voucher</h5>
+  
+    </div>
+    <table id="journalBook" class="display nowrap" style="width:100%">
+      <thead>
+        <tr>
+  
+          <th>Date</th>
+          <th >Particulars</th>
+          <th>Voucher No</th>
+          <th class="vouchertype">Voucher Type</th>
+          <th class="debit">Debit</th>
+          <th class="credit">Credit</th>
+  
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let journal of   journalBook$">
+          <td class="date">{{journal.date | date:'yyyy/MM/dd' }}</td>
+          <td class="particular">
+              <div class="div1">{{ journal.creditorLedgerName }}</div>
+              <div class="div2">voucher no:{{ journal.referenceNumber }}-{{journal.narration}}</div>
+            
+  
+               </td>
+               <td class="voucherId">{{ journal.referenceNumber }}</td>
+          <td class="vouchertype">{{ journal.voucherType }}</td>
+          <td  class="debit">{{ journal.amount }}</td>
+          <td  class="credit"></td>
+         
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </tfoot>
+    </table>
+  
+  </div>

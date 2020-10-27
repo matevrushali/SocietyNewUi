@@ -1,0 +1,198 @@
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<div class="col-md-1 col-sm-1 side">
+
+</div>
+<div class="col-md-10 col-sm-10 mid">
+  <div class="content">
+    <div class="col-md-12 col-sm-12 header">
+     
+      <h4><b>Bill NO.-{{ generateBill.billStartNumber }}-{{ generateBill.billNoPrefix }}-{{ generateBill.billNoSuffix }}</b></h4>
+    </div>
+    <div class="col-md-3 a">
+      <div class="col-md-3  user">
+           </div>
+    </div>
+    <div class="col-md-9 b">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" name="generateBill">
+        <table class="table role">
+          <tr  [hidden]="!isExcludeFlat">
+            <td class="lbl">Member :</td>
+
+            <td>
+              <select  required [(ngModel)]="generateBill.excludeFlat" name="excludeFlat" id="excludeFlat"
+                formControlName="excludeFlat" class="form-control">
+                <option *ngFor="let occ of occupancy$" value="{{occ.occupancyDetailsId}}" >
+                  {{ occ.wingBuilding }}-{{occ.flatNumber}}</option>
+              </select>
+
+            </td>
+          </tr>
+         
+          <tr [hidden]="!isSingleMultiple" >
+              <td  class="lbl">Member :</td>
+               <td>
+                  <select required [(ngModel)]="generateBill.excludeFlat" name="singleMultipleFlat" id="singleMultipleFlat"
+                  formControlName="singleMultipleFlat" class="form-control" >
+                    <option *ngFor="let occ of occupancy$" value="{{occ.occupancyDetailsId}}">
+                      {{ occ.wingBuilding }}-{{occ.flatNumber}}</option>
+                  </select>
+                </td>
+          </tr>
+          <tr>
+            <td class="lbl"> Bill Type :</td>
+
+            <td><select required [(ngModel)]="generateBill.billingHeadIdFk.billingHeadsId" name="billingHeadIdFk"
+                id="billingHeadIdFk" formControlName="billingHeadIdFk" class="form-control"
+                (change)="callBillType($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.billingHeadIdFk.errors }">
+                <option *ngFor="let bill of billingHead$" value="{{bill.billingHeadsId}}">{{ bill.billName }}</option>
+              </select>
+              <span *ngIf="submitted && f.billingHeadIdFk.errors" class="invalid-feedback">
+                <div *ngIf="f.billingHeadIdFk.errors.required">Select Billing Type</div>
+              </span>
+            </td>
+            <td></td>
+          </tr>
+         
+          <tr>
+            <td class="lbl"> Date :</td>
+           
+
+            <td> <input type="text" disabled onfocus="(this.type='date')" formControlName="date" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.date.errors }" name="date" id="date" required
+                [(ngModel)]="generateBill.date" placeholder="Enter date" />
+              <span *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                <div *ngIf="f.date.errors.required">Date is required</div>
+              </span>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="lbl"> Due Date :</td>
+             <td> <select required  disabled [(ngModel)]="generateBill.dueDate" name="dueDate" id="dueDate"
+                formControlName="dueDate" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.dueDate.errors }" (change)="callDueDate($event.target.value)">
+                <option *ngFor="let isDueDate of DueDate">{{isDueDate}}</option>
+              </select>
+              <span *ngIf="submitted && f.dueDate.errors" class="invalid-feedback">
+                <div *ngIf="f.dueDate.errors.required">Select Due Date</div>
+              </span>
+
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="lbl"> Recieved Amount :</td>
+            <td>
+              
+              <input type="text" disabled formControlName="recievedAmount" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.recievedAmount.errors }" name="recievedAmount" id="recievedAmount"
+                required [(ngModel)]="generateBill.recievedAmount" placeholder="Enter bill no suffix" />
+              <span *ngIf="submitted && f.recievedAmount.errors" class="invalid-feedback">
+                <div *ngIf="f.recievedAmount.errors.required">Amount is required</div>
+              </span>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="lbl"> Pending Amount :</td>
+            <td>
+              
+              <input type="text" disabled formControlName="pendingAmount" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.pendingAmount.errors }" name="pendingAmount" id="pendingAmount"
+                required [(ngModel)]="generateBill.pendingAmount" />
+              <span *ngIf="submitted && f.pendingAmount.errors" class="invalid-feedback">
+                <div *ngIf="f.pendingAmount.errors.required">Amount is required</div>
+              </span>
+            </td>
+            <td></td>
+          </tr>
+         
+
+        </table>
+        <table class="table table-striped  table-header-fixed">
+          <thead class="scroll">
+            <tr>
+             
+              
+              <th scope="col">Bill Date</th>
+             
+              <!-- <th scope="col">Payable</th> -->
+              <th scope="col">Recieves</th>
+              <!-- <th scope="col">Dues</th> -->
+              <!-- <th scope="col">Operations</th> -->
+    
+            </tr>
+          </thead>
+          <tbody *ngFor="let user of  entries$">
+            <tr>
+               <td>{{ user.recievedDate | date:'dd/MM/yyyy' }}</td>
+             
+              <!-- <td>{{user.billingAmount}}</td> -->
+              <td>{{user.recieveAmount}}</td>
+              <!-- <td>{{user.pendingAmount}}</td> -->
+            <!--  <td>
+              <button (click)="rediectToPage('billing_heads/pay',user.generateBillsId)" type="button" class="btn btn-link">PAY</button>
+             </td> -->
+             
+            </tr>
+          </tbody>
+        </table>
+      
+      </form>
+    </div>
+
+  </div>
+
+  <div *ngIf="generateBill.pendingAmount > 0">
+    
+        
+       
+        <!-- <form  (ngSubmit)="onFillingDetails()" > -->
+          <form [formGroup]="registerForm" (ngSubmit)="onFillingDetails()" name="generateBill">
+          <table class="table  role">
+  
+  
+            <tr>
+              <td class="lbl"> Recieved Date :</td>
+              <td><input type="date" formControlName="date" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.date.errors }" name="date" id="date" required
+                  [(ngModel)]="recieptBill.date" placeholder="Enter date" />
+                <span *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                  <div *ngIf="f.date.errors.required">Date is required</div>
+                </span>
+  
+              </td>
+              <td></td>
+            </tr>
+           
+            <tr>
+              <td class="lbl"> Amount To Be Recieved :</td>
+              <td><input type="text" formControlName="recievedAmount" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.recievedAmount.errors }" name="recievedAmount" id="recievedAmount"
+                  required [(ngModel)]="recieptBill.recievedAmount"  />
+                <span *ngIf="submitted && f.recievedAmount.errors" class="invalid-feedback">
+                  <div *ngIf="f.recievedAmount.errors.required">Bill No Suffix is required</div>
+                </span>
+              </td>
+              <td></td>
+            </tr>
+  
+          
+            <tr>
+              <td colspan="3"><button class="btn btn-info save" type="submit"><b>Save</b></button>
+                <!-- <button class="btn btn-info" (click)="rediectToListDetails('billing_heads/generate_bill')"><b>Cancel</b></button>
+                <button class="btn btn-info" (click)="rediectToListDetails('billing_heads/generate_bill')"><b>Show List</b></button> -->
+                </td>
+            </tr>
+  
+          </table>
+      
+      </form>
+  </div>
+
+
+
+</div>

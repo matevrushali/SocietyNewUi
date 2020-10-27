@@ -1,0 +1,45 @@
+
+<div class="col-md-1 col-sm-1 side">
+	
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+	<label>
+		<h5> Adhoc Generate Bill List</h5>
+	</label><br>
+	<label>
+		<h6><a *ngIf="showSaveButton()" (click)="rediectToPage('billing_heads/generate_adhoc_bill')">Create New</a></h6>
+	</label>
+	<table  datatable [dtOptions] = "dtOptions" [dtTrigger]="dtTrigger" class="display nowrap" style="width:100%">
+		<thead>
+			<tr>
+
+				<th>Bill Type</th>
+				<th>Bill For</th>
+				<th>Exclude Flat</th>
+				<th>Block Tower</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let user of adhocGenerateBill$">
+
+				
+				<td><a (click)="rediectToDetails('billing_heads/get_adhoc_bill_details', user.generateBillsId)">{{ user.billingHeadIdFk.billName }}</a>
+				</td>
+				<td>{{user.billFor}}</td>
+				<td>{{user.excludeFlat}}</td>
+				<td>{{user.blockTower}}</td>
+				
+			</tr>
+
+		</tbody>
+		<tfoot>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</tfoot>
+	</table>
+</div>

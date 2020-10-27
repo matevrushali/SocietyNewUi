@@ -1,0 +1,63 @@
+
+<body>
+	<div class="col-md-1 col-sm-1 side">
+	
+	</div>
+	<div class="col-md-10 col-sm-10 mid">
+
+		<label>
+			<h5> Resident Vehicle List</h5>
+		</label><br>
+		<!--*ngIf="showSaveButton()"-->
+		<label>
+			<h6><a  (click)="rediectToPage('residents/add_resident_vehicle')">Add Resident Vehicle</a></h6>
+		</label>
+		<table datatable [dtOptions] = "dtOptions" [dtTrigger]="dtTrigger"  id="residentVehicle" class="display nowrap" style="width:100%">
+			<thead>
+				<tr>
+
+					<th>Resident </th>
+					<th>Available Parking Slot</th>
+					<th>Vehicle Number</th>
+					<th>Make</th>
+					<th>Model</th>
+					<th>Type</th>
+					<!-- <th>Insurance Expiry Date</th> -->
+					<th>Insurance Company</th>
+					<th>Sticker Issued</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr  *ngFor="let user of residentVehicle$ ">
+
+					<td><a (click)="rediectToDetails('residents/get_resident_vehicle_details', user.residentVehicleId)">{{user.userIdFk.firstName}}&nbsp;{{user.userIdFk.middleName}}&nbsp;{{user.userIdFk.lastName}}....[{{user.userIdFk.unitDetailsIdFk.wingBuilding}}-{{user.userIdFk.unitDetailsIdFk.flatNumber}}]</a>
+					</td>
+					<td>{{ user.parkingIdFk.parkingNumber }}</td>
+					<td>{{ user.vehicleNumber }}</td>
+					<td>{{ user.make }}</td>
+					<td>{{ user.model }}</td>
+					<td>{{ user.type }}</td>
+					<!-- <td>{{ user.insuranceExpiryDate }}</td> -->
+					<td>{{ user.insuranceCompany }}</td>
+					<td>{{ user.stickerIssued }}</td>
+					<!-- <td><a routerLink="/updateResidentVehicleById/{{ user.residentVehicleId }}"><i class="fa fa-edit" style="font-size:21px"></i></a>
+					<button style="font-size:14px"(click)="openConfirmationDialog(user.residentVehicleId)"  ng-confirm-click="do you relly want to delete this?" type="button" class="btn btn-link"> <i class="material-icons">delete</i></button>
+					</td> -->
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	
+</body>

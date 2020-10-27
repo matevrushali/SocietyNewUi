@@ -1,0 +1,383 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    </head>
+    <div class="col-md-1 col-sm-1 side"> </div>
+    <div class="col-md-10 col-sm-10 mid">
+      <div class="col-md-12 col-sm-12 pageHeader">
+          <h5>TRIAL BALANACE</h5>
+      </div>
+      <div  class="col-md-12 col-sm-12 div1">
+         Financial Year:
+        <select required [(ngModel)]="balance.year"  name="year" id="year"(change)="onChangeYear($event.target.value)" >
+          <option  *ngFor="let isYear of yearPeriod" >{{isYear}}</option>
+          </select>
+      </div>
+      <div class="col-md-12 col-sm-12 content" [hidden]=!isTrialBalanceSlot1>
+        <div class="col-md-11 col-sm-11 tableContent">
+            <table class="table table-striped css-serial table-header-fixed">
+              
+                <tr> <th rowspan="2">Account Head</th>
+                 <th colspan="2">Opening Balance</th>
+                 <th colspan="2">During Year</th>
+                 <th colspan="2">Closing Balance</th></tr>
+                 <tr>
+                   <th >Debtor</th>
+                 <th>Creditor</th>
+                 <th >Debtor</th>
+                 <th>Creditor</th>
+                 <th >Debtor</th>
+                 <th>Creditor</th>
+               </tr>
+              
+                   <tr >
+                    
+                     <td><label (click)="clickLiabilities()"> LIABILITIES</label>
+                          <!-- <td [hidden]="!isLiability" class="liabilities" *ngFor="let liabilities of trialBalance$.liabilities "><label (click)="liabilitiesGroupName()">{{liabilities.groupName}}</label></td> -->
+                       <div [hidden]="!isLiability"   class="liabilities" *ngFor="let liabilities of trialBalance$.liabilities "><label (click)="liabilitiesGroupName()">{{liabilities.groupName}}</label>
+                      <div [hidden]="!isLiabilitiesGroupName"class="liabilitiesAmount" >{{liabilities.accountName}}</div>
+                    </div>
+  
+                    </td>
+                      
+                     <td>0.00
+                        <div [hidden]="!isLiability"   class="liabilities" *ngFor="let liabilities of trialBalance$.liabilities "><div></div></div>
+                     </td>
+                     <td >{{trialBalance$.liabilitiesTotal}}
+                          <div [hidden]="!isLiability"   class="liabilities" *ngFor="let liabilities of trialBalance$.liabilities "><label (click)="liabilitiesGroupName()">{{liabilities.amount}}</label>
+                        <!-- <div [hidden]="!isLiability"   class="liabilitiesAmount" *ngFor="let liabilities of trialBalance$.liabilities "><div class="liabilities">{{liabilities.amount}}</div> -->
+                          <div [hidden]="!isLiabilitiesGroupName"  >{{liabilities.voucherAmount}}</div>
+                       </div>
+                    </td>
+                     <td>0.00
+                        <div [hidden]="!isLiability"   class="liabilities" *ngFor="let liabilities of trialBalance$.liabilities "><div></div></div>
+                     </td>   
+                     <td>00,00,000.00
+                     </td>
+                     <td>0.00
+                        <div [hidden]="!isLiability"   class="liabilities" *ngFor="let liabilities of trialBalance$.liabilities "><div></div></div>
+                     </td>
+                     <td>00,00,000.00
+                        <div [hidden]="!isLiability"   class="liabilities" *ngFor="let liabilities of trialBalance$.liabilities "><div></div></div>
+                     </td>
+                     </tr>
+                     <tr>
+                    
+                         <td><label (click)="clickAssets()"> ASSETS</label>
+                          <div [hidden]="!isAssets"   class="assets" *ngFor="let assets of trialBalance$.assets "><div><label (click)="assetsGroupName()">{{assets.groupName}}</label></div>
+                          <div [hidden]="!isAssetsGroupName" class="accountName" >{{assets.accountName}}</div>
+                       </div>
+                        </td>
+                         <td>{{trialBalance$.assetsTotal}}
+                            <div [hidden]="!isAssets"   class="assets" *ngFor="let assets of trialBalance$.assets "><div>{{assets.amount}}</div>
+                                <div  [hidden]="!isAssetsGroupName" class="accountName">{{assets.voucherAmount}}</div>
+                          </div>
+  
+                         </td>
+                         <td>00,00,000.00
+                            <div [hidden]="!isAssets"   class="assets" *ngFor="let assets of trialBalance$.assets "><div></div></div>
+  
+                         </td>
+                         <td>00,00,000.00
+                        <div [hidden]="!isAssets"   class="assets" *ngFor="let assets of trialBalance$.assets "><div></div></div>
+  
+                         </td>
+                         <td>00,00,000.00
+                        <div [hidden]="!isAssets"   class="assets" *ngFor="let assets of trialBalance$.assets "><div></div></div>
+  
+                         </td>
+                         <td>00,00,000.00
+                        <div [hidden]="!isAssets"   class="assets" *ngFor="let assets of trialBalance$.assets "><div></div></div>
+  
+                         </td>
+                         <td>00,00,000.00
+                        <div [hidden]="!isAssets"   class="assets" *ngFor="let assets of trialBalance$.assets "><div></div></div>
+                         </td>
+                         </tr>
+               
+                         <tr>
+                    
+                             <td><label (click)="clickIncome()"> INCOME</label>
+                              <div [hidden]="!isIncome"   class="income" *ngFor="let income of trialBalance$.income "><div><label (click)="incomeGroupName()">{{income.groupName}}</label>
+                             <div [hidden]="!isIncomeGroupName" class="accountName" >{{income.accountName}}</div>
+                             </div></div>
+                            </td>
+                             <td>{{trialBalance$.incomeTotal}}
+                                <div [hidden]="!isIncome" class="income" *ngFor="let income of trialBalance$.income "><div>{{income.amount}}</div></div>
+                             </td>
+                             <td>0.00
+                                <div [hidden]="!isIncome" class="income" *ngFor="let income of trialBalance$.income "><div></div></div>
+  
+                             </td>
+                             <td>00,00,000.00
+                                <div [hidden]="!isIncome" class="income" *ngFor="let income of trialBalance$.income "><div></div></div>
+  
+                             </td>
+                             <td>00,00,000.00
+                                <div [hidden]="!isIncome" class="income" *ngFor="let income of trialBalance$.income "><div></div></div>
+  
+                             </td>
+                             <td>0.00
+                                <div [hidden]="!isIncome" class="income" *ngFor="let income of trialBalance$.income "><div></div></div>
+  
+                             </td>
+                             <td>00,00,000.00
+                                <div [hidden]="!isIncome" class="income" *ngFor="let income of trialBalance$.income "><div></div></div>
+  
+                             </td>
+                             </tr>
+               
+                             <tr>
+                    
+                                 <td><label (click)="clickExpenses()">EXPENSES</label>
+                              <div [hidden]="!isExpenses"   class="expenses" *ngFor="let expenses of trialBalance$.expense "><div><label (click)="expenseGroupName()">{{expenses.groupName}}</label></div>
+                              <div [hidden]="!isExpensesGroupName" class="accountName" >{{expenses.accountName}}</div>
+                             
+                             </div>
+                            </td>
+                                 <td>0.00
+                              <div [hidden]="!isExpenses"   class="expenses" *ngFor="let expenses of trialBalance$.expense "><div></div></div>
+  
+                                 </td>
+                                 <td>{{trialBalance$.expnseTotal}}
+                              <div [hidden]="!isExpenses"   class="expenses" *ngFor="let expenses of trialBalance$.expense "><div>{{expenses.amount}}</div></div>
+  
+                                 </td>
+                                 <td>00,00,000.00
+                              <div [hidden]="!isExpenses"   class="expenses" *ngFor="let expenses of trialBalance$.expense "><div></div></div>
+  
+                                 </td>
+                                 <td>0.00
+                              <div [hidden]="!isExpenses"   class="expenses" *ngFor="let expenses of trialBalance$.expense "><div></div></div>
+  
+                                 </td>
+                                 <td>00,00,000.00
+                              <div [hidden]="!isExpenses"   class="expenses" *ngFor="let expenses of trialBalance$.expense "><div></div></div>
+  
+                                 </td>
+                                 <td>0.00
+                              <div [hidden]="!isExpenses"   class="expenses" *ngFor="let expenses of trialBalance$.expense "><div></div></div>
+  
+                                 </td>
+                                 </tr>
+                                 <tr>
+                    
+                                     <td>PROFIT & LOSS A/C</td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     </tr>
+                                     <tr>
+                    
+                                         <td>Diff.in opening balance</td>
+                                         <td></td>
+                                         <td>00,00,000.00</td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td>00,00,000.00</td>
+                                         </tr>
+                                         <tr class="s">
+                    
+                                             <th></th>
+                                             <th>00,00,000.00</th>
+                                             <th>00,00,000.00</th>
+                                             <th>00,00,000.00</th>
+                                             <th>00,00,000.00</th>
+                                             <th>00,00,000.00</th>
+                                             <th>00,00,000.00</th>
+                                         </tr>
+                           
+               
+               </table>
+        </div>
+      </div>
+      <!-- ------------------------------ -->
+      <div class="col-md-12 col-sm-12 content" [hidden]=!isTrialBalanceSlot2>
+        <div class="col-md-11 col-sm-11 tableContent">
+            <table class="table table-striped css-serial table-header-fixed">
+              
+                <tr> <th rowspan="2">Account Head</th>
+                 <th colspan="2">Opening Balance</th>
+                 <th colspan="2">During Year</th>
+                 <th colspan="2">Closing Balance</th></tr>
+                 <tr>
+                   <th >Debtor</th>
+                 <th>Creditor</th>
+                 <th >Debtor</th>
+                 <th>Creditor</th>
+                 <th >Debtor</th>
+                 <th>Creditor</th>
+               </tr>
+              
+                   <tr >
+                    
+                     <td><label (click)="clickLiabilities()"> LIABILITIES</label>
+                          <!-- <td [hidden]="!isLiability" class="liabilities" *ngFor="let liabilities of trialBalance$.liabilities "><label (click)="liabilitiesGroupName()">{{liabilities.groupName}}</label></td> -->
+                       <div [hidden]="!isLiability"   class="liabilities" *ngFor="let liabilities of trialBalanceSlots$.liabilities "><label (click)="liabilitiesGroupName()">{{liabilities.groupName}}</label>
+                      <div [hidden]="!isLiabilitiesGroupName"class="liabilitiesAmount" >{{liabilities.accountName}}</div>
+                    </div>
+  
+                    </td>
+                      
+                     <td>0.00
+                        <div [hidden]="!isLiability"   class="liabilities" *ngFor="let liabilities of trialBalanceSlots$.liabilities "><div></div></div>
+                     </td>
+                     <td >{{trialBalance$.liabilitiesTotal}}
+                          <div [hidden]="!isLiability"   class="liabilities" *ngFor="let liabilities of trialBalanceSlots$.liabilities "><label (click)="liabilitiesGroupName()">{{liabilities.amount}}</label>
+                        <!-- <div [hidden]="!isLiability"   class="liabilitiesAmount" *ngFor="let liabilities of trialBalance$.liabilities "><div class="liabilities">{{liabilities.amount}}</div> -->
+                          <div [hidden]="!isLiabilitiesGroupName"  >{{liabilities.voucherAmount}}</div>
+                       </div>
+                    </td>
+                     <td>0.00
+                        <div [hidden]="!isLiability"   class="liabilities" *ngFor="let liabilities of trialBalanceSlots$.liabilities "><div></div></div>
+                     </td>   
+                     <td>00,00,000.00
+                     </td>
+                     <td>0.00
+                        <div [hidden]="!isLiability"   class="liabilities" *ngFor="let liabilities of trialBalanceSlots$.liabilities "><div></div></div>
+                     </td>
+                     <td>00,00,000.00
+                        <div [hidden]="!isLiability"   class="liabilities" *ngFor="let liabilities of trialBalanceSlots$.liabilities "><div></div></div>
+                     </td>
+                     </tr>
+                     <tr>
+                    
+                         <td><label (click)="clickAssets()"> ASSETS</label>
+                          <div [hidden]="!isAssets"   class="assets" *ngFor="let assets of trialBalanceSlots$.assets "><div><label (click)="assetsGroupName()">{{assets.groupName}}</label></div>
+                          <div [hidden]="!isAssetsGroupName" class="accountName" >{{assets.accountName}}</div>
+                       </div>
+                        </td>
+                         <td>{{trialBalanceSlots$.assetsTotal}}
+                            <div [hidden]="!isAssets"   class="assets" *ngFor="let assets of trialBalanceSlots$.assets "><div>{{assets.amount}}</div>
+                                <div  [hidden]="!isAssetsGroupName" class="accountName">{{assets.voucherAmount}}</div>
+                          </div>
+  
+                         </td>
+                         <td>0.00
+                            <div [hidden]="!isAssets"   class="assets" *ngFor="let assets of trialBalanceSlots$.assets "><div></div></div>
+  
+                         </td>
+                         <td>00,00,000.00
+                        <div [hidden]="!isAssets"   class="assets" *ngFor="let assets of trialBalanceSlots$.assets "><div></div></div>
+  
+                         </td>
+                         <td>
+                        <div [hidden]="!isAssets"   class="assets" *ngFor="let assets of trialBalanceSlots$.assets "><div></div></div>
+  
+                         </td>
+                         <td>00,00,000.00
+                        <div [hidden]="!isAssets"   class="assets" *ngFor="let assets of trialBalanceSlots$.assets "><div></div></div>
+  
+                         </td>
+                         <td>00,00,000.00
+                        <div [hidden]="!isAssets"   class="assets" *ngFor="let assets of trialBalanceSlots$.assets "><div></div></div>
+                         </td>
+                         </tr>
+               
+                         <tr>
+                    
+                             <td><label (click)="clickIncome()"> INCOME</label>
+                              <div [hidden]="!isIncome"   class="income" *ngFor="let income of trialBalanceSlots$.income "><div><label (click)="incomeGroupName()">{{income.groupName}}</label>
+                             <div [hidden]="!isIncomeGroupName" class="accountName" >{{income.accountName}}</div>
+                             </div></div>
+                            </td>
+                             <td>{{trialBalanceSlots$.incomeTotal}}
+                                <div [hidden]="!isIncome" class="income" *ngFor="let income of trialBalanceSlots$.income "><div>{{income.amount}}</div></div>
+                             </td>
+                             <td>0.00
+                                <div [hidden]="!isIncome" class="income" *ngFor="let income of trialBalanceSlots$.income "><div></div></div>
+  
+                             </td>
+                             <td>00,00,000.00
+                                <div [hidden]="!isIncome" class="income" *ngFor="let income of trialBalanceSlots$.income "><div></div></div>
+  
+                             </td>
+                             <td>00,00,000.00
+                                <div [hidden]="!isIncome" class="income" *ngFor="let income of trialBalanceSlots$.income "><div></div></div>
+  
+                             </td>
+                             <td>0.00
+                                <div [hidden]="!isIncome" class="income" *ngFor="let income of trialBalanceSlots$.income "><div></div></div>
+  
+                             </td>
+                             <td>00,00,000.00
+                                <div [hidden]="!isIncome" class="income" *ngFor="let income of trialBalanceSlots$.income "><div></div></div>
+  
+                             </td>
+                             </tr>
+               
+                             <tr>
+                    
+                                 <td><label (click)="clickExpenses()">EXPENSES</label>
+                              <div [hidden]="!isExpenses"   class="expenses" *ngFor="let expenses of trialBalanceSlots$.expense "><div><label (click)="expenseGroupName()">{{expenses.groupName}}</label></div>
+                              <div [hidden]="!isExpensesGroupName" class="accountName" >{{expenses.accountName}}</div>
+                             
+                             </div>
+                            </td>
+                                 <td>0.00
+                              <div [hidden]="!isExpenses"   class="expenses" *ngFor="let expenses of trialBalanceSlots$.expense "><div></div></div>
+  
+                                 </td>
+                                 <td>{{trialBalanceSlots$.expnseTotal}}
+                              <div [hidden]="!isExpenses"   class="expenses" *ngFor="let expenses of trialBalanceSlots$.expense "><div>{{expenses.amount}}</div></div>
+  
+                                 </td>
+                                 <td>00,00,000.00
+                              <div [hidden]="!isExpenses"   class="expenses" *ngFor="let expenses of trialBalanceSlots$.expense "><div></div></div>
+  
+                                 </td>
+                                 <td>0.00
+                              <div [hidden]="!isExpenses"   class="expenses" *ngFor="let expenses of trialBalanceSlots$.expense "><div></div></div>
+  
+                                 </td>
+                                 <td>00,00,000.00
+                              <div [hidden]="!isExpenses"   class="expenses" *ngFor="let expenses of trialBalanceSlots$.expense "><div></div></div>
+  
+                                 </td>
+                                 <td>0.00
+                              <div [hidden]="!isExpenses"   class="expenses" *ngFor="let expenses of trialBalanceSlots$.expense "><div></div></div>
+  
+                                 </td>
+                                 </tr>
+                                 <tr>
+                    
+                                     <td>PROFIT & LOSS A/C</td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     </tr>
+                                     <tr>
+                    
+                                         <td>Diff.in opening balance</td>
+                                         <td></td>
+                                         <td>00,00,000.00</td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td>00,00,000.00</td>
+                                         </tr>
+                                         <tr class="s">
+                    
+                                             <th></th>
+                                             <th>00,00,000.00</th>
+                                             <th>00,00,000.00</th>
+                                             <th>00,00,000.00</th>
+                                             <th>00,00,000.00</th>
+                                             <th>00,00,000.00</th>
+                                             <th>00,00,000.00</th>
+                                         </tr>
+                           
+               
+               </table>
+        </div>
+      </div>
+    </div>
+  
+       
+   

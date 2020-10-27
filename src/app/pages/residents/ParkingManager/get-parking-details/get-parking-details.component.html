@@ -1,0 +1,52 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<div class="col-md-1 col-sm-1 side">
+	
+</div>
+<div class="col-md-10 col-sm-10 mid">
+	<div class="col-md-3 a">
+		<div class="col-md-12 user">
+             </div>
+
+		<h4><b>{{ parking.parkingNumber }}</b></h4>
+	</div>
+	<div class="col-md-9 b">
+		<h4>Details of Parking: </h4>
+		<table class="table role">
+
+			<tr>
+				<th>Parking Number :</th>
+				<td>{{ parking.parkingNumber }}</td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>Parking Type</th>
+				<td>{{ parking.parkingType }}</td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>Parking Area</th>
+				<td>{{ parking.parkingArea }}</td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>Flat Details</th>
+				<td>{{ parking.flatId}}
+				</td>
+				<td></td>
+			</tr>
+           
+			<tr >
+				<td colspan="3"><a *ngIf="showUpdateButton()"  (click)="rediectToDetails('residents/update_parking', parking.parkingId)"><i class="fa fa-edit"
+							style="font-size:24px"></i></a>
+					<button *ngIf="showDeleteButton()" style="font-size:18px" (click)="callSweetAlert(parking.parkingId)" type="button" class="btn btn-link"> <i
+							class="material-icons">delete</i></button>
+					<button class="btn btn-link" (click)="rediectToListPage('residents/resident_vehicle_list')"><i class="fa fa-arrow-left"
+							aria-hidden="true"></i></button> </td>
+
+			</tr>
+
+		</table>
+	</div>
+</div>

@@ -1,0 +1,98 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<div class="col-md-1 col-sm-1 side">
+	
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+
+
+	<div class="content">
+		<div class="col-md-12 header">
+			<h4>New Parking</h4>
+		</div>
+		<div class="col-md-3 a">
+			<div class="col-md-3 user"> </div>
+		</div>
+		<div class="col-md-9 b">
+			<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+				<table class="table  role">
+					<tr>
+						<td class="lbl">Parking Number :</td>
+						<td><input type="text" name="parkingNumber" id="parkingNumber" maxlength="10"
+								 formControlName="parkingNumber" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.parkingNumber.errors }" required
+								[(ngModel)]="parking.parkingNumber" placeholder="Enter Parking Number " />
+							<span *ngIf="submitted && f.parkingNumber.errors" class="invalid-feedback">
+								<div *ngIf="f.parkingNumber.errors.required">Parking Number is required</div>
+								<div *ngIf="f.parkingNumber.errors.minlength">Parking Number Minimum 10 Character </div>
+								<!-- <div *ngIf="f.parkingNumber.errors.minlength">Parking Number must be at least 6
+									characters</div> -->
+
+
+							</span>
+
+						</td>
+						<td></td>
+					</tr>
+					<tr class="form-group">
+						<td class="lbl">Parking Type :</td>
+						<td>
+							<!-- <input type="text" formControlName="parkingType" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.parkingType.errors }" name="parkingType"
+								id="parkingType" required [(ngModel)]="parking.parkingType"
+								placeholder="Enter Parking Type " />
+							<span *ngIf="submitted && f.parkingType.errors" class="invalid-feedback">
+								<div *ngIf="f.parkingType.errors.required">Parking Type is required</div>
+							</span> -->
+							<select required [(ngModel)]="parking.parkingType" name="parkingType" id="parkingType"
+								formControlName="parkingType" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.parkingType.errors }">
+								<option hidden></option>
+								<option *ngFor="let isType of typeTitle">{{isType}}</option>
+							</select>
+							<span *ngIf="submitted && f.parkingType.errors" class="invalid-feedback">
+								<div *ngIf="f.parkingType.errors.required">Select type</div>
+							</span>
+							
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Unit Details :</td>
+						<td><input type="text" name="unitDetailsIdFk" id="unitDetailsIdFk" pattern="[+-]?([0-9]*[.])?[0-9]+"
+								formControlName="unitDetailsIdFk" class="form-control"maxlength="10"								[ngClass]="{ 'is-invalid': submitted && f.parkingArea.errors }" required
+								[(ngModel)]="parking.flatId" placeholder="Enter unitDetails " />
+							<span *ngIf="submitted && f.unitDetailsIdFk.errors" class="invalid-feedback">
+								<div *ngIf="f.unitDetailsIdFk.errors.required">unitDetails is required</div>
+								<div *ngIf="f.unitDetailsIdFk.errors.pattern">unitDetails must be Number</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Parking Area (in Sq/Ft) :</td>
+						<td><input type="text" name="parkingArea" id="parkingArea" pattern="[+-]?([0-9]*[.])?[0-9]+"
+								formControlName="parkingArea" class="form-control"maxlength="10"								[ngClass]="{ 'is-invalid': submitted && f.parkingArea.errors }" required
+								[(ngModel)]="parking.parkingArea" placeholder="Enter parking Area " />
+							<span *ngIf="submitted && f.parkingArea.errors" class="invalid-feedback">
+								<div *ngIf="f.parkingArea.errors.required">Parking Area is required</div>
+								<div *ngIf="f.parkingArea.errors.pattern">Parking Area must be Number</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><button class="btn btn-info save" type="submit"><b>Save</b></button> </td>
+						<td><button class="btn btn-info" (click)="rediectToListPage('residents/parking_list')"><b>Cancel</b></button> </td>
+						<td><button class="btn btn-info" (click)="rediectToListPage('residents/parking_list')"><b>Show List</b></button> </td>
+
+					</tr>
+
+				</table>
+			</form>
+		</div>
+
+	</div>
+</div>

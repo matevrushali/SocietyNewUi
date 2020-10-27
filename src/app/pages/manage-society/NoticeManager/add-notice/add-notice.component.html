@@ -1,0 +1,106 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+
+</head>
+
+<div class="col-md-1 col-sm-1 side">
+   
+</div>
+<div class="col-md-10 col-sm-10 mid">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <h4>Create Notice</h4>
+        <div class="col-md-12 col-sm-12 row1">
+            <div class="col-md-6 col-sm-12 cell">
+                Recipient :
+                <mat-radio-group aria-labelledby="radio-group-label" class="radio-group" [(ngModel)]="notice.recipients"
+                    [ngModelOptions]="{standalone: true}">
+                    <mat-radio-button class="radio-button" *ngFor="let option of option" [value]="option"
+                        (change)="callFlatBlock(option)">
+                        {{option}}
+                    </mat-radio-button>
+                </mat-radio-group>
+
+            </div>
+            <div class="col-md-6 col-sm-12 cell">
+                <div class="col-md-12 col-sm-12" [hidden]="!selectedFlat">
+                   
+                    <mat-form-field>
+                  <mat-label>Select Flats</mat-label>
+                  <mat-select [formControl]="selectedFlat" multiple [(ngModel)]="notice.selectedFlat" name="selectedFlat" id="selectedFlat"
+                  formControlName="selectedFlat">
+                    <mat-option *ngFor="let topping of occupancy$" [value]="topping.occupancyDetailsId">
+                      {{topping.wingBuilding}}-{{topping.flatNumber}} </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                </div>
+                <div class="col-md-12 col-sm-12" [hidden]="!excludeFlats">
+                    Exclude Flat :
+                    <select required [(ngModel)]="notice.excludeFlats" name="excludeFlats"
+                    formControlName="excludeFlats">
+                    <option *ngFor="let occ of occupancy$"
+                        value="{{ occ.occupancyDetailsId }}">
+                        {{ occ.wingBuilding }}-{{ occ.flatNumber }}</option>
+                </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6 col-sm-12 row1">
+            <div class="col-md-12 col-sm-12 cell">
+                Notice Of Subject * :
+                <input type="text" formControlName="noticeSubject" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.noticeSubject.errors }" name="noticeSubject"
+                id="noticeSubject" required [(ngModel)]="notice.noticeSubject"
+                placeholder="Enter Notice Subject" />
+            <span *ngIf="submitted && f.noticeSubject.errors" class="invalid-feedback">
+                <div *ngIf="f.noticeSubject.errors.required">Notice Subject is required</div>
+            </span>
+
+            </div>
+            <div class="col-md-12 col-sm-12 cell">
+                Schedule :
+                <mat-radio-group aria-labelledby="radio-group-label" class="radio-group"
+                                [(ngModel)]="notice.scheduleValue" [ngModelOptions]="{standalone: true}">
+                                <mat-radio-button class="radio-button" *ngFor="let option1 of option1" [value]="option1"
+                                    (change)="callDate(option1)">
+                                    {{option1}}
+                                </mat-radio-button>
+                            </mat-radio-group>
+            </div>
+            <div class="col-md-12 col-sm-12 cell" [hidden]="!isScheduleVisible">
+                Select Notice schedule Date * :
+                <input type="date" name="schedule" id="schedule" formControlName="isScheduleVisible"
+                                required [(ngModel)]="notice.schedule">
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 row">
+            <div class="col-md-12 col-sm-12 cell1">
+                Notice Description :
+                <editor  apiKey="tbo4mebq1noyhxghjkixajsl3x569cffuz4dxy1f12mpflq4" formControlName="noticeDescription" [(ngModel)]="notice.noticeDescription" placeholder="Enter Description"></editor>
+                <!-- <ejs-richtexteditor></ejs-richtexteditor> -->
+                <!-- <textarea ></textarea> -->
+
+            </div>
+
+        </div>
+       
+        <div class="col-md-12 col-sm-12 row1">
+            <div class="col-md-4 col-sm-12 cell">
+                <button class="btn btn-info save" type="submit"><b>Save</b></button>
+            </div>
+            <div class="col-md-4 col-sm-12 cell">
+                <button class="btn btn-info" (click)="myFunction()"><b>Cancel</b></button>
+            </div>
+            <div class="col-md-4 col-sm-12 cell">
+                <button class="btn btn-info" (click)="myFunction()"><b>Show List</b></button>
+            </div>
+        </div>
+    </form>
+</div>

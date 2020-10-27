@@ -1,0 +1,99 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<div class="col-md-1 col-sm-1 side">
+
+</div>
+<div class="col-md-10 col-sm-10 mid">
+    <div class="col-md-12 col-sm-12 got1">
+        <label>CHANGE OF OWNERSHIP</label>
+    </div>
+    <div class="col-md-12 col-sm-12 got2">
+        <div class="col-md-4  got21">
+
+            Tower Name :
+            <select required [(ngModel)]="usersFormDetails.unitDetailsIdFk.occupancyDetailsId" name="unitDetailsIdFk"
+                (change)="onChangeOwnership($event.target.value)">
+                <option *ngFor="let occupancy of occupancy$" value="{{occupancy.occupancyDetailsId}}">
+                    {{ occupancy.wingBuilding }}</option>
+            </select>
+        </div>
+        <div class="col-md-4 got21">
+
+            Flat Number :
+            <select required [(ngModel)]="occupancy.occupancyDetailsId" name="unitDetailsIdFk">
+                <option *ngFor="let occupancy of occupancy$" value="{{occupancy.occupancyDetailsId}}">
+                    {{ occupancy.flatNumber }}</option>
+            </select>
+        </div>
+        <div class=" col-md-4 button ">
+            <button (click)="filterContent(occupancy.occupancyDetailsId)"> Change Ownership  </button>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 got3">
+        <form name="getbyid" [hidden]="!isgetbyid">
+            <h2>Existing Resident Info (Seller)
+              </h2>
+            <table>
+              <!-- USER ID : {{user$.usersFormId}} -->
+              <tr>
+                <td>First Name:</td>
+                <td><input type="text" value="{{user$.title}} {{user$.firstName}} {{user$.lastName}}" disabled></td>
+                <td>Mobile Number:</td>
+                <td><input type="text" value="{{user$.mobileNumber}}" disabled></td>
+                <td>Alertnate Number:</td>
+                <td><input type="text" value="{{user$.alternateNumber}}" disabled></td>
+             
+              </tr>
+              
+              <tr>
+                <td>Email Id:</td>
+                <td><input type="text" value="{{user$.emailAddress}}" disabled></td>
+                <td>Owership:</td>
+                <td><input type="text" value="{{user$.ownership}}" disabled></td>
+                <td>Mutation Date:</td>
+                <td><input type="text" value="{{user$.possetionDate}}" disabled></td>
+           
+              </tr>
+              
+        
+            </table>
+
+            <h1>Dues/Advance Info (In Rs.)</h1>
+            <p>MAINTENANCE_BILL Amount of  3061 against MAINTENANCE_BILL Bill is Due.</p>
+            <h1>Allotted Parking Info</h1>
+            <p>N/A</p>
+            <h1>Linked Staff Info</h1>
+            <table class="table  css-serial table-header-fixed">
+                <thead class="scroll">
+                  <tr>
+          
+                    <th class="date">Name</th>
+          
+          
+                   
+          
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of residentStaff$">
+          
+                   
+                    <td class="particular">
+                      <!-- <a routerLink="/getVoucherEntryById/{{ user.voucherId }}"> -->
+                        <div class="div1">{{ user.residentStaffName }}</div>
+                        
+                  
+                  </tr>
+                </tbody>
+              </table>
+          
+            <p>N/A</p>
+            <form name="isuserform" (ngSubmit)="onSubmit()" >
+              <h1>New Resident (Buyer)</h1>
+
+              <app-save-users-form></app-save-users-form>
+                              </form>
+          </form>
+    </div>
+</div>

@@ -1,0 +1,152 @@
+.side {
+    /* background: lightgrey; */
+    padding-top:15px;
+    height:100%;
+    width: 100%;
+    float: left;
+    font-size: 10px;
+  }
+  li{
+    font-size: 10px;
+  }
+  
+  .mid
+  {
+  
+  height:100%;
+  float: left;
+  }
+.div1{
+    height:10%;
+  /* background: rgb(99, 84, 86); */
+}
+.div2{
+    height:20%;
+/* background: yellow; */
+    /* background: rgb(79, 185, 109); */
+}
+.div3{
+    height:60%;
+    /* background: rgb(17, 79, 94); */
+}
+.dateDiv{
+    height:10%;
+    /* background: rgb(241, 241, 228); */
+    
+}
+.div11{
+    height:50%;
+    /* background: rgb(224, 227, 229); */
+    padding-left: 39%;
+    padding-top: 1%;
+}
+.divicon{
+    height:50%;
+    /* background: rgb(99, 103, 94); */
+    float: right;
+    /* padding-left: 2%; */
+}
+.abc{
+    float: right;
+}
+.maintable{
+    height: 100%;
+    background: rgb(241, 241, 228);
+    
+}   
+.table1{
+    height: 100%;
+    /* background: rgb(149, 153, 154); */
+    float: left;
+}
+.table2{
+    height: 100%;
+    /* background: rgb(59, 60, 57); */
+    float: right;
+}
+.table11{
+    height: 100%;
+    /* background: rgb(163, 39, 101); */
+}
+.table12{
+    height: 100%;
+    /* background: rgb(183, 120, 152); */
+}
+table.t1 {
+    margin: 1em auto;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+ .table .t1 th, .t1 td {
+    padding: 4px 8px;
+  }
+  .table .t1 thead th {
+    background: #458e38;
+    /*text-transform: lowercase;*/
+    text-align: left;
+    font-size: 15px;
+    color: #fff;
+  }
+.table  .t1 tr {
+    border-right: 1px solid #95b3d7;
+  }
+  .table .t1 tbody tr {
+    border-bottom: 1px solid #95b3d7;
+  }
+  .table  .t1 tbody tr:nth-child(odd) {
+    background: #a0d897;
+  }
+  .table  .t1 tbody th, .t1 tbody tr:nth-child(even) td {
+    border-right: 1px solid #95b3d7;
+  }
+  .table  .t1 tfoot th {
+    background: #458e38;
+    text-align: left;
+    font-weight: normal;
+    font-size: 10px;
+    color: #fff;
+	height:15px;
+  }
+  .table  .t1 tr *:nth-child(3), .t1 tr *:nth-child(4) {
+    text-align: right;
+  }
+  .table  .css-serial {
+    counter-reset: serial-number;  /* Set the serial number counter to 0 */
+  }
+  
+  .table  .css-serial td:first-child:before {
+    counter-increment: serial-number;  /* Increment the serial number counter */
+    content: counter(serial-number);  /* Display the counter */
+  }
+  
+  .table  .t1
+  {
+	  
+	   counter-reset: serial-number;  /* Set the serial number counter to 0 */
+}
+.table .t1 td:first-child:before {
+  counter-increment: serial-number;  /* Increment the serial number counter */
+  content: counter(serial-number);  /* Display the counter */
+}
+.table .scroll
+{
+ /* height:430px;*/
+  width:1580px;
+  overflow-x: auto;
+}
+.scrolly
+{
+  height:430px;
+  /*width:1580px;*/
+  overflow-y : auto;
+}
+.table .table-header-fixed
+{  width: 100%;
+  background: white;
+  overflow-x: hidden;
+  overflow-y: auto  ;
+}
+.table thead th{
+    background: lightgray;
+}

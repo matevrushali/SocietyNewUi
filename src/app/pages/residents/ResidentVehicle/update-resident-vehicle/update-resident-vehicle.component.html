@@ -1,0 +1,174 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<div class="col-md-1 col-sm-1 side">
+	
+</div>
+<div class="col-md-10 col-sm-10 mid">
+	<div class="content">
+		<div class="col-md-12 header">
+			<h4> Edit Resident Vehicle</h4>
+		</div>
+		<div class="col-md-3 a">
+			<div class="col-md-3 user"> </div>
+		</div>
+		<div class="col-md-9 b">
+			<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+				<table class="table role">
+					<tr>
+						<td class="lbl"> Resident :</td>
+
+						<td>
+							<select required [(ngModel)]="residentVehicle.userIdFk.usersFormId"  name="userIdFk" id="userIdFk" formControlName="userIdFk" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userIdFk.errors }">
+								<option hidden></option> 
+								<option  *ngFor="let user of usersForm$" value="{{user.usersFormId}}">{{user.firstName}}&nbsp;{{user.middleName}}&nbsp;{{user.lastName}}....[{{user.unitDetailsIdFk.wingBuilding}}-{{user.unitDetailsIdFk.flatNumber}}]</option>
+									</select>
+									<span *ngIf="submitted && f.userIdFk.errors" class="invalid-feedback">
+										<div *ngIf="f.userIdFk.errors.required">Select Resident Details</div>
+									</span>
+							<!-- <select required [(ngModel)]="residentVehicle.occDetailsIdFk.occupancyDetailsId"  name="occDetailsIdFk" id="occDetailsIdFk" formControlName="occDetailsIdFk" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.occDetailsIdFk.errors }">
+								<option  *ngFor="let occ of occupancy$" value="{{occ.occupancyDetailsId}}" >{{ occ.wingBuilding }}-{{occ.flatNumber}}</option>
+								</select>
+								<span *ngIf="submitted && f.occDetailsIdFk.errors" class="invalid-feedback">
+									<div *ngIf="f.occDetailsIdFk.errors.required">Select Resident Details</div>
+								</span> -->
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Available Parking Slots :</td>
+
+						<td>
+							<select required [(ngModel)]="residentVehicle.parkingIdFk.parkingId" name="parkingIdFk"
+								id="parkingIdFk" formControlName="parkingIdFk" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.parkingIdFk.errors }"
+								(change)="callBookingVehicle(residentVehicle.parkingIdFk.parkingId)">
+								<option *ngFor="let par of parking$" value="{{par.parkingId}}">
+									{{ par.parkingNumber }}-{{ par.parkingType }}-{{ par.parkingArea }}</option>
+							</select>
+							<span>{{temp}} </span>
+							<span *ngIf="submitted && f.parkingIdFk.errors" class="invalid-feedback">
+								<div *ngIf="f.parkingIdFk.errors.required">Select Available Parking</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Vehicle Number:</td>
+						<td><input type="text" formControlName="vehicleNumber" class="form-control"
+								pattern="^([a-zA-Z]){2}([-]){1}([0-9]){2}([a-zA-Z]){2}([0-9]){4}?$"
+								[ngClass]="{ 'is-invalid': submitted && f.vehicleNumber.errors }" name="vehicleNumber"
+								id="vehicleNumber" required [(ngModel)]="residentVehicle.vehicleNumber"
+								value="{{ residentVehicle$.vehicleNumber }}" />
+							<span *ngIf="submitted && f.vehicleNumber.errors" class="invalid-feedback">
+								<div *ngIf="f.vehicleNumber.errors.required">Vehicle Number is required</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Make:</td>
+						<!-- <td><input type="text" name="make"  id="make" required [(ngModel)]="residentVehicle.make" value="{{ residentVehicle$.make }}"/></td> -->
+						<td><input type="text" formControlName="make" class="form-control" pattern="^[a-z A-Z]{1,15}"
+								maxlength="45" [ngClass]="{ 'is-invalid': submitted && f.make.errors }" name="make"
+								id="make" required [(ngModel)]="residentVehicle.make"
+								value="{{ residentVehicle$.make }}" />
+							<span *ngIf="submitted && f.make.errors" class="invalid-feedback">
+								<div *ngIf="f.make.errors.required">Make is required</div>
+								<div *ngIf="f.make.errors.pattern">Make should be in alphabets</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td class="lbl">Model:</td>
+						<!-- <td><input type="text" name="model"  id="model" required [(ngModel)]="residentVehicle.model" value="{{ residentVehicle$.model }}"/></td> -->
+						<td><input type="text" formControlName="model" pattern="^[a-z A-Z]{1,15}" maxlength="45"
+								class="form-control" [ngClass]="{ 'is-invalid': submitted && f.model.errors }"
+								name="model" id="model" required [(ngModel)]="residentVehicle.model"
+								value="{{ residentVehicle$.model }}" />
+							<span *ngIf="submitted && f.model.errors" class="invalid-feedback">
+								<div *ngIf="f.model.errors.required">Model is required</div>
+								<div *ngIf="f.model.errors.pattern">Make should be in alphabets</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Type:</td>
+						<!-- <td><select required [(ngModel)]="residentVehicle.type" name="type">
+						<option *ngFor="let isType of typeTitle">{{isType}}</option>
+					</select></td> -->
+						<td><select required [(ngModel)]="residentVehicle.type" name="type" id="type"
+								formControlName="type" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+								<option hidden></option>
+								<option *ngFor="let isType of typeTitle">{{isType}}</option>
+							</select>
+							<span *ngIf="submitted && f.type.errors" class="invalid-feedback">
+								<div *ngIf="f.type.errors.required">Select type</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Insurance Expiry Date:</td>
+						<!-- <td><input type="date" name="insuranceExpiryDate"  id="insuranceExpiryDate" required [(ngModel)]="residentVehicle.insuranceExpiryDate" value="{{ residentVehicle$.insuranceExpiryDate }}"/></td> -->
+						<td><input type="text" onfocus="(this.type='date')" formControlName="insuranceExpiryDate"
+								class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.insuranceExpiryDate.errors }"
+								name="insuranceExpiryDate" id="insuranceExpiryDate" required
+								[(ngModel)]="residentVehicle.insuranceExpiryDate"
+								value="{{ residentVehicle$.insuranceExpiryDate }}" />
+							<span *ngIf="submitted && f.insuranceExpiryDate.errors" class="invalid-feedback">
+								<div *ngIf="f.insuranceExpiryDate.errors.required">Insurance Expiry Date is required
+								</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Insurance Company:</td>
+						<!-- <td><input type="text" name="insuranceCompany"  id="insuranceCompany" required [(ngModel)]="residentVehicle.insuranceCompany" value="{{ residentVehicle$.insuranceCompany }}"/></td> -->
+						<td><input type="text" formControlName="insuranceCompany" maxlength="45" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.insuranceCompany.errors }"
+								name="insuranceCompany" id="insuranceCompany" required
+								[(ngModel)]="residentVehicle.insuranceCompany"
+								value="{{ residentVehicle$.insuranceCompany }}" />
+							<span *ngIf="submitted && f.insuranceCompany.errors" class="invalid-feedback">
+								<div *ngIf="f.insuranceCompany.errors.required">Insurance Company is required</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+
+						<td class="lbl">Sticker Issued:</td>
+						<!-- <td><select required [(ngModel)]="residentVehicle.stickerIssued" name="stickerIssued">
+						<option *ngFor="let isSticker of stickerTitle">{{isSticker}}</option>
+					</select></td>	 -->
+						<td><select required [(ngModel)]="residentVehicle.stickerIssued" formControlName="stickerIssued"
+								name="stickerIssued" value="{{ residentVehicle$.stickerIssued }}">
+								<option hidden></option>
+								<option *ngFor="let isSticker of stickerTitle">{{isSticker}}</option>
+							</select></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td colspan="3"><button class="btn btn-info save" type="submit"><b>Edit</b></button>
+
+							<button class="btn btn-info" (click)="rediectToListPage('residents/resident_vehicle_list')"><b>Cancel</b></button>
+							<button class="btn btn-info" (click)="rediectToListPage('residents/resident_vehicle_list')"><b>Show List</b></button> </td>
+					</tr>
+				</table>
+			</form>
+		</div>
+
+	</div>
+</div>

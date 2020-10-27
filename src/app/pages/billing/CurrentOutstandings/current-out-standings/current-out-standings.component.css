@@ -1,0 +1,43 @@
+.side {
+    /* background: lightgrey; */
+    padding-top:15px;
+    height:100%;
+    width: 100%;
+    float: left;
+    font-size: 10px;
+  }
+  li{
+    font-size: 10px;
+  }
+  
+  .mid
+  {
+  
+  height:100%;
+  float: left;
+  }
+  .header  {
+      background: orange;
+      height: 7%;
+      font-size: 25px;
+  }
+  .content {
+    height:  93%;
+    background:indianred;
+    padding-top:2%;
+    margin: 0%;
+    
+  }
+  .filter, .showBillOfEntireYear{
+      height:5%;
+      background: rebeccapurple;
+      /* margin-top:1%; */
+  }
+  .tableContent{
+      height: 90%;
+      background: white;
+  }
+  .table{
+      height:100%;
+      /* background: saddlebrown; */
+  }

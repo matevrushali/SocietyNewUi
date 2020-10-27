@@ -1,0 +1,53 @@
+
+<div class="col-md-1 col-sm-1 side">
+	
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+	<label>
+		<h5> Billing Head Details</h5>
+	</label><br>
+	<label>
+		<h6><a *ngIf="showSaveButton()" (click)="rediectToPage('billing_heads/create_billing_head')">Add Billing Head</a></h6>
+	</label>
+	<table datatable [dtOptions] = "dtOptions" [dtTrigger]="dtTrigger"  class="display nowrap" style="width:100%">
+		<thead>
+			<tr>
+
+				<th>Bill Type</th>
+				<th>Bill Cycle</th>
+				<th>Billing Method</th>
+				<th>Cheque Dishonour Charges</th>
+				<th>Interest Type</th>
+				<th>Interest Calculation Method </th>
+				<th>Rate of Interest</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let billing of billing$">
+                
+				<td><a (click)="rediectToDetails('billing_heads/get_billing_heads_details', billing.billingHeadsId)">{{ billing.billType }} </a></td>
+				<td>{{ billing.billCycle }}</td>
+				<td>{{ billing.billingMethod }}</td>
+				<td>{{ billing.chequeDishonourCharges }}</td>
+				<td>{{ billing.interestType }}</td>
+				<td>{{ billing.interestCalculationMethod }}</td>
+				<td>{{ billing.rateOfInterest }}</td>
+
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</tfoot>
+	</table>
+
+</div>

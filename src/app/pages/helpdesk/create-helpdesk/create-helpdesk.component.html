@@ -1,0 +1,158 @@
+<head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></head>
+
+<div class="col-md-10 col-sm-10 mid">
+    <div class="col-md-12 col-sm-12 temp">
+        <div class="col-md-12 col-sm-12 header">
+            <h5>New Helpdesk </h5>
+        </div>
+        <div class="helpDeskForm col-md-12 col-sm-12">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">	
+                <div class="col-md-12 col-sm-12 imp">
+                        Fields Marked with * are necessary
+                </div>
+                <div class="col-md-12 col-sm-12 subdiv">
+                    <div class="col-md-12 col-sm-12 row1">
+                        <div class="col-md-3 col-sm-3 cell">
+                                Resident/Other * :
+                                <select class="form-control" required formControlName="residentOther"  [ngClass]="{ 'is-invalid': submitted && f.residentOther.errors }"
+                                        [(ngModel)]="helpdesk.residentOther"
+                                        name="residentOther" (change)="onChangeResidentValue($event.target.value)">
+                                   <option hidden></option>
+                                        <option *ngFor="let isResidentOther of ResidentOther"> {{isResidentOther}}</option>
+                                </select>
+        
+                                <span *ngIf="submitted && f.residentOther.errors" class="invalid-feedback">
+                                    <div *ngIf="f.residentOther.errors.required">Select Resident/Other</div>
+                                </span>
+                        </div>
+                        <div class="col-md-3 col-sm-12 cell" [hidden]="!isResidentNameVisible">
+                                Resident Name * :
+                                  <select required [(ngModel)]="helpdesk.residentUserId"  formControlName="residentUserId" class="form-control"[ngClass]="{ 'is-invalid': submitted && f.residentUserId.errors }" name="residentUserId" id="residentUserId" >
+                                        <option hidden></option>
+                                   
+                                    <option  *ngFor="let user of userDetails$" value="{{ user.firstName }} {{user.lastName}} " >{{ user.firstName }} {{user.lastName}} </option>
+                                </select>
+                                
+                                <span *ngIf="submitted && f.residentUserId.errors" class="invalid-feedback">
+                                    <div *ngIf="f.residentUserId.errors.required">*Resident Name is mandetory </div>
+                                    
+                                </span>
+                            </div>
+                        <div class="col-md-3 col-sm-12 cell"[hidden]="!isOtherAmenitiesVisible">
+                                Other Amenities * : 
+                                <select name="otherAminities" class="form-control" required otherAminities id="otherAminities"
+                                        [(ngModel)]="helpdesk.otherAminities" formControlName="otherAminities">
+                                        <option *ngFor="let isOtherAminities of OtherAminities">{{isOtherAminities}}</option>
+                                </select>
+                        </div>
+                        <div class="col-md-3 col-sm-12 cell" >
+                                Category * :
+                                <select required [(ngModel)]="helpdesk.category"  name="category" id="category" formControlName="category" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.category.errors }" (change)="onChangesubcategory($event.target.value)">
+                                    <option hidden></option>
+                                         <option  *ngFor="let iscategory of category$" >{{ iscategory}}</option>
+                                </select>
+                                <span *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                                    <div *ngIf="f.category.errors.required">Select Category Type</div>
+                                </span>
+                        </div>
+                        <div class="col-md-3 col-sm-12 cell">
+                                Sub Category * :
+                            <div [hidden]="!isApartmentSubcategory" > <select required [(ngModel)]="helpdesk.subCategory"  name="subCategory" id="subCategory" formControlName="subCategory" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subCategory.errors }" >
+                                    <option hidden></option>
+                                        <option  *ngFor="let isSubcategory of apartmentSubcategory$ " >{{ isSubcategory}}</option>
+                                </select>
+                                <span *ngIf="submitted && f.subCategory.errors" class="invalid-feedback">
+                                            <div *ngIf="f.subCategory.errors.required">Select Category Type</div>
+                                </span>
+                            </div>
+                            <div [hidden]="!isCommonANTSubcategory">
+                                    <select required [(ngModel)]="helpdesk.subCategory"  name="subCategory" id="subCategory" formControlName="subCategory" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subCategory.errors }">
+                                            <option hidden></option>
+                                            <option  *ngFor="let isSubcategory of commonNonTowerSubcategory$" >{{ isSubcategory}}</option>
+                                            </select>
+                                    <span *ngIf="submitted && f.subCategory.errors" class="invalid-feedback">
+                                    <div *ngIf="f.subCategory.errors.required">Select Category Type</div>
+                                    </span>
+                            </div>
+                            <div  [hidden]="!isCommonATSubcategory">
+                                    <select required [(ngModel)]="helpdesk.subCategory"  name="subCategory" id="subCategory" formControlName="subCategory" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subCategory.errors }">
+                                            <option hidden></option>
+
+                                            <option  *ngFor="let isSubcategory of commonTowerSubcategory$" >{{ isSubcategory}}</option>
+                                    </select>
+                                    <span *ngIf="submitted && f.subCategory.errors" class="invalid-feedback">
+                                        <div *ngIf="f.subCategory.errors.required">Select Category Type</div>
+                                    </span>
+                            </div>
+                            <div [hidden]="!isOthersSubcategory">
+                                    <select required [(ngModel)]="helpdesk.subCategory"  name="subCategory" id="subCategory" formControlName="subCategory" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subCategory.errors }">
+                                            <option hidden></option>
+                                         <option  *ngFor="let isSubcategory of otherSubcategory$" >{{ isSubcategory}}</option>
+                                    </select>
+                                    <span *ngIf="submitted && f.subCategory.errors" class="invalid-feedback">
+                                        <div *ngIf="f.subCategory.errors.required">Select Category Type</div>
+                                    </span>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 subdiv">
+                    <div class="col-md-6 col-sm-12 row1">
+                        <div class="col-md-6 col-sm-12 cell">
+                                Calling Person :
+                                <input type="text" pattern="[A-Z a-z]{2,45}"  formControlName="callingPerson" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.callingPerson.errors }" name="callingPerson"  id="callingPerson" required [(ngModel)]="helpdesk.callingPerson" placeholder="Enter Contact person Name "/>
+                                <span *ngIf="submitted && f.callingPerson.errors" maxlength="45" class="invalid-feedback">
+                                  <div *ngIf="f.callingPerson.errors.required">Person is required*</div>
+                                  <div *ngIf="f.callingPerson.errors.pattern">Person name should be in alphabets</div>
+
+                                </span>
+                        </div>
+                        <div class="col-md-6 col-sm-12 cell">
+                                Calling Person Mobile :
+                                <input type="text"  formControlName="callingPersonMobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.callingPersonMobile.errors }" name="callingPersonMobile"  id="callingPersonMobile" required 
+                                    required pattern="^((\\+91-?)|0)?[0-9]{10}$" [(ngModel)]="helpdesk.callingPersonMobile" placeholder="Enter Contact Person Number "/>
+                                <span *ngIf="submitted && f.callingPersonMobile.errors" class="invalid-feedback">
+                                   <div *ngIf="f.callingPersonMobile.errors.required">Number is required*</div>
+                                    <div *ngIf="f.callingPersonMobile.errors.pattern">Enter 10 digit mobile number</div>
+                                </span>
+                        </div>
+                        <div class="col-md-12 col-sm-12 cell" >
+                                Priority * :
+                                <select required [(ngModel)]="helpdesk.priority"  name="priority" id="priority" formControlName="priority" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.priority.errors }">
+                                    <option hidden></option>
+                                    <option  *ngFor="let ispriority of priorityTitle" >{{ ispriority}}</option>
+                                </select>
+                                <span *ngIf="submitted && f.priority.errors" class="invalid-feedback">
+                                    <div *ngIf="f.priority.errors.required">Select Category Type</div>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 row1">
+                            <div class="col-md-12 col-sm-12 cell1">   
+                               <div class="lbl">Description : </div> 
+                               <div> <textarea type="text" name="description" placeholder="Description" formControlName="description" id="description" 
+                                        [(ngModel)]="helpdesk.description" [(ngModel)]='description' rows="6" cols="50">
+                                    </textarea></div>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 row1">
+                    <!-- <div class="col-md-4 col-sm-12 cell">
+                           
+                    </div>
+                    <div class="col-md-4 col-sm-12 cell">
+                           
+                    </div>
+                    <div class="col-md-4 col-sm-12 cell">
+                           
+                    </div> -->
+                    <button class="btn btn-info save" type="submit"><b>Save</b></button>&nbsp;&nbsp;
+                    <button class="btn btn-info" (click)="myFunction()"><b>Cancel</b></button>&nbsp;&nbsp;
+                    <button class="btn btn-info" (click)="myFunction()"><b>Show List</b></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<h2>ADD VENDOR BILL</h2>
+<form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Bill Number</label>
+        <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="vendorBill.billNo" class="form-control" id="inputEmail4" >
+      </div>
+      
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+		  <label for="inputEmail4">Date </label>
+		  <input type="date" [ngModelOptions]="{standalone: true}" [(ngModel)]="vendorBill.date" class="form-control" id="inputEmail4" >
+		</div>
+		
+	  </div>
+   
+   
+    <div class="form-row">
+      <div class="form-group col-md-6">
+		<label for="inputCity">Expense </label>
+		<select required name="membershipType"  [(ngModel)]="vendorBill.expenses" [ngModelOptions]="{standalone: true}"
+        class="form-control">
+        <option hidden></option>
+        <option *ngFor="let isExpenses of expensesTitle">{{ isExpenses}}</option>
+      </select>
+       
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputCity">Debit</label>
+        <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="vendorBill.debitAmount" class="form-control" id="inputCity2">
+      </div>
+     
+    </div>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+		  <label for="inputCity">Vendor Name </label>
+		  <select required class="form-control" [(ngModel)]="vendorBill.vendorId" [ngModelOptions]="{standalone: true}">
+			<option *ngFor="let user of usersForm$" value="{{user.vendorId}}">
+			  {{user.firstName}}&nbsp;{{user.lastName}}
+			</option>
+		  </select>
+
+
+		 
+		</div>
+		<div class="form-group col-md-6">
+		  <label for="inputCity">Credit</label>
+		  <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="vendorBill.creditAmount" class="form-control" id="inputCity2">
+		</div>
+	   
+	  </div>
+	  <div class="form-row">
+		<div class="form-group col-md-6">
+		  <label for="inputEmail4">Taxable Amount </label>
+		  <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="vendorBill.taxableAmount" class="form-control" id="inputEmail4" >
+		</div>
+		
+	  </div>
+	  <div class="form-row">
+		<div class="form-group col-md-6">
+		  <label for="inputEmail4">Due Date</label>
+		  <select required name="membershipType" (change)="callDueDate($event.target.value)" [(ngModel)]="vendorBill.dueDate" [ngModelOptions]="{standalone: true}"
+		  class="form-control">
+		  <option hidden></option>
+		  <option *ngFor="let isDueDate of dueDateTitle">{{ isDueDate}}</option>
+		</select>
+		 
+		 
+		</div>
+		
+	
+	  </div>
+	  <div class="form-row" [hidden]="!isChooseDueDate">
+		<div class="form-group col-md-6">
+		  <label for="inputEmail4">Choose Date </label>
+		  <input type="date" [ngModelOptions]="{standalone: true}" [(ngModel)]="vendorBill.chooseDate" class="form-control" id="inputEmail4" >
+		</div>
+		
+	  </div>
+	  <div class="form-group">
+        <div class="form-group purple-border">
+            <label for="exampleFormControlTextarea4">Narration</label>
+            <textarea [ngModelOptions]="{standalone: true}" class="form-control" [(ngModel)]="vendorBill.narration" id="exampleFormControlTextarea4" rows="3"></textarea>
+          </div>
+     
+    </div>
+    <button  (click)="saveVendorBill()" class="btn btn-primary">Save</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary">Cancel</button>
+  </form>
+

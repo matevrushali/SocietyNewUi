@@ -1,0 +1,72 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<div class="col-md-1 col-sm-1 side">
+	
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+
+	<div class="content col-md-12 col-sm-12">
+		<div class="col-md-3 col-sm-2 a">
+			<div class="col-md-12 col-sm-12 user">
+               
+                
+				<h4><b>{{ adhocGenerateBill$.billType }}</b></h4>
+			</div>
+
+		</div>
+		<div class="col-md-9 col-sm-9 b">
+			<h4>Details of Adhoc Generate Bill: </h4>
+			<table class="table role  col-md-12 col-sm-12">
+				<tr>
+					<th>Bill Head Type :</th>
+					<td>{{ adhocGenerateBill$.billingHeadIdFk.billName }}</td>
+				</tr>
+				
+				<tr>
+					<th>Bill For :</th>
+					<td>{{ adhocGenerateBill$.billFor }}</td>
+				</tr>
+				<tr [hidden]="!excludeFlat">
+					<th>Exclude Flat :</th>
+					<td>{{ occ.wingBuilding }} - {{occ.flatNumber}}</td>
+				</tr>
+				<tr [hidden]="!blockTower">
+					<th>Block /Tower:</th>
+					<td>{{ adhocGenerateBill$.blockTower }}</td>
+				</tr>
+				<tr [hidden]="!singleMultipleFlats">
+					<th>Selected Flat:</th>
+					<td>{{ occ.wingBuilding }} - {{occ.flatNumber}}</td>
+				</tr>
+				<tr>
+					<th>Date:</th>
+					<td>{{ adhocGenerateBill$.date }}</td>
+				</tr>
+				<tr>
+					<th>Grace Period :</th>
+					<td>{{ adhocGenerateBill$.gracePeriod }}</td>
+				</tr>
+				<tr>
+					<th>Bill No. Prefix:</th>
+					<td>{{ adhocGenerateBill$.billNoPrefix }}</td>
+			
+				</tr>
+				<tr>
+					<th>Bill Start No:</th>
+					<td>{{ adhocGenerateBill$.billStartNumber }}</td>
+				</tr>
+				<tr>
+					<td  colspan="3"><a *ngIf="showUpdateButton()" (click)="rediectToUpdateDetails('billing_heads/update_adhoc_bill', adhocGenerateBill$.generateBillsId)"><i class="fa fa-edit" style="font-size:21px"></i></a>
+					<button *ngIf="showDeleteButton()" style="font-size:14px" (click)="callSweetAlert(adhocGenerateBill$.generateBillsId)" type="button" class="btn btn-link"> <i class="material-icons">delete</i></button>
+						<button style="font-size:14px" class="btn btn-link" (click)="rediectToListPage('billing_heads/adhoc_generate_bill')"><i class="fa fa-arrow-left" aria-hidden="true"></i></button> </td>
+					</tr>
+
+				
+			</table>
+		</div>
+	</div>
+
+
+</div>

@@ -1,0 +1,49 @@
+
+<div class="col-md-1 col-sm-1 side">
+   
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+    <label>
+            <h5> Parking List</h5>
+    </label><br>
+    <label>
+            <h6><a *ngIf="showSaveButton()" (click)="rediectToPage('residents/add_parking')">Add New Parking</a></h6>
+    </label>
+    <table datatable [dtOptions] = "dtOptions" [dtTrigger]="dtTrigger"  class="display nowrap" style="width:100%">
+        <thead>
+            <tr>
+
+                <th>Parking Number </th>
+                <th>Parking Type</th>
+                <th>Parking Area</th>
+                <th>Flat Details</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of data">
+               
+                <td><a  (click)="rediectToDetails('residents/get_parking_details', user.parkingId)">{{ user.parkingNumber }}</a>
+                </td>
+                <td>{{ user.parkingType }}</td>
+                <td>{{ user.parkingArea }}</td>
+                <td>{{ user.unitDetailsIdFk.wingBuilding }}-{{ user.unitDetailsIdFk.flatNumber }}</td>
+                
+                <!-- <td><a routerLink="/updateParkingById/{{user.parkingId }}"><i class="fa fa-edit"
+                                                                    style="font-size:22px"></i></a>
+                <button style="font-size:14px"(click)="openConfirmationDialog(user.parkingId)" ng-confirm-click="do you relly want to delete this?" type="button" class="btn btn-link"> <i class="material-icons">delete</i></button>
+                </td> -->
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>

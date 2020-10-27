@@ -1,0 +1,141 @@
+.side {
+    /* background: lightgrey; */
+    padding-top:15px;
+    height:100%;
+    width: 100%;
+    float: left;
+    font-size: 10px;
+  }
+  li{
+    font-size: 10px;
+  }
+  
+  .mid
+  {
+  
+  height:100%;
+  float: left;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  
+  }
+  .hack1 {
+    display: table;
+    table-layout: fixed;
+    
+    width: 100%;
+    }
+    
+    .hack2 {
+    display: table-cell;
+    overflow-x: auto;
+    width: 40%;
+    }
+  .header {
+    padding: 30px;
+    text-align: center;
+   
+    font-size: 15px;
+  }
+  /* td {
+  border: 1px solid lightgray;
+  }
+  
+  th {
+  border: 1px solid lightgray;
+  } */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  
+  }
+  .content{
+    height:100%;
+    width:100%;
+  }
+  .a{
+  height:40%;
+  }
+  td {
+  background:white;
+  
+  }
+  
+  th {
+  border: 1px solid black;
+  background: lightgray;
+  
+  }
+  tr{
+    background: white;
+    border: 1px solid white;
+  }
+  .div1{
+   height: 100%;
+  }
+  .div2{
+  height:60%;
+  
+  }
+  
+  .temp{
+  height:100%;
+  float: left;
+  border: 1px solid black;
+  margin: 0%;
+  padding: 0%;
+  }
+  
+  .temp1{
+  height:100%;
+  float: right;
+  border: 1px solid black;
+  margin: 0%;
+  padding: 0%;
+  }
+  .div3{
+  height:8%;
+  border-bottom: 1px solid black;
+  font-weight: bold;
+  background: lightgray;
+  
+  }
+  .div4{
+  height:82%;
+  }
+  
+  .div5{
+  height:10%;
+  border-top: 1px solid black;
+  font-weight: bold;
+  }
+  .group{
+  height: 100%;
+  float:left;
+  }
+  
+  
+  .row{
+  height:7%;
+  }
+  .row1{
+  height:5%;
+  }
+  .a{
+  height: 100%;
+  float: left;
+  }
+  .b{
+  height: 100%;
+  float: left;
+  
+  }
+  .any{
+  height: 100%;
+  }
+  .div{
+    height: 10%;
+  }
+  

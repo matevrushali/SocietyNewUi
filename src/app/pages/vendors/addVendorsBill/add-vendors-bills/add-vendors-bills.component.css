@@ -1,0 +1,140 @@
+.content
+{
+	height:100%;
+	width:100%;
+}
+.content-head
+{
+	height:5%;
+	background: #E8E8E8;
+	text-align:center;
+	font-size: 30px;
+	padding-top:20px;
+}
+.sub-content
+{
+	height:95%;
+	width:100%;
+}
+.main
+{
+	float:left;
+}
+.sidebar
+{
+	background: #DCDCDC;
+	width: 10%;
+	height: 170%;
+	float:left;
+	
+}
+
+.form-content
+{
+	height:150%;
+	width:90%;
+	background: #E8E8E8;
+}
+
+.form-table
+{
+
+	width:100%;
+}
+.row
+{
+	background:#E8E8E8;
+	width:100%;
+
+}
+.row-label
+{	
+	width:20%;
+	font-size:15px;
+	font-style: italic;
+	text-align:center;
+}
+.row-content
+{
+	width:80%;
+}
+input[type=text], select {
+  width: 100%;
+  padding: 6px 20px;
+  margin: 8px 0;
+  display: inline-block;
+ 
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.address
+{
+
+	height:20%;
+}
+/* .save
+{
+	width:35%;
+	margin-left:10%;
+	height:20%;
+	text-align:center;
+} */
+
+.my-custom-scrollbar {
+	position: relative;
+	height: 80%;
+	overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+	display: block;
+  }
+  .a{
+ 
+	height: 112.5%;
+   float: left;
+   
+	text-align: center;
+  }
+  .b
+  {
+	
+	float: right;
+	height: 112.5%;
+  
+  }
+  .header{
+	  height:10%;
+	  /* background: rgb(207, 207, 205); */
+	  text-align:center;
+  }
+  .lbl
+  {
+	  padding-left: 10%;
+  }
+  .sub
+  {
+	  text-align: center;
+  }
+  .side {
+	/* background: lightgrey; */
+	padding-top:15px;
+	height:100%;
+	width: 100%;
+	float: left;
+	font-size: 10px;
+  }
+  li{
+	font-size: 10px;
+  }
+  
+  .mid
+  {
+  
+  height:100%;
+  float: left;
+  }
+  a,button{
+	margin-left: 15%;
+  }
+  
+  

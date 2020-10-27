@@ -1,0 +1,126 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side">
+   
+  </div>
+  <div class="col-md-10 col-sm-10 mid">
+    <div class="col-md-12 title">
+      <h3> NEW MOVE IN/OUT</h3>
+    </div>
+    <div class="col-md-12 fields">
+      <div class="col-md-3 field1">
+        <label> Tower Name:</label>&nbsp;&nbsp;
+  
+        <select required [(ngModel)]="occupancy.wingBuilding" name="wingBuilding" id="wingBuilding">
+          <option *ngFor="let isUnitDetails of occupancy$" value="{{isUnitDetails.wingBuilding}}">
+            {{isUnitDetails.wingBuilding}}</option>
+        </select>
+      </div>
+      <div class="col-md-3 field2">
+        <label> Flat Number:</label>&nbsp;&nbsp;
+  
+        <select required [(ngModel)]="occupancy.flatNumber" name="flatNumber" id="flatNumber">
+          <option *ngFor="let isUnitDetails of occupancy$" value="{{isUnitDetails.flatNumber}}">
+            {{isUnitDetails.flatNumber}}</option>
+        </select>
+      </div>
+      <div class="col-md-3 field3">
+        <button class="btn btn-info" (click)="formCall(occupancy.occupancyDetailsId)" type="submit"><b>Proceed with Move In</b></button>&nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+    <div class="col-md-12 form" [hidden]="!isForm"> 
+      <!-- <div class="note">Fields Marked with * are necessary</div>
+      <h5>Resident Info</h5> -->
+      <div class="col-md-12 residentInfo">
+  
+        <div class="col-md-12 a">
+          <div class="col-md-3 name">
+            First Name*:<br>
+            <input type="text" name="firstName" id="firstName" [(ngModel)]="tenant_manager.tenantFirstName"
+              placeholder="Enter Name " />
+          </div>
+          <div class="col-md-3 middle">
+            Middle Name:<br>
+            <input type="text" name="middleName" id="middleName" [(ngModel)]="tenant_manager.tenantMiddleName"
+              placeholder="Enter Middle Name " />
+  
+          </div>
+          <div class="col-md-3 last">
+            Last Name*:<br>
+            <input type="text" name="lastName" id="lastName" [(ngModel)]="tenant_manager.tenantLastName"
+              placeholder="Enter Last Name " />
+  
+          </div>
+          <div class="col-md-3 type">
+  Resident Type:<br>
+  <select required [(ngModel)]="tenant_manager.residentType"  name="residentType" id="residentType" >
+      <option  *ngFor="let isResidentType of ResidentType">{{isResidentType}}</option>
+      </select>
+          </div>
+        </div>
+  
+        <div class="col-md-12 b">
+            <div class="col-md-3 type">
+                Email*:<br>
+                <input type="text" name="email" id="email" [(ngModel)]="tenant_manager.tenantEmail"
+                  placeholder="Enter Email " />
+            </div>
+            <div class="col-md-3 type">
+                Mobile Number*:<br>
+                <input type="number" name="mobile" id="mobile" [(ngModel)]="tenant_manager.tenantContactNo"
+                  placeholder="Enter Mobile " />
+            </div>
+            <div class="col-md-3 type">
+                Lease Start*:<br>
+                <input type="date" name="leaseStart" id="leaseStart" [(ngModel)]="tenant_manager.leaseStartDate"
+                   />
+            </div>
+            <div class="col-md-3 type">
+                Lease End*:<br>
+                <input type="date" name="leaseEnd" id="leaseEnd" [(ngModel)]="tenant_manager.leaseEndDate"
+                   />
+            </div>
+  
+        </div>
+      </div>
+      <div class="col-md-12 duesInfo">
+        <h5>Dues/Advance Info (In Rs.)</h5>
+        <div class="col-md-1 y">
+  
+        </div>
+        <div class="col-md-10 x">
+          <h6>Maintainance Bill Amount of $13579 against 1 is Due</h6>
+        </div>
+        <div class="col-md-1 z">
+  
+        </div>
+      </div>
+      <div class="col-md-12 additionalInfo">
+        <h5>Additional Info.</h5>
+        <input type="checkbox" name="createImportControl" [value]="Yes">Signature of Property Owner should be a match with
+        condominium office records.<br>
+        <input type="checkbox" name="createImportControl" [value]="Yes">Payment to be taken as per required society Move
+        in Norms.<br>
+        <input type="checkbox" name="createImportControl" [value]="Yes">Collect rent agreement.<br>
+        <input type="checkbox" name="createImportControl" [value]="Yes">Collect police verification document.<br>
+        <input type="checkbox" name="createImportControl" [value]="Yes">Get vehicle details and issue sticker.<br>
+      </div>
+      <div class="col-md-12 buttons">
+        <button class="btn btn-info"(click)="saveTenantManager()" type="submit"><b>Sumbit</b></button>&nbsp;
+        <button class="btn btn-info" type="submit"><b>Cancel</b></button>&nbsp;
+      </div>
+    </div>
+  
+  
+  
+  </div>
+  <!-- <div class="btn-group">
+    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Large button
+    </button>
+    <div class="dropdown-menu">
+        <option *ngFor="let isUnitDetails of occupancy$" value="{{isUnitDetails.wingBuilding}}">
+            {{isUnitDetails.wingBuilding}}</option>
+    </div>
+  </div> -->

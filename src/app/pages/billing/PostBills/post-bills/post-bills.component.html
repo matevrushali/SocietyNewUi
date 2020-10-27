@@ -1,0 +1,35 @@
+
+<div class="col-md-1 col-sm-1 side">
+	
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+	<h4 class="header"> Post Bill In Account</h4>
+	<table datatable [dtOptions] = "dtOptions" [dtTrigger]="dtTrigger"  class="display nowrap" style="width:100%">
+		<thead>
+			<tr>
+
+				<th>Bill For</th>
+				<th>Bill Type</th>
+				<th>Bill Period</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let user of generateBill$">
+                
+				<td><a (click)="rediectToDetails('billing_heads/get_bill_to_be_post', user.generateBillsId)">{{ user.billFor }}</a></td>
+				<td>{{ user.billingHeadIdFk.billName }} </td>
+				<td>{{ user.billPeriod }}</td>
+
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</tfoot>
+	</table>
+
+</div>

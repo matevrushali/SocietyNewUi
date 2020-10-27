@@ -1,0 +1,264 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side">
+  
+  </div>
+  <div class="col-md-10 col-sm-10 mid">
+  
+  
+  
+    <head></head>
+    <div class="content">
+      <div class="col-md-12 header">
+        <h2>Update User</h2>
+      </div>
+      <div class="col-md-3 a">
+       
+      </div>
+      <div class="col-md-9 b">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <table class="table  role">
+            <tr class="form-group">
+              <td class="lbl"> Members :</td>
+              <td>
+                <mat-radio-group class="radio-group" [(ngModel)]="userUpdate.member" value="{{userUpdate.member}}"
+                  [ngModelOptions]="{standalone: true}" >
+                  <mat-radio-button class="radio-button" *ngFor="let option of option" [value]="option"
+                    (change)="callForm(option)">
+                    {{option}}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </td>
+  
+            </tr>
+            <tr class="form-group">
+              <td class="lbl"> First Name : </td>
+              <td>
+                <input type="text" formControlName="firstName" class="form-control" value="{{userUpdate.firstName}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" name="firstName" id="firstName" required
+                  pattern="^[a-z A-Z]{2,45}" [(ngModel)]="userUpdate.firstName" />
+                <span *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                  <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                  <div *ngIf="f.firstName.errors.pattern">First Name should contain only alphabets</div>
+  
+                </span>
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="lbl"> Middle Name : </td>
+              <td>
+                <input type="text" formControlName="middleName" class="form-control" value="{{userUpdate.middleName}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.middleName.errors }" name="middleName" id="middleName"
+                  required pattern="^[a-z A-Z]{2,45}" [(ngModel)]="userUpdate.middleName" />
+                <span *ngIf="submitted && f.middleName.errors" class="invalid-feedback">
+                  <div *ngIf="f.middleName.errors.required">Middle Name is required</div>
+                  <div *ngIf="f.middleName.errors.pattern">Middle Name should contain only alphabets</div>
+  
+                </span>
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="lbl"> Last Name : </td>
+              <td>
+                <input type="text" formControlName="lastName" class="form-control" value="{{userUpdate.lastName}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" name="lastName" id="lastName" required
+                  pattern="^[a-z A-Z]{2,45}" [(ngModel)]="userUpdate.lastName" />
+                <span *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                  <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                  <div *ngIf="f.lastName.errors.pattern">Last Name should contain only alphabets</div>
+  
+                </span>
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="lbl">Mobile Number : </td>
+              <td>
+                <input type="text" formControlName="mobileNumber" class="form-control" value="{{userUpdate.mobileNumber}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" name="mobileNumber" id="mobileNumber"
+                  required pattern="^[0-9]{10,10}" [(ngModel)]="userUpdate.mobileNumber" />
+                <span *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+                  <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required</div>
+                  <div *ngIf="f.mobileNumber.errors.pattern">Enter 10 digit mobile number</div>
+  
+                </span>
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="lbl">Email Address : </td>
+              <td>
+                <input type="text" formControlName="emailAddress" class="form-control" value="{{userUpdate.emailAddress}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.emailAddress.errors }" name="emailAddress" id="emailAddress"
+                  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [(ngModel)]="userUpdate.emailAddress" />
+                <span *ngIf="submitted && f.emailAddress.errors" class="invalid-feedback">
+                  <div *ngIf="f.emailAddress.errors.required">Email is required</div>
+                  <div *ngIf="f.emailAddress.errors.pattern">Email should be in pattern</div>
+  
+                </span>
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="lbl">Unit Details :</td>
+              <td>
+                <select required [(ngModel)]="userUpdate.unitDetailsIdFk.occupancyDetailsId"
+                  [ngClass]="{ 'is-invalid': submitted && f.unitDetailsIdFk.errors }" name="unitDetailsIdFk"
+                  formControlName="unitDetailsIdFk" class="form-control">
+                  <option *ngFor="let occupancy of occupancy" value="{{occupancy.occupancyDetailsId}}">
+                    {{ occupancy.wingBuilding }}-{{ occupancy.flatNumber }} </option>
+                </select>
+                <span *ngIf="submitted && f.unitDetailsIdFk.errors" class="invalid-feedback">
+                  <div *ngIf="f.unitDetailsIdFk.errors.required">Select Unit Details</div>
+  
+                </span>
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="lbl">Alternate Number : </td>
+              <td>
+                <input type="text" formControlName="alternateNumber" class="form-control"
+                  value="{{userUpdate.alternateNumber}}"
+                  [ngClass]="{ 'is-invalid': submitted && f.alternateNumber.errors }" name="alternateNumber"
+                  id="alternateNumber" required pattern="^[0-9]{10,10}" [(ngModel)]="userUpdate.alternateNumber" />
+                <span *ngIf="submitted && f.alternateNumber.errors" class="invalid-feedback">
+                  <div *ngIf="f.alternateNumber.errors.required">Alternate Number is required</div>
+                  <div *ngIf="f.alternateNumber.errors.pattern">Enter 10 digit alternate number</div>
+  
+                </span>
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="lbl">LandLine Number : </td>
+              <td>
+                <input type="text" formControlName="landlineNumber" class="form-control"
+                  value="{{userUpdate.landlineNumber}}" [ngClass]="{ 'is-invalid': submitted && f.landlineNumber.errors }"
+                  name="landlineNumber" id="landlineNumber" pattern="^[0-9]{10,10}"
+                  [(ngModel)]="userUpdate.landlineNumber" />
+                <span *ngIf="submitted && f.landlineNumber.errors" class="invalid-feedback">
+                  <div *ngIf="f.landlineNumber.errors.pattern">LandLine Number should be in Number</div>
+  
+                </span>
+              </td>
+            </tr>
+            <tr class="form-group" [hidden]="!owner">
+              <td class="lbl">Intercom Number : </td>
+              <td>
+                <input type="text" formControlName="intercomNumber" class="form-control"
+                  value="{{userUpdate.intercomNumber}}" [ngClass]="{ 'is-invalid': submitted && f.intercomNumber.errors }"
+                  name="intercomNumber" id="intercomNumber" pattern="^[0-9]{6,10}"
+                  [(ngModel)]="userUpdate.intercomNumber" />
+                <span *ngIf="submitted && f.intercomNumber.errors" class="invalid-feedback">
+                  <div *ngIf="f.intercomNumber.errors.pattern">Intercom Number should be at least 6 digit</div>
+  
+                </span>
+              </td>
+            </tr>
+            <tr class="form-group" [hidden]="!owner">
+              <td class="lbl">Property Type: </td>
+              <td>
+                <select  [(ngModel)]="userUpdate.propertyType" formControlName="propertyType" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.propertyType.errors }"
+                  (change)="onChangeProperty($event.target.value)" name="propertyType"
+                  value="{{userUpdate.propertyType}}">
+                  <option *ngFor="let isProperty of propertyTitle">{{isProperty}}</option>
+                </select>
+                <span *ngIf="submitted && f.propertyType.errors" class="invalid-feedback">
+  
+                </span>
+  
+              </td>
+            </tr>
+            <tr [hidden]="!residential">
+              <td class="lbl">Residential Property :</td>
+              <td>
+                <select  [(ngModel)]="userUpdate.residential" formControlName="residential" name="residential"
+                  [ngClass]="{ 'is-invalid': submitted && f.residential.errors }" value="{{userUpdate.residential}}">
+                  <option *ngFor="let isResidential of residentialTitle">{{isResidential}}</option>
+                </select>
+              </td>
+            </tr>
+            <tr [hidden]="!commercial">
+              <td class="lbl">Commercial Property :</td>
+              <td>
+                <select  [(ngModel)]="userUpdate.commercial" formControlName="commercial"
+                  [ngClass]="{ 'is-invalid': submitted && f.residential.errors }" name="commercial"
+                  value="{{userUpdate.commercial}}">
+                  <option *ngFor="let iCommercial of commercialTitle">{{iCommercial}}</option>
+                </select>
+              </td>
+            </tr>
+           <!--  <tr class="form-group">
+              <td class="lbl">Billing Address :</td>
+              <td>
+                <textarea type="text" name="billingAddress" formControlName="billingAddress"
+                  value="{{userUpdate.billingAddress}}" id="billingAddress"
+                  [ngClass]="{ 'is-invalid': submitted && f.billingAddress.errors }"
+                  [(ngModel)]="userUpdate.billingAddress" rows="4" cols="55">
+                        </textarea>
+              </td>
+            </tr> -->
+            <tr [hidden]="!owner">
+              <td class="lbl">Club MemberShip :</td>
+              <td>
+                <select  [(ngModel)]="userUpdate.clubMembership" name="clubMembership"
+                  formControlName="clubMembership" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.clubMembership.errors }" name="clubMembership"
+                  value="{{userUpdate.clubMembership}}">
+                  <option *ngFor="let isClubMembership of membershipList">{{isClubMembership}}
+                  </option>
+                </select>
+                <span *ngIf="submitted && f.clubMembership.errors" class="invalid-feedback">
+  
+                </span>
+              </td>
+            </tr>
+            <tr [hidden]="!owner">
+              <td class="lbl">OwnerShip :</td>
+              <td>
+                  <select  [(ngModel)]="userUpdate.ownership" name="ownership"
+                  formControlName="ownership" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.ownership.errors }" name="ownership"
+                  value="{{userUpdate.ownership}}">
+                  <option *ngFor="let isOwnership of ownershipTitle">{{isOwnership}}</option>
+                </select>
+                <span *ngIf="submitted && f.ownership.errors" class="invalid-feedback">
+  
+                </span>
+              </td>
+            </tr>
+            <tr [hidden]="!owner">
+                <td class="lbl">Possetion Date :</td>
+                <td>
+                    <input type="text" onfocus="(this.type='date')" name="possetionDate"
+                                      value="{{userUpdate.possetionDate}}" formControlName="possetionDate"
+                                      id="possetionDate"  [(ngModel)]="userUpdate.possetionDate">
+                  
+                </td>
+              </tr>
+              <tr [hidden]="!tenant">
+                  <td class="lbl">Move in Date :</td>
+                  <td>
+                      <input type="text" onfocus="(this.type='date')" name="moveInDate"
+                      formControlName="moveInDate" value="{{userUpdate.moveInDate}}" id="moveInDate"
+                       [(ngModel)]="userUpdate.moveInDate">
+                  </td>
+                </tr>
+                <tr [hidden]="!tenant">
+                    <td class="lbl">Move Out Date :</td>
+                    <td>
+                        <input type="text" onfocus="(this.type='date')" name="moveOutDate"
+                        formControlName="moveOutDate" value="{{userUpdate.moveOutDate}}"
+                        id="moveOutDate"  [(ngModel)]="userUpdate.moveOutDate">
+                    </td>
+                  </tr>
+            <tr>
+              <td colspan="3"><button class="btn btn-info save" type="submit"><b>Save</b></button>
+  
+                <button class="btn btn-info" (click)="myFunction()"><b>Cancel</b></button>
+                <button class="btn btn-info" (click)="myFunction()"><b>Show List</b></button> </td>
+            </tr>
+          </table>
+        </form>
+  
+      </div>
+    </div>
+  </div>

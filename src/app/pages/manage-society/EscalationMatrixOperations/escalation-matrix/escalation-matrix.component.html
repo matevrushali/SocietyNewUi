@@ -1,0 +1,72 @@
+
+<div class="col-md-1 col-sm-1 side"></div>
+<div class="col-md-10 col-sm-10 mid">
+		<label><h5> Escalation Matrix List</h5></label><br>
+		<label><h6><a *ngIf="showSaveButton()" (click)="rediectToPage('society/add_escalation_matrix')">Add New Escalation</a></h6></label>
+		<table  id="data-table" datatable [dtOptions] = "dtOptions" [dtTrigger]="dtTrigger"  class="display nowrap" style="width:100%">
+			<thead>
+				<tr>
+
+					<th>Category </th>
+					<th>Subcategory</th>
+					<th>Priority</th>
+					<th>First Responce Time</th>
+					<th>First Escalation Time</th>
+					<th>Second Escalation Time</th>
+					<th>Third Escalation Time</th>
+				
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let user of escalationMatrix$ ">
+                   
+					<td><a  (click)="rediectToDetails('society/get_escalation_matrix_details', user.escalationMatixId)">{{ user.category }}</a></td>
+					<td>{{ user.subCategory }}</td>
+					<td>{{ user.priority }}</td>
+					<td>{{ user.firstResponceTime }}</td>
+					<td>{{ user.firstEscalationTime }}</td>
+					<td>{{ user.secondEscalationTime }}</td>
+					<td>{{ user.thirdEscalationTime }}</td>
+					
+				
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</tfoot>
+		</table>
+
+		<!-- <script>
+			$(document).ready(function(){
+				$('#data-table').DataTable({
+					responsive: true,
+					dom: 'Bfrtip',
+					buttons: [
+					'copy', {
+						extend: 'excel',
+						title: ' Escalation Matrix export'
+					}, {
+						extend: 'csv',
+						title: ' Escalation Matrix  export'
+					}, {
+						extend: 'pdf',
+						title: ' Escalation Matrix  export'
+					}, {
+						extend: 'print',
+						title: ' Escalation Matrix  export'
+					}
+					]
+				});
+			});
+		</script> -->
+
+</div>
+

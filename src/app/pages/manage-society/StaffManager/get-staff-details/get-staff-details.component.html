@@ -1,0 +1,88 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side"> </div>
+  <div class="col-md-10 col-sm-10 mid">
+        <head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></head>
+        <div class="content">
+            <div class="col-md-3 a">
+                <div class="col-md-12 user">
+                    <!-- <img src="../../../assets/img/user.png" class="img-rounded" alt="Cinque Terre" width="200" height="200"> </div> -->
+                
+                <h5><b>{{ staffManager.name }}</b></h5>
+            </div>
+            <div class="col-md-9 b">
+                <h4>Details Of Employee: </h4>
+                <table class="table role">
+                            <tr>
+                                <th>Name:</th>
+                                <td>{{ staffManager.name}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Mobile Number:</th>
+                                <td>{{ staffManager.mobileNumber}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Designation :</th>
+                                <td>{{ staffManager.designation}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th> Vendor :</th>
+                                <td>{{ staffManager.vendorIdFK.firstName}}&nbsp;{{ staffManager.vendorIdFK.lastName}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>From Time :</th>
+                                <td>{{ staffManager.fromTime }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>To Time :</th>
+                                <td>{{ staffManager.toTime }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Date Of Card Issue :</th>
+                                <td>{{ staffManager.dateOfCardIssue | date:'yyyy/MM/dd'}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Valid Upto :</th>
+                                <td>{{ staffManager.validUpto | date:'yyyy/MM/dd'}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Category :</th>
+                                <td>{{ staffManager.category}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Date Of Birth:</th>
+                                <td>{{ staffManager.dateOfBirth | date:'yyyy/MM/dd'}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Address :</th>
+                                <td>{{ staffManager.address}}</td>
+                                <td></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <td colspan="3"><a *ngIf="showUpdateButton()" (click)="rediectToUpdateDetails('society/update_staff_manager', staffManager.staffManagerId)"><i class="fa fa-edit" style="font-size:30px"></i></a>
+                            <button *ngIf="showDeleteButton()" style="font-size:14px"(click)="callSweetAlert(staffManager.staffManagerId)"  ng-confirm-click="do you relly want to delete this?" type="button" class="btn btn-link"> <i class="material-icons">delete</i></button>
+                           <button style="font-size:20px" class="btn btn-link"(click)="rediectToListDetails('society/staff_manager')"><i class="fa fa-arrow-left" aria-hidden="true"></i></button></td>
+        
+                            </tr>	
+                            
+                            
+                            
+                            
+                              
+                    </table>
+            </div>
+        </div>
+  </div>

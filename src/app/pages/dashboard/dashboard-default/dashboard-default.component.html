@@ -1,0 +1,587 @@
+<div class="row">
+
+
+
+  <!-- Statistics card start -->
+  <div class="col-md-12 col-xl-4">
+    <div class="card widget-statstic-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <h5>Units</h5>
+          <p class="p-t-10 m-b-0 text-c-blue">{{unit.countOfUnsoldUnit}} Unsold, {{unit.countOfSoldUnit}} Sold</p>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-presentation-alt st-icon bg-c-blue"></i>
+
+        <div class="text-left">
+          <h3 class="d-inline-block">
+            <!-- 622 -->
+          </h3>
+         <!--  <i class="icofont icofont-long-arrow-up f-30 text-c-green"></i>
+          <span class="f-right">23%</span> -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Statistics card end -->
+  <!-- Statistics card start -->
+  <div class="col-md-6 col-xl-4">
+    <div class="card widget-statstic-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <h5>Residents</h5>
+          <p class="p-t-10 m-b-0 text-c-pink">{{users.countOfOwner}} Owners, {{users.countOfTenant}} Tenants</p>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-users-social st-icon bg-c-pink txt-lite-color"></i>
+
+        <div class="text-left">
+          <h3 class="d-inline-block">
+             <!-- 622 -->
+          </h3>
+          <!-- <i class="icofont icofont-long-arrow-down text-c-pink f-30 "></i> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Statistics card end -->
+  <!-- Statistics card start -->
+  <div class="col-md-6 col-xl-4">
+    <div class="card widget-statstic-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <h5>Parking Slots</h5>
+          <p class="p-t-10 m-b-0 text-c-yellow">{{parking.countOfAvailParkingSlots}} Vehicals</p>
+        </div>
+      </div>
+      <div class="card-block">
+        <i class="icofont icofont-chart-line st-icon bg-c-yellow"></i>
+
+        <div class="text-left">
+          <h3 class="d-inline-block">
+            <!-- 622 -->
+          </h3>
+          <!-- <i class="icofont icofont-long-arrow-up text-c-green f-30 "></i> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- card1 start -->
+  <div class="col-md-6 col-xl-3">
+    <div class="card widget-card-1">
+      <div class="card-block-small">
+        <i class="icofont icofont-pie-chart bg-c-blue card1-icon"></i>
+        <!-- <span class="text-c-blue f-w-600">Visitors</span> -->
+        <h4>148</h4>
+        <div>
+        <span class="f-left m-t-10 text-muted">
+          <span class="text-c-blue f-16 m-r-10 f-w-600">Visitors</span>
+        </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- card1 end -->
+  <!-- card2 start -->
+  <div class="col-md-6 col-xl-3">
+    <div class="card widget-card-1">
+      <div class="card-block-small">
+        <i class="icofont icofont-ui-home bg-c-pink card1-icon"></i>
+        <!-- <span class="text-c-pink f-w-600">Pending Complaints</span> -->
+        <h4>144</h4>
+        <div>
+         <span class="f-left m-t-10 text-muted">
+          <span class="text-c-pink f-16 m-r-10 f-w-600">Current Outstandings</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- card2 end -->
+  <!-- card3 start -->
+  <div class="col-md-6 col-xl-3">
+    <div class="card widget-card-1">
+      <div class="card-block-small">
+        <i class="icofont icofont-warning-alt bg-c-green card1-icon"></i>
+        <!-- <span class="text-c-green f-w-600">Pending Events</span> -->
+        <h4>{{totalBillingAmount$.totalBilling}}</h4>
+        <div>
+         <span class="f-left m-t-10 text-muted">
+            <span class="text-c-green f-16 m-r-10 f-w-600">Bills Generated</span>
+          </span> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- card3 end -->
+  <!-- card4 start -->
+  <div class="col-md-6 col-xl-3">
+    <div class="card widget-card-1">
+      <div class="card-block-small">
+        <i class="icofont icofont-social-twitter bg-c-yellow card1-icon"></i>
+        <!-- <span class="text-c-yellow f-w-600"></span> -->
+        <h4>{{totalRecievedAmount$.totalRecieved}}</h4>
+        <div>
+          <span class="f-left m-t-10 text-muted">
+            <span class="text-c-yellow f-16 m-r-10">Payment Recieved</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- card4 end -->
+
+  <!-- Statistics Start -->
+ <!--  <div class="col-md-12 col-xl-8">
+    <app-card [title]="'Statistics'" [classHeader]="true">
+      <span class="code-header"><span class="text-muted">Get 15% Off on <a href="https://www.amcharts.com/" target="_blank">amCharts</a> licences. Use code "codedthemes" and get the discount.</span></span>
+      <div id="line-example" class="line-example">
+        <div id="statistics-chart" style="height:300px;"></div>
+      </div>
+    </app-card>
+  </div> -->
+<!--   <div class="col-md-12 col-xl-4">
+    <div class="card card-blue total-card">
+      <div class="card-block">
+        <div class="text-left">
+          <h4>4000</h4>
+          <p class="m-0">Total Sales</p>
+        </div>
+        <span class="label bg-c-blue value-badges">12%</span>
+      </div>
+      <chart [type]="'line'" [data]="totalValueGraphData1" [options]="totalValueGraphOption" style="width: 100%; height: 100px;"></chart>
+    </div>
+
+    <div class="card card-pink total-card">
+      <div class="card-block">
+        <div class="text-left">
+          <h4>489</h4>
+          <p class="m-0">Total Comment</p>
+        </div>
+        <span class="label bg-c-pink value-badges">15%</span>
+      </div>
+      <chart [type]="'line'" [data]="totalValueGraphData2" [options]="totalValueGraphOption" style="width: 100%; height: 100px;"></chart>
+    </div>
+
+  </div> -->
+
+  <!-- Statistics End -->
+
+  
+  <!-- Statistics card end -->
+
+  
+
+  <!-- data widget start -->
+  <div class="col-md-12 col-xl-6">
+    <app-card [title]="'Complaints   ; '" [cardClass]="'project-task'" [blockClass]="'p-b-10'">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Status Of Complaints</th>
+            <th>Nos Of Complaints</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>
+              <div class="task-contain">
+                <h6 class="bg-c-blue d-inline-block text-center">O</h6>
+                <p class="d-inline-block m-l-20">Open</p>
+              </div>
+            </td>
+            <td>
+              <p class="d-inline-block m-r-20">{{helpdeskOpen.countOfOpenComplains}}</p>
+              <!-- <div class="progress d-inline-block">
+                <div class="progress-bar bg-c-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:80%">
+                </div>
+              </div> -->
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="task-contain">
+                <h6 class="bg-c-pink d-inline-block text-center">I</h6>
+                <p class="d-inline-block m-l-20">In-progress</p>
+              </div>
+            </td>
+            <td>
+              <p class="d-inline-block m-r-20">{{helpDeskInProgress.countOfInProgressComplains}}</p>
+              <!-- <div class="progress d-inline-block">
+                <div class="progress-bar bg-c-pink" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+                </div>
+              </div> -->
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="task-contain">
+                <h6 class="bg-c-yellow d-inline-block text-center">R</h6>
+                <p class="d-inline-block m-l-20">Resolved</p>
+              </div>
+            </td>
+            <td>
+              <p class="d-inline-block m-r-20">{{helpDeskResolved.countOfResolvedComplains}}</p>
+              <!-- <div class="progress d-inline-block">
+                <div class="progress-bar bg-c-yellow" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                </div>
+              </div> -->
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="task-contain">
+                <h6 class="bg-c-green d-inline-block text-center">C</h6>
+                <p class="d-inline-block m-l-20">Cancelled</p>
+              </div>
+            </td>
+            <td>
+              <p class="d-inline-block m-r-20">{{heldeskCancelled.countOfInCancelledComplains}}</p>
+              <!-- <div class="progress d-inline-block">
+                <div class="progress-bar bg-c-green" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                </div>
+              </div> -->
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="task-contain">
+                <h6 class="bg-c-blue d-inline-block text-center">H</h6>
+                <p class="d-inline-block m-l-20">On-Hold</p>
+              </div>
+            </td>
+            <td>
+              <p class="d-inline-block m-r-20">{{heldeskHold.countOfHoldComplains}}</p>
+              <!-- <div class="progress d-inline-block">
+                <div class="progress-bar bg-c-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                </div>
+              </div> -->
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-md-12 col-xl-6">
+    <app-card [title]="'Notices'" [cardClass]="'add-task-card'" [blockClass]="'p-b-0'">
+      <div class="to-do-list">
+        <div class="checkbox-fade fade-in-primary d-block">
+          <label class="check-task d-block">
+            <input type="checkbox" value="" (change)="onTaskStatusChange($event)">
+            <span class="cr">
+                <i class="cr-icon icofont icofont-ui-check txt-default"></i>
+            </span>
+            <span><h6>Schedule Meeting with Compnes <span class="label bg-c-green m-l-10 f-10">2 week</span></h6></span>
+            <div class="task-card-img m-l-40">
+              <a href="javascript:"><img src="assets/images/avatar-1.jpg" placement="top" ngbTooltip="Lary Doe" class="img-40"></a>
+              <a href="javascript:"><img src="assets/images/avatar-2.jpg" placement="top" ngbTooltip="Alia" class="img-40 m-l-10"></a>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="to-do-list">
+        <div class="checkbox-fade fade-in-primary d-block">
+          <label class="check-task d-block">
+            <input type="checkbox" value="" (change)="onTaskStatusChange($event)">
+            <span class="cr">
+                <i class="cr-icon icofont icofont-ui-check txt-default"></i>
+            </span>
+            <span><h6>Meeting With HOD's and borad</h6><p class="text-muted m-l-30">23 january 2003</p></span>
+          </label>
+        </div>
+      </div>
+      <div class="to-do-list">
+        <div class="checkbox-fade fade-in-primary d-block">
+          <label class="check-task d-block">
+            <input type="checkbox" value="" (change)="onTaskStatusChange($event)">
+            <span class="cr">
+                <i class="cr-icon icofont icofont-ui-check txt-default"></i>
+            </span>
+            <span><h6>Create template, admin with responsive<span class="label bg-c-pink m-l-10">2 week</span></h6></span>
+            <div class="task-card-img m-l-40">
+              <a href="javascript:"><img src="assets/images/avatar-2.jpg" placement="top" ngbTooltip="Alia" class="img-40"></a>
+              <a href="javascript:"><img src="assets/images/avatar-3.jpg" placement="top" ngbTooltip="Suzen" class="img-40 m-l-10"></a>
+              <a href="javascript:"><img src="assets/images/avatar-4.jpg" placement="top" ngbTooltip="Lary Doe" class="img-40 m-l-10"></a>
+              <a href="javascript:"><img src="assets/images/avatar-2.jpg" placement="top" ngbTooltip="Josephin Doe" class="img-40 m-l-10"></a>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="to-do-list">
+        <div class="checkbox-fade fade-in-primary d-block">
+          <label class="check-task d-block">
+            <input type="checkbox" value="" (change)="onTaskStatusChange($event)">
+            <span class="cr">
+                <i class="cr-icon icofont icofont-ui-check txt-default"></i>
+            </span>
+            <span><h6>Meeting With HOD's and borad</h6>
+            <p class="text-muted m-l-30">23 january 2003</p></span>
+            <div class="task-card-img m-l-40">
+              <a href="javascript:"><img src="assets/images/avatar-2.jpg" placement="top" ngbTooltip="Lary Doe" class="img-40"></a>
+              <a href="javascript:"><img src="assets/images/avatar-3.jpg" placement="top" ngbTooltip="Alia" class="img-40 m-l-10"></a>
+              <a href="javascript:"><img src="assets/images/avatar-2.jpg" placement="top" ngbTooltip="Josephin Doe" class="img-40 m-l-10"></a>
+            </div>
+          </label>
+        </div>
+      </div>
+
+    </app-card>
+  </div>
+  <!-- data widget End -->
+
+  
+  <!-- browser Start -->
+  <div class="col-md-6 col-xl-4">
+    <app-card [title]="'Cash Flow'">
+      <div class="browser-card p-b-15 ">
+        <p class="d-inline-block m-0 ">Cash</p>
+        <button class="btn bg-c-blue btn-round float-right btn-browser ">50%</button>
+      </div>
+      <!-- <div class="browser-card b-t-default p-t-15 p-b-15 ">
+        <p class="d-inline-block m-0 ">Mozila Firefox</p>
+        <button class="btn bg-c-pink btn-round float-right btn-browser ">12%</button>
+      </div>
+      <div class="browser-card b-t-default p-t-15 p-b-15 ">
+        <p class="d-inline-block m-0 ">Apple Safari</p>
+        <button class="btn bg-c-yellow btn-round float-right btn-browser ">23%</button>
+      </div>
+      <div class="browser-card b-t-default p-t-15 p-b-15 ">
+        <p class="d-inline-block m-0 ">Internet Explorer</p>
+        <button class="btn bg-c-green btn-round float-right btn-browser ">17%</button>
+      </div>
+      <div class="browser-card b-t-default p-t-15 p-b-15 ">
+        <p class="d-inline-block m-0 ">Opera Mini</p>
+        <button class="btn bg-c-yellow btn-round float-right btn-browser ">07%</button>
+      </div>
+      <div class="browser-card b-t-default p-t-15">
+        <p class="d-inline-block m-0 ">Microsoft Edge</p>
+        <button class="btn bg-c-yellow btn-round float-right btn-browser ">28%</button>
+      </div> -->
+    </app-card>
+  </div>
+  <!-- browser End -->
+
+
+  <!-- browser Start -->
+  <div class="col-md-6 col-xl-4">
+    <app-card [title]="'Bank Tracker'">
+      <div class="browser-card p-b-15 ">
+        <p class="d-inline-block m-0 ">Bank</p>
+        <button class="btn bg-c-blue btn-round float-right btn-browser ">50%</button>
+      </div>
+      <div class="browser-card b-t-default p-t-15 p-b-15 ">
+        <p class="d-inline-block m-0 ">Axis Bank</p>
+        <button class="btn bg-c-pink btn-round float-right btn-browser ">12%</button>
+      </div>
+      <!-- <div class="browser-card b-t-default p-t-15 p-b-15 ">
+        <p class="d-inline-block m-0 ">Apple Safari</p>
+        <button class="btn bg-c-yellow btn-round float-right btn-browser ">23%</button>
+      </div>
+      <div class="browser-card b-t-default p-t-15 p-b-15 ">
+        <p class="d-inline-block m-0 ">Internet Explorer</p>
+        <button class="btn bg-c-green btn-round float-right btn-browser ">17%</button>
+      </div>
+      <div class="browser-card b-t-default p-t-15 p-b-15 ">
+        <p class="d-inline-block m-0 ">Opera Mini</p>
+        <button class="btn bg-c-yellow btn-round float-right btn-browser ">07%</button>
+      </div>
+      <div class="browser-card b-t-default p-t-15">
+        <p class="d-inline-block m-0 ">Microsoft Edge</p>
+        <button class="btn bg-c-yellow btn-round float-right btn-browser ">28%</button>
+      </div> -->
+    </app-card>
+  </div>
+  <!-- browser End -->
+
+ <!-- browser Start -->
+ <div class="col-md-6 col-xl-4">
+  <app-card [title]="'Payables'">
+    <div class="browser-card p-b-15 ">
+      <p class="d-inline-block m-0 ">Duties & Taxes</p>
+      <button class="btn bg-c-blue btn-round float-right btn-browser ">50%</button>
+    </div>
+    <div class="browser-card b-t-default p-t-15 p-b-15 ">
+      <p class="d-inline-block m-0 ">Provisions</p>
+      <button class="btn bg-c-pink btn-round float-right btn-browser ">12%</button>
+    </div>
+    <div class="browser-card b-t-default p-t-15 p-b-15 ">
+      <p class="d-inline-block m-0 ">Sundry Creditors</p>
+      <button class="btn bg-c-yellow btn-round float-right btn-browser ">23%</button>
+    </div>
+    <!-- <div class="browser-card b-t-default p-t-15 p-b-15 ">
+      <p class="d-inline-block m-0 ">Internet Explorer</p>
+      <button class="btn bg-c-green btn-round float-right btn-browser ">17%</button>
+    </div>
+    <div class="browser-card b-t-default p-t-15 p-b-15 ">
+      <p class="d-inline-block m-0 ">Opera Mini</p>
+      <button class="btn bg-c-yellow btn-round float-right btn-browser ">07%</button>
+    </div>
+    <div class="browser-card b-t-default p-t-15">
+      <p class="d-inline-block m-0 ">Microsoft Edge</p>
+      <button class="btn bg-c-yellow btn-round float-right btn-browser ">28%</button>
+    </div> -->
+  </app-card>
+</div>
+<!-- browser End -->
+<!-- email Sent Start -->
+<div class="col-md-12">
+  <app-card [title]="'Email sent'" [cardClass]="'email-sent-card'" [classHeader]="true">
+    <span class="code-header"><span class="text-muted">Get 15% Off on <a href="https://www.amcharts.com/" target="_blank">amCharts</a> licences. Use code "codedthemes" and get the discount.</span></span>
+    <div id="email-sent" style="max-width:100%;height:400px;"></div>
+  </app-card>
+</div>
+<!-- email Sent End -->
+  <!-- project overview Start -->
+  <div class="col-md-12 col-xl-8">
+    <app-card [title]="'Recent Comments'" [blockClass]="'p-0'">
+      <div class="card-comment ">
+        <div class="card-block-small">
+          <img class="img-radius img-50" src="assets/images/avatar-1.jpg" alt="user-1">
+          <div class="comment-desc">
+            <h6>Luciano Durk</h6>
+            <p class="text-muted ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+            <div class="comment-btn">
+              <button class="btn bg-c-blue btn-round btn-comment ">Action</button>
+            </div>
+            <div class="date">
+              <i>04 October 2015</i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-comment ">
+        <div class="card-block-small">
+          <img class="img-radius img-50" src="assets/images/avatar-2.jpg" alt="user-4">
+          <div class="comment-desc">
+            <h6>John Doe</h6>
+            <p class="text-muted ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+            <div class="comment-btn">
+              <button class="btn bg-c-pink btn-round btn-comment ">Approved</button>
+            </div>
+            <div class="date">
+              <i>16 December 2015</i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-comment ">
+        <div class="card-block-small">
+          <img class="img-radius img-50" src="assets/images/avatar-3.jpg" alt="user-2">
+          <div class="comment-desc">
+            <h6>Planner Board</h6>
+            <p class="text-muted ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+            <div class="comment-btn">
+              <button class="btn bg-c-green btn-round btn-comment ">Rejected</button>
+            </div>
+            <div class="date">
+              <i>12 Saptember 2015</i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-comment ">
+        <div class="card-block-small">
+          <img class="img-radius img-50" src="assets/images/avatar-1.jpg" alt="user-3">
+          <div class="comment-desc">
+            <h6>Luciano Durk</h6>
+            <p class="text-muted ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+            <div class="comment-btn">
+              <button class="btn bg-c-pink btn-round btn-comment ">Approved</button>
+            </div>
+            <div class="date">
+              <i>20 October 2015</i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-comment ">
+        <div class="card-block-small">
+          <img class="img-radius img-50" src="assets/images/avatar-3.jpg" alt="user-2">
+          <div class="comment-desc">
+            <h6>Planner Board</h6>
+            <p class="text-muted ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+            <div class="comment-btn">
+              <button class="btn bg-c-green btn-round btn-comment ">Rejected</button>
+            </div>
+            <div class="date">
+              <i>12 Saptember 2015</i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-md-12 col-xl-4">
+    <div class="card fb-card">
+      <div class="card-header">
+        <i class="icofont icofont-social-facebook"></i>
+        <div class="d-inline-block">
+          <h5>facebook</h5>
+          <span>blog page timeline</span>
+        </div>
+      </div>
+      <div class="card-block text-center">
+        <div class="row">
+          <div class="col-6 b-r-default">
+            <h2>23</h2>
+            <p class="text-muted">Active</p>
+          </div>
+          <div class="col-6">
+            <h2>23</h2>
+            <p class="text-muted">Comment</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card dribble-card">
+      <div class="card-header">
+        <i class="icofont icofont-social-dribbble"></i>
+        <div class="d-inline-block">
+          <h5>dribble</h5>
+          <span>Product page analysis</span>
+        </div>
+      </div>
+      <div class="card-block text-center">
+        <div class="row">
+          <div class="col-6 b-r-default">
+            <h2>23</h2>
+            <p class="text-muted">Live</p>
+          </div>
+          <div class="col-6">
+            <h2>23</h2>
+            <p class="text-muted">Message</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card twitter-card">
+      <div class="card-header">
+        <i class="icofont icofont-social-twitter"></i>
+        <div class="d-inline-block">
+          <h5>twitter</h5>
+          <span>current new timeline</span>
+        </div>
+      </div>
+      <div class="card-block text-center">
+        <div class="row">
+          <div class="col-6 b-r-default">
+            <h2>25</h2>
+            <p class="text-muted">new tweet</p>
+          </div>
+          <div class="col-6">
+            <h2>450+</h2>
+            <p class="text-muted">Follower</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- project overview End -->
+</div>

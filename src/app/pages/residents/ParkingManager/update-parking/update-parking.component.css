@@ -1,0 +1,46 @@
+.a{
+ 
+	height: 112.5%;
+   float: left;
+   
+	text-align: center;
+  }
+  .b
+  {
+	
+	float: right;
+	height: 112.5%;
+  
+  }
+  .header{
+	  height:10%;
+	  background: rgb(207, 207, 205);
+	  text-align:center;
+  }
+  .lbl
+  {
+	  padding-left: 10%;
+  }
+  .sub
+  {
+	  text-align: center;
+  }
+  .side {
+    /* background: lightgrey; */
+    padding-top:15px;
+    height:100%;
+    width: 100%;
+    float: left;
+    font-size: 10px;
+  }
+  li{
+    font-size: 10px;
+  }
+  
+  .mid
+  {
+  
+  height:100%;
+  float: left;
+  }
+  

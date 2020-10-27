@@ -1,0 +1,157 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side"> </div>
+  <div class="col-md-10 col-sm-10 mid">
+        <div class="content col-md-12 col-sm-12">
+                <div class="col-md-3 col-sm-2 a" >
+                    <div class="col-md-3 col-sm-2 user">
+
+                            
+
+                              <h5><b>{{ escalationMatrix$.category }}</b></h5>
+
+                        </div>	
+                    
+                </div>
+                <div class="col-md-9 col-sm-9 b">
+                    
+                    
+                        <h5>	Details of Escalation Matrix:</h5>
+                
+                        <table class="table   col-md-12 col-sm-12">
+                            <tr>
+                                <th>Category :</th>
+                                <td>{{ escalationMatrix$.category }}</td><td></td>
+                            </tr>	
+                            <tr>
+                                <th>Sub Category :</th>
+                                <td>{{ escalationMatrix$.subCategory }}</td><td></td>
+                            </tr>
+                            <tr>
+                                <th>Priority :</th>
+                                <td>{{ escalationMatrix$.priority }}</td><td></td>
+                            </tr>
+                            <tr>
+                                    <th>First Responce Type :</th>
+                                    <td>{{ escalationMatrix$.firstResponceType }}</td>
+                                    <td></td>
+                                </tr>
+                             <tr>
+                                    <th [hidden]="!isTime">First Responce Time :</th>
+                                    <th [hidden]="!isDays">First Responce Days :</th>
+                                <td>{{ escalationMatrix$.firstResponceTime }}</td><td></td>
+                            </tr>
+                            
+                            <tr>
+                                <th>First Responce Name:</th>
+                                <td>{{ escalationMatrix$.firstResponceName }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>First Responce Email:</th>
+                                <td>{{ escalationMatrix$.firstResponceEmail }}</td>
+                                <td></td>
+                            </tr>
+        
+                             <tr>
+                                <th>First  Responce Mobile:</th>
+                                <td>{{ escalationMatrix$.firstResponceMobile }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>First Escalation Type :</th>
+                                <td>{{ escalationMatrix$.firstEscalationType }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th [hidden]="!isFirstTime">First Escalation Time :</th>
+                                <th [hidden]="!isFirstDays">First Escalation Days :</th>
+                                <td>{{ escalationMatrix$.firstEscalationTime }}</td><td></td>
+                            </tr>
+                            <tr>
+                                <th>First Escalation Time :</th>
+                                <td>{{ escalationMatrix$.firstEscalationTime }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>First Escalation Name :</th>
+                                <td>{{ escalationMatrix$.firstEscalationName }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>First Escalation Email :</th>
+                                <td>{{ escalationMatrix$.firstEscalationEmail }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>First Escalation Mobile :</th>
+                                <td>{{ escalationMatrix$.firstEscalationMobile }}</td>
+                                <td></td>
+                            </tr>
+                            
+                            
+                             <tr>
+                                <th>Second Escalation Type :</th>
+                                <td>{{ escalationMatrix$.secondEscalationType }}</td>
+                                <td></td>
+                            </tr> 
+                            <tr>
+                                    <th [hidden]="!isSecondTime">Second Escalation Time :</th>
+                                    <th [hidden]="!isSecondDays">Second Escalation Days :</th>
+                                <td>{{ escalationMatrix$.secondEscalationTime }}</td>
+                                <td></td>
+                            </tr> 
+                            <tr>
+                                <th>Second Escalation Name:</th>
+                                <td>{{ escalationMatrix$.secondEscalationName }}</td>
+                                <td></td>
+                            </tr> 
+                            <tr>
+                                <th>Second Escalation Email :</th>
+                                <td>{{ escalationMatrix$.secondEscalationEmail }}</td>
+                                <td></td>
+                            </tr> 
+                            <tr>
+                                <th>Second Escalation Mobile:</th>
+                                <td>{{ escalationMatrix$.secondEscalationMobile }}</td>
+                                <td></td>
+                            </tr> 
+                            <tr>
+                                <th>Third Escalation Type :</th>
+                                <td>{{ escalationMatrix$.thirdEscalationType }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                    <th [hidden]="!isThirdTime">Third Escalation Time :</th>
+                                    <th [hidden]="!isThirdDays">Third Escalation Days :</th>
+                                <td>{{ escalationMatrix$.thirdEscalationTime }}</td><td></td>
+                            </tr>
+                            <tr>
+                                <th>Third Escalation Name :</th>
+                                <td>{{ escalationMatrix$.thirdEscalationName }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Third Escalation Email :</th>
+                                <td>{{ escalationMatrix$.thirdEscalationEmail }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Third Escalation Mobile :</th>
+                                <td>{{ escalationMatrix$.thirdEscalationMobile }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><a *ngIf="showUpdateButton()" (click)="rediectToUpdateDetails('society/update_escalation_matrix', escalationMatrix$.escalationMatixId)"><i class="fa fa-edit" style="font-size:30px"></i></a>
+                                    <button *ngIf="showDeleteButton()"  type="button" style="font-size:30px" (click)="callSweetAlert(escalationMatrix$.escalationMatixId)" class="btn btn-link"><i class="fa fa-trash"></i></button>
+                                    
+                                <button class="btn btn-link" (click)="rediectToListDetails('society/escalation_matrix')"><i class="fa fa-arrow-left" aria-hidden="true"></i></button> </td>
+        
+                            </tr>
+                           
+                            </table>
+                </div>
+            </div>
+  </div>
+  

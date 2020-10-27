@@ -1,0 +1,21 @@
+.side {
+    /* background: lightgrey; */
+    padding-top:15px;
+    height:100%;
+    width: 100%;
+    float: left;
+    font-size: 10px;
+  }
+  li{
+    font-size: 10px;
+  }
+  
+  .mid
+  {
+  
+  height:100%;
+  float: left;
+  }
+  .a{
+    padding-top:15px;
+  }

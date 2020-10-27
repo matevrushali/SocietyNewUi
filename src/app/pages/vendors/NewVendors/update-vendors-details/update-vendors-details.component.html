@@ -1,0 +1,200 @@
+<p>update-vendors-details works!</p>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side"> </div>
+  <div class="col-md-10 col-sm-10 mid">
+  
+	<div class="content">
+		<div class="col-md-12 header"><h4>Edit Vendor Details</h4> </div>
+		  <div class="col-md-3 a">
+				  <div class="col-md-3 user">
+                      </div>
+		  </div>
+		  <div class="col-md-9 b">
+				  <form  [formGroup]="registerForm"  (ngSubmit)="onSubmit()">	
+			  <table class="table  role">
+					  <tr>
+							<td class="lbl"> Vendor Name :</td>
+							
+							<td class="form-group">
+								<input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" name="firstName" id="firstName" required pattern="^[a-z A-Z]{2,45}" [(ngModel)]="vendorUpdate.firstName"/>
+								<span *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+								<div *ngIf="f.firstName.errors.required">First Name is required</div>
+								<div *ngIf="f.firstName.errors.pattern">First Name should contain only character</div>
+								
+								</span>
+								</td><td></td>
+						</tr>
+						<tr>
+							<td class="lbl"> Vendor Last Name :</td>
+							<td class="form-group">
+							<input type="text" formControlName="lastName" class="form-control"[ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" name="lastName" id="lastName" required pattern="^[a-z A-Z]{2,45}"[(ngModel)]="vendorUpdate.lastName"  />
+							<span *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+							<div *ngIf="f.lastName.errors.required">Last Name is required</div>
+							<div *ngIf="f.lastName.errors.pattern"> Last Name should contain only character</div>
+							</span>
+							</td>
+							<td></td>
+							
+							
+							</tr>
+					  <tr>
+						<td class="lbl"> Mobile Number :</td>
+						<!-- <td colspan="2"><input type="text" name="mobileNumber"  id="mobileNumber" required [(ngModel)]= "vendorUpdate.mobileNumber" value="{{ vendor.mobileNumber }}" ></td> -->
+						<td class="form-group">
+							<input type="text" formControlName="mobileNumber" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" name="mobileNumber" id="mobileNumber"
+							required pattern="^((\\+91-?)|0)?[0-9]{10}$" required [(ngModel)]="vendorUpdate.mobileNumber" />
+							<span *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+							<div *ngIf="f.mobileNumber.errors.required"> Mobile Number is required</div>
+							<div *ngIf="f.mobileNumber.errors.pattern">Enter 10 digit mobile number</div>
+							
+							</span>
+							</td><td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> PAN Number :</td>
+						<!-- <td colspan="2"><input type="text" name="panNumber"  id="panNumber" required [(ngModel)]= "vendorUpdate.panNumber" value="{{ vendor.panNumber }}" ></td> -->
+						<td class="form-group"><input type="text" formControlName="panNumber" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.panNumber.errors }" name="panNumber" id="panNumber" required
+							[(ngModel)]="vendorUpdate.panNumber" />
+							<span *ngIf="submitted && f.panNumber.errors" class="invalid-feedback">
+							<div *ngIf="f.panNumber.errors.required"> PAN is required</div>
+							</span>
+							</td><td></td>
+					</tr> 
+					<tr>
+						<td class="lbl"> Aadhar Number :</td>
+						<!-- <td colspan="2"><input type="text" name="aadharNumber"  id="aadharNumber" required [(ngModel)]= "vendorUpdate.aadharNumber" value="{{ vendor.aadharNumber }}" ></td> -->
+						<td class="form-group">
+							<input type="text" name="aadharNumber" id="aadharNumber" minlength="12" pattern="[0-9]{6,18}" formControlName="aadharNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.aadharNumber.errors }" required [(ngModel)]="vendorUpdate.aadharNumber" />
+							<span *ngIf="submitted && f.aadharNumber.errors" class="invalid-feedback">
+							<div *ngIf="f.aadharNumber.errors.required">Adhar Number is required</div>
+							<div *ngIf="f.aadharNumber.errors.minlength">Adhar Number must be at least 12 characters</div>
+							<div *ngIf="f.aadharNumber.errors.pattern">Adhar Number must be Number</div>
+							</span>
+							</td><td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Email :</td>
+						<!-- <td colspan="2"><input type="text" name="mail"  id="mail" required [(ngModel)]= "vendorUpdate.email" value="{{ vendor.email }}" ></td> -->
+						<td class="form-group">
+							<input type="text" formControlName="email" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.email.errors }" name="email" id="email" required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" [(ngModel)]="vendorUpdate.email" />
+							<span *ngIf="submitted && f.email.errors" class="invalid-feedback">
+							<div *ngIf="f.email.errors.required"> Email is required</div>
+							<div *ngIf="f.email.errors.pattern"> Email is invalide</div>
+							</span>
+							</td><td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Function:</td>
+						<td class="form-group">
+						<input type="text" formControlName="function" class="form-control"[ngClass]="{ 'is-invalid': submitted && f.function.errors }" name="function" id="function" required pattern="^[a-z A-Z]{2,45}"[(ngModel)]="vendorUpdate.function" placeholder="Enter function " />
+						<span *ngIf="submitted && f.function.errors" class="invalid-feedback">
+						<div *ngIf="f.function.errors.required">*Function is required</div>
+						<div *ngIf="f.function.errors.pattern"> Function should be in alphabets</div>
+						</span>
+						</td>
+						
+						<td></td>
+						</tr> 
+					<tr>
+						<td class="lbl"> Address Line 1 : </td>
+						<!-- <td colspan="2"><input type="text" name="addressLine1"  id="addressLine1" required [(ngModel)]= "vendorUpdate.addressfk.addressLine1" value="{{ vendor.addressfk.addressLine1 }}">  -->
+							<td><input type="text" formControlName="addressLine1" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.addressLine1.errors }" name="addressLine1" id="addressLine1" required
+								[(ngModel)]="vendorUpdate.addressfk.addressLine1" />
+								<span *ngIf="submitted && f.addressLine1.errors" class="invalid-feedback">
+								<div *ngIf="f.addressLine1.errors.required"> Address Line 1 is required</div>
+								</span>
+								</td><td></td>
+							
+					</tr>
+					<tr>
+						<td class="lbl"> Address Line 2 : </td>
+						<td><input type="text" formControlName="addressLine2" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.addressLine2.errors }" name="addressLine2" id="addressLine2" required
+							[(ngModel)]="vendorUpdate.addressfk.addressLine2"  />
+							<span *ngIf="submitted && f.addressLine2.errors" class="invalid-feedback">
+							<div *ngIf="f.addressLine2.errors.required"> Address Line 2 is required</div>
+							</span>
+							</td><td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Area : </td>
+						<td><input type="text" formControlName="area" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.area.errors }" name="area" id="area" required
+							[(ngModel)]="vendorUpdate.addressfk.area"   />
+							<span *ngIf="submitted && f.area.errors" class="invalid-feedback">
+							<div *ngIf="f.area.errors.required"> Area is required</div>
+							</span>
+							</td><td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> City : </td>
+						<td><input type="text" formControlName="city" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.city.errors }" name="city" id="city" required
+							[(ngModel)]="vendorUpdate.addressfk.city"  />
+							<span *ngIf="submitted && f.city.errors" class="invalid-feedback">
+							<div *ngIf="f.city.errors.required"> City is required</div>
+							</span>
+							</td><td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Tehail : </td>
+						<td><select required [(ngModel)]="vendorUpdate.addressfk.tehsil" name="tehsil" id="tehsil" formControlName="tehsil" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tehsil.errors }">
+							<option hidden></option>
+							<option  *ngFor = "let isTehsil of tehsilTitle">{{isTehsil}}</option>
+							</select>
+							<span *ngIf="submitted && f.tehsil.errors" class="invalid-feedback">
+								<div *ngIf="f.tehsil.errors.required">Select Tehsil</div>
+							</span>
+						</td><td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> District : </td>
+						<td><select required [(ngModel)]="vendorUpdate.addressfk.district" name="district" id="district" formControlName="district" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }">
+								<option hidden></option>
+								<option  *ngFor = "let isDistrict of districtTitle">{{isDistrict}}</option>
+							</select>
+							<span *ngIf="submitted && f.district.errors" class="invalid-feedback">
+								<div *ngIf="f.district.errors.required">Select District</div>
+							</span>
+						</td><td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> State : </td>
+						<td><input type="text" formControlName="state" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.state.errors }" name="state" id="state" required
+							[(ngModel)]="vendorUpdate.addressfk.state" />
+							<span *ngIf="submitted && f.state.errors" class="invalid-feedback">
+							<div *ngIf="f.state.errors.required"> state is required</div>
+							</span>
+							</td><td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Pin-code : </td>
+						<td><input type="text" formControlName="pinCode" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.pinCode.errors }" name="pinCode" id="pinCode" minlength="5" pattern="[0-9]{6,18}" required
+							[(ngModel)]="vendorUpdate.addressfk.pinCode" />
+							<span *ngIf="submitted && f.pinCode.errors" class="invalid-feedback">
+							<div *ngIf="f.pinCode.errors.required"> pinCode is required</div>
+							<div *ngIf="f.pinCode.errors.minlength">Pin code must be at least 5 characters</div>
+							<div *ngIf="f.pinCode.errors.pattern">Pin code must be Number</div>
+							</span>
+							</td><td></td>
+					</tr>
+					<tr>
+						<td colspan="3"><button class="btn btn-info save" type="submit"><b>Edit</b></button> 
+                            <button class="btn btn-info" (click)="rediectToListDetails('vendors/new_vendors_list')"><b>Cancel</b></button>
+							<button class="btn btn-info" (click)="rediectToListDetails('vendors/new_vendors_list')"><b>Show List</b></button></td>
+					  </tr>
+				  </table>
+				  </form>
+		  </div>
+	
+	</div>
+
+  </div>

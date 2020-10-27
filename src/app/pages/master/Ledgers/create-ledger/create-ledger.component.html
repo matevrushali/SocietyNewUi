@@ -1,0 +1,111 @@
+<div class="col-md-1 col-sm-1 side">
+
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+
+
+    <div class="content">
+        <div class="col-md-12 header">
+            <h2>New Ledgers</h2>
+        </div>
+        <div class="col-md-3 a">
+            <div class="col-md-3 user">
+
+            </div>
+        </div>
+        <div class="col-md-9 b">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <table class="table  role">
+                    <tr class="form-group">
+                        <td class="lbl">Account Name :</td>
+                        <td><input type="text" formControlName="accountName" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.accountName.errors }" name="accountName"
+                                id="accountName" required pattern="^[a-z A-Z]{2,45}" required
+                                [(ngModel)]="ledgers.accountName" placeholder="Enter Account Name " />
+                            <span *ngIf="submitted && f.accountName.errors" class="invalid-feedback">
+                                <div *ngIf="f.accountName.errors.required">Account Name is required</div>
+                                <div *ngIf="f.accountName.errors.pattern">Name should contain only character*</div>
+
+                            </span>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td class="lbl">Amount Dr/Cr :</td>
+
+                        <td><select required [(ngModel)]="ledgers.amountType" name="amountType" id="amountType"
+                                formControlName="amountType" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.amountType.errors }">
+                                <option hidden></option>
+                                <option *ngFor="let isType of typeTitle">{{isType}}</option>
+                            </select>
+                            <span *ngIf="submitted && f.amountType.errors" class="invalid-feedback">
+                                <div *ngIf="f.amountType.errors.required">Select Amount Type</div>
+                            </span>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="lbl">Group :</td>
+                        <td>
+
+
+                            <select [(ngModel)]="ledgers.groupIdFk.groupId" name="groupIdFk" id="groupIdFk"
+                                [ngClass]="{ 'is-invalid': submitted && f.groupIdFk.errors }"
+                                formControlName="groupIdFk" class="form-control">
+                                <option *ngFor="let led of group$" value="{{led.groupId}}"> {{led.groupName}}</option>
+                            </select>
+                            <span *ngIf="submitted && f.groupIdFk.errors" class="invalid-feedback">
+                                <div *ngIf="f.groupIdFk.errors.required">Group is required</div>
+                            </span>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="lbl">Opening Balance:</td>
+                        <td><input type="text" name="openingBalance" id="openingBalance" pattern="[0-9]{1,6}"
+                                maxlength="6" formControlName="openingBalance" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.openingBalance.errors }" required
+                                [(ngModel)]="ledgers.openingBalance" placeholder="Enter Opening Balance " />
+                            <span *ngIf="submitted && f.openingBalance.errors" class="invalid-feedback">
+                                <div *ngIf="f.openingBalance.errors.required">Opening Balance is required</div>
+                                <!-- <div *ngIf="f.openingBalance.errors.minlength">Opening  Balance must be at least 6 characters</div> -->
+                                <div *ngIf="f.openingBalance.errors.pattern">Opening Balance must be Number</div>
+                            </span>
+                        </td>
+                        <td></td>
+                    <tr>
+                        <td class="lbl"> Ledgers Type:</td>
+                        <td><select required [(ngModel)]="ledgers.ledgerType" name="ledgerType" id="ledgerType"
+                                formControlName="ledgerType" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.ledgerType.errors }">
+                                <option hidden></option>
+                                <option *ngFor="let isLedger of ledgerTitle">{{ isLedger}}</option>
+                            </select>
+                            <span *ngIf="submitted && f.ledgerType.errors" class="invalid-feedback">
+                                <div *ngIf="f.ledgerType.errors.required">Select Ledger Type</div>
+                            </span>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+
+                    <tr>
+                        <td colspan="3"><button class="btn btn-info save" type="submit"><b>Save</b></button>
+                            <button class="btn btn-info"
+                                (click)="rediectToListDetails('ledgers/ledgers_list')"><b>Cancel</b></button>
+                            <button class="btn btn-info" (click)="rediectToListDetails('ledgers/ledgers_list')"><b>Show
+                                    List</b></button> </td>
+
+                    </tr>
+
+
+                </table>
+            </form>
+        </div>
+
+    </div>
+
+
+</div>

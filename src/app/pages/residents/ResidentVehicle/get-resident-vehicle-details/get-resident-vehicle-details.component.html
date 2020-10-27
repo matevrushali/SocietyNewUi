@@ -1,0 +1,70 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	</head>
+	<div class="col-md-1 col-sm-1 side">   </div>
+	<div class="col-md-10 col-sm-10 mid">
+		<div class="content">
+			<div class="col-md-3 a">
+				<div class="col-md-3 user">
+                    </div>
+				
+				<h4><b>{{ residentVehicle.resident }}</b></h4>
+			</div>
+			<div class="col-md-9 b">
+				<h4>Details of Resident: </h4>
+
+				<table class="table  role">
+						<tr>
+								<th>Resident :</th>
+								<td >{{residentVehicle.userIdFk.firstName}}&nbsp;{{residentVehicle.userIdFk.middleName}}&nbsp;{{residentVehicle.userIdFk.lastName}}....[{{residentVehicle.userIdFk.unitDetailsIdFk.wingBuilding}}-{{residentVehicle.userIdFk.unitDetailsIdFk.flatNumber}}]</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Available Parking Slots :</th>
+								<td>{{residentVehicle.parkingIdFk.parkingNumber}}</td><td></td>
+							</tr>
+							<tr>
+								<th>Vehicle Number :</th>
+								<td>{{residentVehicle.vehicleNumber}}</td><td></td>
+							</tr>
+							<tr>
+								<th>Make :</th>
+								<td>{{residentVehicle.make}}</td><td></td>
+							</tr>
+							<tr>
+								<th> Model :</th>
+								<td>{{residentVehicle. model}}</td><td></td>
+							</tr>
+							<tr>
+								<th>Type :</th>
+								<td>{{residentVehicle.type}}</td><td></td>
+							</tr>
+							<tr>
+								<th>Insurance Expiry Date :</th>
+								<td>{{residentVehicle.insuranceExpiryDate | date:'yyyy/MM/dd'}}</td><td></td>
+							</tr>
+							<tr>
+								<th>Insurance Company :</th>
+								<td>{{residentVehicle.insuranceCompany}}</td><td></td>
+							</tr>
+							<tr>
+								<th>Sticker Issued :</th>
+								<td>{{residentVehicle.stickerIssued}}</td><td></td>
+							</tr>
+							<!-- *ngIf="showUpdateButton()" -->
+							<tr>
+								<td colspan="3"><a  (click)="rediectToDetails('residents/update_resident_vehicle', residentVehicle .residentVehicleId)"><i class="fa fa-edit" style="font-size:24px"></i></a>
+			<button *ngIf="showDeleteButton()" style="font-size:18px"(click)="callSweetAlert(residentVehicle .residentVehicleId)" type="button" class="btn btn-link"> <i class="material-icons">delete</i></button>
+			<button style="font-size:20px" class="btn btn-link" (click)="rediectToListPage('residents/resident_vehicle_list')"><i class="fa fa-arrow-left" aria-hidden="true"></i></button></td>
+
+							
+							</tr>	
+							
+							
+							
+							
+							
+							  					</table>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,95 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side">
+  
+  </div>
+  <div class="col-md-10 col-sm-10 mid">
+    <div class="content">
+      <div class="col-md-3 a">
+        <div class="col-md-3 user">
+             </div>
+  
+            <h4><b>{{ generateBill.billingHeadIdFk.billName }}</b></h4>
+      </div>
+      <div class="col-md-9 b">
+        <h4>Details of Recurring Bill: </h4>
+        <table class="table role">
+         
+          <tr>
+            <th>Billing For :</th>
+            <td>{{ generateBill.billFor }}</td>
+          </tr>
+          <tr [hidden]="!exceptedFlat">
+            <th>Exclude Flat :</th>
+            <td>{{ occ.wingBuilding }} - {{occ.flatNumber}}</td>
+          </tr>
+          <tr [hidden]="!blockTower">
+            <th>Block Tower :</th>
+            <td>{{ occ.wingBuilding }}</td>
+          </tr>
+          <tr [hidden]="!singleMultiple">
+            <th>Single/Multiple Flat :</th>
+            <td>{{ generateBill.singleMultipleFlat }} </td>
+          </tr>
+          <tr>
+            <th>Bill Type :</th>
+            <td>{{ generateBill.billingHeadIdFk.billName }}</td>
+          </tr>
+          <tr>
+            <th>Bill Period :</th>
+            <td>{{ generateBill.billPeriod }}</td>
+          </tr>
+          <tr>
+            <th>Year :</th>
+            <td>{{ generateBill.year }}</td>
+          </tr>
+          <tr>
+            <th>Date:</th>
+            <td>{{ generateBill.date  | date:'yyyy/MM/dd' }}</td>
+          </tr>
+          <tr>
+            <th>Due Date :</th>
+            <td>{{ generateBill.dueDate }}</td>
+          </tr>
+          <tr>
+            <th>Grace Period :</th>
+            <td>{{ generateBill.gracePeriod }}</td>
+          </tr>
+          <tr>
+            <th>Bill StartNumber :</th>
+            <td>{{ generateBill.billStartNumber }}</td>
+          </tr>
+          <tr>
+            <th>Bill NoSuffix :</th>
+            <td>{{ generateBill.billNoSuffix }}</td>
+          </tr>
+          <tr>
+            <th>Start Date :</th>
+            <td>{{ generateBill.startDate  | date:'yyyy/MM/dd' }}</td>
+          </tr>
+          <tr>
+            <th>End Date :</th>
+            <td>{{ generateBill.endDate  | date:'yyyy/MM/dd' }}</td>
+          </tr>
+          <tr>
+            <th>Bill NoPrefix :</th>
+            <td>{{ generateBill.billNoPrefix }}</td>
+          </tr>
+         
+          <tr>
+            <td  colspan="3"><a *ngIf="showUpdateButton()"  (click)="rediectToUpdateDetails('billing_heads/update_bill', generateBill.generateBillsId)"><i class="fa fa-edit"
+                  style="font-size:30px"></i></a>
+           <button  *ngIf="showDeleteButton()" style="font-size:14px" (click)="callSweetAlert(generateBill.generateBillsId)"
+                ng-confirm-click="do you relly want to delete this?" type="button" class="btn btn-link"> <i
+                  class="material-icons">delete</i></button>
+            <button style="font-size:20px" class="btn btn-link" (click)="rediectToListPage('billing_heads/generate_bill')"><i class="fa fa-arrow-left" aria-hidden="true"></i></button> </td>
+          </tr>
+  
+  
+  
+         
+        </table>
+      </div>
+    </div>
+  </div>

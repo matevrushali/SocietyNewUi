@@ -1,0 +1,91 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side"> </div>
+  <div class="col-md-10 col-sm-10 mid">
+        <div class="content col-md-12 col-sm-12">
+                <div class="col-md-3 col-sm-2 a" >
+                    <div class="col-md-12 col-sm-12 user">
+                            
+                            <h5><b>{{ society.societyName }}</b></h5>
+                        </div>	
+                    
+                </div>
+                <div class="col-md-9 col-sm-9 b">
+                        <h4>Details of Society: </h4>
+                        <table class="table role">
+                                
+                                <tr>
+                                    <th>Scoiety Name  :</th>
+                                    <td>{{ society.societyName }}</td>
+                                    <td></td>
+                            </tr>
+                            <tr>
+                                <th>Address :</th>
+                                <td>{{ society.societyAddressIdFk.addressLine1 }}, {{ society.societyAddressIdFk.addressLine2 }}, {{ society.societyAddressIdFk.area }}, {{ society.societyAddressIdFk.city }} Tehsil:{{ society.societyAddressIdFk.tehsil }} District:{{ society.societyAddressIdFk.district }} State:{{ society.societyAddressIdFk.state }} Pincode:{{ society.societyAddressIdFk.pinCode }}</td>
+                                <td></td>
+                            
+                            </tr>
+                            <tr>
+                            <th>GST Number:</th>
+                            <td>{{ society.gstNumber }}</td>
+                            <td></td>
+            
+                        </tr>	
+                        <tr>
+                        <th>TAN Number :</th>
+                        <td>{{ society.tanNumber }}</td>
+                        <td></td>
+            
+                    </tr>
+                        <tr>
+                        <th>PAN Number :</th>
+                            <td>{{ society.panNumber }}</td>
+                            <td></td>
+            
+                        </tr>
+                        <tr>
+                        <th>Channel Partner :</th>
+                            <td>{{ society.channelPartnerSocietyId.channelPartnerName }}</td>
+                            <td></td>
+            
+                        </tr>
+                        <tr>
+                        <th>Number of Flats :</th>
+                        <td>{{ society.numberOfFlats }}</td>
+                        <td></td>
+            
+                    </tr>
+                    <tr>
+                        <th>Property of Flat Type :</th>
+                        <td>{{ society.typeOfPropertyFlatType }}</td>
+                        <td></td>
+            
+                    </tr>
+                    
+                    <tr>
+                            <th>Society Registration Number :</th>
+                            <td>{{ society.societyRegistrationNumber }}</td>
+                            <td></td>
+            
+                        </tr>
+                    <tr>
+                            <th>Society Unique Name :</th>
+                            <td>{{ society.societyUniqueName }}</td>
+                            <td></td>
+            
+                        </tr>
+                    <tr>
+                                    <td colspan="3"><a *ngIf="showUpdateButton()" (click)="rediectToUpdateDetails('society/update_society_details', society.societyId)"><i class="fa fa-edit" style="font-size:30px"></i></a>
+                                   
+                                    <button *ngIf="showDeleteButton()"  type="button" style="font-size:30px" (click)="callSweetAlert(society.societyId)" class="btn btn-link"><i class="fa fa-trash"></i></button>
+                                    <button style="font-size:20px" class="btn btn-link" (click)="rediectToListDetails('society/manage_society')"><i class="fa fa-arrow-left" aria-hidden="true"></i></button></td>
+
+            
+                                </tr>
+                                      </table>
+                </div>
+            </div>
+
+  </div>
+  

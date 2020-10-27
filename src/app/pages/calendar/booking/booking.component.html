@@ -1,0 +1,181 @@
+
+  
+
+    <div class="container-fluid">
+     
+     
+      <div class="ml-auto mr-auto">
+        <div class="row">
+          <div class="col-md-8 col-lg-8 col-xl-8 col-12 col-sm-12">
+            <form class="form-horizontal">
+
+
+              <div class="">
+    
+                <div class="col-12 ">
+                  Booking For
+                </div>
+                <div class="col-12 ">
+                  <mat-radio-group class="radio-group" [(ngModel)]="booking.bookingFor" [ngModelOptions]="{standalone: true}" >
+                    <mat-radio-button class="radio-button"  *ngFor="let opt of option" [value]="opt"
+                      (change)="callForm(opt)">
+                      {{opt}}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </div>
+    
+                <div clas="col-12 col-lg-12 col-md-12 col-sm-12"[hidden]="member">
+                  <div class="form-group">
+                    <label for="usr">Member</label>
+                    <select required  class="form-control" [(ngModel)]="booking.member" [ngModelOptions]="{standalone: true}" >
+                       
+                      <option  *ngFor="let user of usersForm$" value="{{user.usersFormId}}">{{user.firstName}}&nbsp;{{user.middleName}}&nbsp;{{user.lastName}}....[{{user.unitDetailsIdFk.wingBuilding}}-{{user.unitDetailsIdFk.flatNumber}}]</option>
+                          </select>
+                  </div>
+                </div>
+    
+                 <div clas="col-12 col-lg-12 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label for="usr">Aminity</label>
+                    <select required  class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="booking.amenitiesId" (change)="callCharges($event.target.value);getBookingSchedule(booking)">
+                      <option hidden></option>
+                    <option  *ngFor="let user1 of allAmenities" value="{{user1.amenitiesId}}">{{user1.amenitiesName}}</option>
+                        </select>
+                  </div>
+                </div>
+    
+              </div>
+    
+              <div  *ngIf="booking.amenitiesId != undefined">
+    
+                 <div clas="col-12 col-lg-12 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label for="usr">Booking Type</label>
+                    <select [(ngModel)]="booking.bookingType" class="form-control" name="bookingtype" (change)="calculateCharges()">
+                      <option value="" [disabled]='true'>CHOOSE</option>
+                      <option value="fullday">Full Day <span *ngIf="aminityDetails.fullDayPrice">({{ aminityDetails.fullDayPrice | currency:"₹"}})</span></option>
+                      <option value="hourly">Hourly <span *ngIf="aminityDetails.hourlyPrice">({{ aminityDetails.hourlyPrice | currency:"₹"}})</span></option>
+                    </select> 
+                  </div>
+                </div>
+    
+                <div class="row">
+                  
+    
+                <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                  <div class="form-group">
+                    <label for="usr">Booking Date</label>
+    
+                    <div class="row">
+                      <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                        <div class="form-group">
+                          <label>From</label>
+
+                      <input type="date"  (blur)="calculateCharges()" (change)="getBookingSchedule(booking)"   class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="booking.bookingStartDate"
+                          />
+                        </div>
+                        </div>
+                      <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12" [hidden] ="toDate">
+                        <div class="form-group">
+                          <label>To</label>
+                         <input type="date"  class="form-control"  (blur)="calculateCharges()"  (change)="getBookingSchedule(booking)" [ngModelOptions]="{standalone: true}" [(ngModel)]="booking.bookingEndDate"
+                        />
+                        </div>
+                        </div>
+                    
+                    </div>
+                    </div>
+                </div>
+    
+                <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                  <div class="form-group">
+                    <label for="usr">Booking Time</label>
+    
+                    <div class="row">
+                      <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                        <div class="form-group">
+                          <label>From</label>
+                        <input type="time" step="1" min="01:00" max="24:00" class="form-control" (change)="getBookingSchedule(booking)"  (blur)="calculateCharges()"  [ngModelOptions]="{standalone: true}" [(ngModel)]="booking.startTime"
+                        />
+                        </div>
+                        </div>
+                      <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                        <div class="form-group">
+                          <label>To</label>
+                        <input type="time"  step="1" min="01:00" max="24:00" class="form-control" (change)="getBookingSchedule(booking)" (blur)="calculateCharges()"  [ngModelOptions]="{standalone: true}" [(ngModel)]="booking.endTime"
+                        />
+                        </div>
+                        </div>
+                    
+                    </div>
+                    </div>
+                </div>
+                </div>
+    
+    
+                 <div clas="col-12 col-lg-12 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label for="usr">Description</label>
+                    <textarea  class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="booking.bookingDescription" id="exampleFormControlTextarea4" rows="6" cols="24"></textarea>
+                  </div>
+                </div>
+    
+    
+              </div>
+    
+              <div class="row">
+                <div class="col-6">
+                  <strong>{{timeInterval}}</strong>
+                </div>
+                <div class="col-6 text-right">
+                  <strong>
+                   {{TotalAmount != ''?( TotalAmount |  currency:"₹"):''}}
+                  </strong>
+                </div>
+              </div>
+    
+    
+              <div class="row">
+                <div class="col-12 text-center">
+                  <button  (click)="saveBooking()" class="btn btn-primary">Save</button>
+                </div>
+              </div>
+               </form>
+          </div>
+
+          <div class="col-md-4 col-lg-4 col-xl-4 col-12 col-sm-12 card"  *ngIf="booking.amenitiesId != undefined">
+              
+                <div class="card-header bg-primary">
+                  Booking Schedules
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                          <table class="table table-striped">
+                            <tbody>
+                                <!-- <tr>
+                                  <td>15-08-2020 - 16-08-2020 (09:30 am - 11:00 am) Member name 1</td>
+                                </tr>
+                                <tr>
+                                  <td>15-08-2020 - 16-08-2020 (09:30 am - 11:00 am) Member name 1</td>
+                                </tr>
+                                <tr>
+                                  <td>15-08-2020 - 16-08-2020 (09:30 am - 11:00 am) Member name 1</td>
+                                </tr> -->
+                                <tr *ngFor="let user of bookingDetails">
+                    <td>{{user.bookingStartDate|date:'shortDate'}} - {{ user.bookingEndDate|date:'shortDate' }}({{user.startTime}} - {{user.endTime}}) {{user.member}}</td>
+                                  
+                                  
+                                </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+             
+          </div>
+        </div>
+       
+        
+      </div>
+    </div>
+  
+  

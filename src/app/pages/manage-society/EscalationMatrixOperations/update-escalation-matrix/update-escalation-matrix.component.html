@@ -1,0 +1,295 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side"> </div>
+  <div class="col-md-10 col-sm-10 mid">
+  <h5> Update Escalation Matrix </h5>
+    <div class="col-md-12 col-sm-12 escalationMatrix">
+        <div class="manditory">Fields Marked with * are necessary</div>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">	
+          <div class="col-md-12 col-sm-12 row">
+             <div class="col-md-4 col-sm-12 cell">
+                Category :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select  [(ngModel)]="escalationMatrix.category" name="category" id="category"
+                formControlName="category" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                <option *ngFor="let isCategory of Category">{{isCategory}}</option>
+              </select>
+              <span *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                <div *ngIf="f.category.errors.required">Select category</div>
+  
+              </span>
+             </div>
+             <div class="col-md-4 col-sm-12 cell">
+                Sub-Category :
+                <select  [(ngModel)]="escalationMatrix.subCategory" name="subCategory" id="subCategory" formControlName="subCategory" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.subCategory.errors }">
+                  <option  *ngFor = "let issubCategory of SubCategory">{{issubCategory}}</option>
+                </select>
+                <span *ngIf="submitted && f.subCategory.errors" class="invalid-feedback">
+                  <div *ngIf="f.subCategory.errors.required">Select Sub -category</div>
+                  
+                </span>
+             </div>
+             <div class="col-md-4 col-sm-12 cell">
+                Priority: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <select  [(ngModel)]="escalationMatrix.priority" name="priority" id="priority" formControlName="priority" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.priority.errors }">
+                  <option  *ngFor = "let ispriority of Priority">{{ispriority}}</option>
+                </select>
+                <span *ngIf="submitted && f.priority.errors" class="invalid-feedback">
+                  <div *ngIf="f.priority.errors.required">Select Priority</div>
+                  
+                </span>
+             </div>
+          </div>
+          
+          <div class="col-md-12 col-sm-12 row">
+            <div class="col-md-12 col-sm-12"><b>First Response Time</b></div>
+              <div class="col-md-2 col-sm-12 cell">
+                  Type:
+                  <select  [(ngModel)]="escalationMatrix.firstResponceType" name="firstResponceType" id="firstResponceType" formControlName="firstResponceType" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstResponceType.errors }"(change)="onChangeType($event.target.value)">
+                    <option  *ngFor = "let isfirstResponceType of FirstResponceType">{{isfirstResponceType}}</option>
+                  </select>
+                  <span *ngIf="submitted && f.firstResponceType.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstResponceType.errors.required">Select First Response Type</div>
+                    
+                  </span>
+              </div>
+              <div [hidden]="isTime" class="col-md-2 col-sm-12 cell">
+                  Time : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="text" name="firstResponceTime"  formControlName="firstResponceTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstResponceTime.errors }" id="firstResponceTime"pattern="[0-9]{1,10}"  [(ngModel)]="escalationMatrix.firstResponceTime" />
+                      <span *ngIf="submitted && f.firstResponceTime.errors" class="invalid-feedback">
+                                      <div *ngIf="f.firstResponceTime.errors.required">Time is required</div>
+                                      <div *ngIf="f.firstResponceTime.errors.pattern">First Responce Time must be Only Number</div>
+          
+                      </span>
+              </div>
+              <div [hidden]="!isDay" class="col-md-2 col-sm-12 cell">
+                  Day : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="text" name="firstResponceTime"  formControlName="firstResponceTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstResponceTime.errors }" id="firstResponceTime"pattern="[0-9]{1,10}"  [(ngModel)]="escalationMatrix.firstResponceTime" />
+                      <span *ngIf="submitted && f.firstResponceTime.errors" class="invalid-feedback">
+                                      <div *ngIf="f.firstResponceTime.errors.required">Time is required</div>
+                                      <div *ngIf="f.firstResponceTime.errors.pattern">First Responce Time must be Only Number</div>
+          
+                      </span>
+              </div>
+              <div class="col-md-2 col-sm-12 cell">
+                  Name :    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="text" name="firstResponceName"  formControlName="firstResponceName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstResponceName.errors }" id="firstResponceName" required pattern="^[a-z A-Z]{2,45}" required [(ngModel)]="escalationMatrix.firstResponceName" />
+                      <span *ngIf="submitted && f.firstResponceName.errors" class="invalid-feedback">
+                                      <div *ngIf="f.firstResponceName.errors.required">Name is required</div>
+                                      <div *ngIf="f.firstResponceName.errors.pattern">Name should contain only character</div>
+          
+                      </span>
+              </div>
+              <div class="col-md-3 col-sm-12 cell">
+                  E-mail : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="text" name="firstResponceEmail" formControlName="firstResponceEmail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstResponceEmail.errors }" id="firstResponceEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required [(ngModel)]="escalationMatrix.firstResponceEmail" />
+                      <span *ngIf="submitted && f.firstResponceEmail.errors" class="invalid-feedback">
+                                      <div *ngIf="f.firstResponceEmail.errors.required">Email is required</div>
+                                      <div *ngIf="f.firstResponceEmail.errors.pattern">Email should be in pattern</div>
+        
+                      </span>
+              </div>
+              <div class="col-md-3 col-sm-12 cell">
+                  Mobile Number * :
+                  <input type="text" name="firstResponceMobile"  formControlName="firstResponceMobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstResponceMobile.errors }" id="firstResponceMobile" required
+                  required pattern="^((\\+91-?)|0)?[0-9]{10}$" [(ngModel)]="escalationMatrix.firstResponceMobile" />
+                  <span *ngIf="submitted && f.firstResponceMobile.errors" class="invalid-feedback">
+                                  <div *ngIf="f.firstResponceMobile.errors.required">Mobile is required</div>
+                                  <div *ngIf="f.firstResponceMobile.errors.pattern">Enter 10 digit mobile number</div>
+      
+                  </span>
+              </div>                
+          </div>
+          <div class="col-md-12 col-sm-12 row">
+            <div class="col-md-12 col-sm-12"><b>First Escalation</b></div>
+              <div class="col-md-2 col-sm-12 cell">
+                  Type:
+                  <select required [(ngModel)]="escalationMatrix.firstEscalationType" name="firstEscalationType" id="firstEscalationType" formControlName="firstEscalationType" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstEscalationType.errors }"(change)="onChangeType1($event.target.value)">
+                    <option  *ngFor = "let isfirstEscalationType of FirstEscalationType">{{isfirstEscalationType}}</option>
+                  </select>
+                  <span *ngIf="submitted && f.firstEscalationType.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstEscalationType.errors.required">Select First Escalation Type</div>
+                    
+                  </span>
+              </div>
+              <div [hidden]="isTime1"class="col-md-2 col-sm-12 cell">
+                  Time :
+                  <input type="text" name="firstEscalationTime"  formControlName="firstEscalationTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstEscalationTime.errors }" id="firstEscalationTime"pattern="[0-9]{1,10}" required [(ngModel)]="escalationMatrix.firstEscalationTime" placeholder="Enter Time "/>
+                      <span *ngIf="submitted && f.firstEscalationTime.errors" class="invalid-feedback">
+                                      <div *ngIf="f.firstEscalationTime.errors.required">Time is required</div>
+                                      <div *ngIf="f.firstEscalationTime.errors.pattern">First Escalation Time must be Only Number</div>
+        
+                      </span>
+              </div>
+              <div [hidden]="!isDay1"class="col-md-2 col-sm-12 cell">
+                  Day :
+                  <input type="text" name="firstEscalationTime"  formControlName="firstEscalationTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstEscalationTime.errors }" id="firstEscalationTime"pattern="[0-9]{1,10}" required [(ngModel)]="escalationMatrix.firstEscalationTime" placeholder="Enter Time "/>
+                      <span *ngIf="submitted && f.firstEscalationTime.errors" class="invalid-feedback">
+                                      <div *ngIf="f.firstEscalationTime.errors.required">Time is required</div>
+                                      <div *ngIf="f.firstEscalationTime.errors.pattern">First Escalation Time must be Only Number</div>
+        
+                      </span>
+              </div>
+              <div class="col-md-2 col-sm-12 cell">
+                  Name :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="text" name="firstEscalationName" formControlName="firstEscalationName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstEscalationName.errors }" id="firstEscalationName" required pattern="^[a-z A-Z]{2,45}" required [(ngModel)]="escalationMatrix.firstEscalationName" placeholder="Enter Time "/>
+                      <span *ngIf="submitted && f.firstEscalationName.errors" class="invalid-feedback">
+                                      <div *ngIf="f.firstEscalationName.errors.required">Name is required</div>
+                                      <div *ngIf="f.firstEscalationName.errors.pattern">Name should contain only character</div>
+        
+                      </span>
+              </div>
+              <div class="col-md-3 col-sm-12 cell">
+                  E-mail :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="text" name="firstEscalationEmail" formControlName="firstEscalationEmail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstEscalationEmail.errors }" id="firstEscalationEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required [(ngModel)]="escalationMatrix.firstEscalationEmail" placeholder="Enter Email "/>
+                      <span *ngIf="submitted && f.firstEscalationEmail.errors" class="invalid-feedback">
+                                      <div *ngIf="f.firstEscalationEmail.errors.required">Email is required</div>
+                                      <div *ngIf="f.firstEscalationEmail.errors.pattern">Email should be in pattern</div>
+        
+                      </span>
+              </div>
+              <div class="col-md-3 col-sm-12 cell">
+                  Mobile Number * :
+                  <input type="text" name="firstEscalationMobile"  formControlName="firstEscalationMobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstEscalationMobile.errors }" id="firstEscalationEmail" required 
+                      required pattern="^((\\+91-?)|0)?[0-9]{10}$" [(ngModel)]="escalationMatrix.firstEscalationMobile" placeholder="Enter Mobile No "/>
+                      <span *ngIf="submitted && f.firstEscalationMobile.errors" class="invalid-feedback">
+                                      <div *ngIf="f.firstEscalationMobile.errors.required">Mobile is required</div>
+                                      <div *ngIf="f.firstEscalationMobile.errors.pattern">Enter 10 digit mobile number</div>
+        
+                      </span>
+              </div>                
+          </div>
+          <div class="col-md-12 col-sm-12 row">
+            <div class="col-md-12 col-sm-12 ">
+               <b>Second Escalation</b>
+            </div>
+  
+              <div class="col-md-2 col-sm-12 cell">
+                  Type:
+                  <select required [(ngModel)]="escalationMatrix.secondEscalationType" name="secondEscalationType" id="secondEscalationType" formControlName="secondEscalationType" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondEscalationType.errors }"(change)="onChangeType2($event.target.value)">
+                    <option  *ngFor = "let issecondEscalationType of SecondEscalationType">{{issecondEscalationType}}</option>
+                  </select>
+                  <span *ngIf="submitted && f.secondEscalationType.errors" class="invalid-feedback">
+                    <div *ngIf="f.secondEscalationType.errors.required">Select First Escalation Type</div>
+                    
+                  </span>
+              </div>
+              <div [hidden]="isTime2"class="col-md-2 col-sm-12 cell">
+                  Time :
+                  <input type="text" name="secondEscalationTime"  formControlName="secondEscalationTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondEscalationTime.errors }" id="secondEscalationTime"pattern="[0-9]{1,10}" required [(ngModel)]="escalationMatrix.secondEscalationTime"/>
+                      <span *ngIf="submitted && f.secondEscalationTime.errors" class="invalid-feedback">
+                                      <div *ngIf="f.secondEscalationTime.errors.required">Time is required</div>
+                                      <div *ngIf="f.secondEscalationTime.errors.pattern">second Escalation Time must be Only Number</div>
+        
+                      </span>
+              </div>
+              <div [hidden]="!isDay2"class="col-md-2 col-sm-12 cell">
+                  Day :
+                  <input type="text" name="secondEscalationTime"  formControlName="secondEscalationTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondEscalationTime.errors }" id="secondEscalationTime"pattern="[0-9]{1,10}" required [(ngModel)]="escalationMatrix.secondEscalationTime"/>
+                      <span *ngIf="submitted && f.secondEscalationTime.errors" class="invalid-feedback">
+                                      <div *ngIf="f.secondEscalationTime.errors.required">Time is required</div>
+                                      <div *ngIf="f.secondEscalationTime.errors.pattern">second Escalation Time must be Only Number</div>
+        
+                      </span>
+              </div>
+              <div class="col-md-2 col-sm-12 cell">
+                  Name :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="text" name="secondEscalationName"  formControlName="secondEscalationName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondEscalationName.errors }" id="secondEscalationName" required pattern="^[a-z A-Z]{2,45}" required [(ngModel)]="escalationMatrix.secondEscalationName"/>
+                      <span *ngIf="submitted && f.secondEscalationName.errors" class="invalid-feedback">
+                                      <div *ngIf="f.secondEscalationName.errors.required">Name is required</div>
+                                      <div *ngIf="f.secondEscalationName.errors.pattern">Name should contain only character</div>
+        
+                      </span>
+              </div>
+              <div class="col-md-3 col-sm-12 cell">
+                  E-mail :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="text" name="secondEscalationEmail"  formControlName="secondEscalationEmail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondEscalationEmail.errors }" id="secondEscalationName"pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  required [(ngModel)]="escalationMatrix.secondEscalationEmail"/>
+                      <span *ngIf="submitted && f.secondEscalationEmail.errors" class="invalid-feedback">
+                                      <div *ngIf="f.secondEscalationEmail.errors.required">Time is required</div>
+                                      <div *ngIf="f.secondEscalationEmail.errors.pattern">Email should be in pattern</div>
+        
+                      </span>
+              </div>
+              <div class="col-md-3 col-sm-12 cell">
+                  Mobile Number * :
+                  <input type="text" name="secondEscalationMobile"  formControlName="secondEscalationMobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondEscalationMobile.errors }" id="secondEscalationMobile"
+                      
+                      required required pattern="^((\\+91-?)|0)?[0-9]{10}$" [(ngModel)]="escalationMatrix.secondEscalationMobile" placeholder="Enter Mobile No "/>
+                      <span *ngIf="submitted && f.secondEscalationMobile.errors" class="invalid-feedback">
+                                      <div *ngIf="f.secondEscalationMobile.errors.required">Mobile is required</div>
+                                      <div *ngIf="f.secondEscalationMobile.errors.pattern">Enter 10 digit mobile number</div>
+        
+                      </span>
+              </div>                
+          </div>
+          <div class="col-md-12 col-sm-12 row">
+              <div class="col-md-12 col-sm-12 ">
+                 <b>Third Escalation</b>
+              </div>
+  
+                <div class="col-md-2 col-sm-12 cell">
+                    Type:
+                    <select required [(ngModel)]="escalationMatrix.thirdEscalationType" name="thirdEscalationType" id="thirdEscalationType" formControlName="thirdEscalationType"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.thirdEscalationType.errors }"(change)="onChangeType3($event.target.value)">
+                      <option  *ngFor = "let isthirdEscalationType of ThirdEscalationType">{{isthirdEscalationType}}</option>
+                      </select>
+                      <span *ngIf="submitted && f.thirdEscalationType.errors" class="invalid-feedback">
+                          <div *ngIf="f.thirdEscalationType.errors.required">Select Third Escalation Type</div>
+                          
+                        </span>
+                </div>
+                <div [hidden]="isTime3" class="col-md-2 col-sm-12 cell">
+                    Time :
+                    <input type="text" name="thirdEscalationTime"  formControlName="thirdEscalationTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.thirdEscalationTime.errors }" id="thirdEscalationTime"pattern="[0-9]{1,10}" required [(ngModel)]="escalationMatrix.thirdEscalationTime" placeholder="Enter Time "/>
+                       <span *ngIf="submitted && f.thirdEscalationTime.errors" class="invalid-feedback">
+                                       <div *ngIf="f.thirdEscalationTime.errors.required">Time is required</div>
+                                       <div *ngIf="f.thirdEscalationTime.errors.pattern">Third Escalation Time must be Only Number</div>
+           
+                       </span>
+                </div>
+                <div [hidden]="!isDay3" class="col-md-2 col-sm-12 cell">
+                    Day :
+                    <input type="text" name="thirdEscalationTime"  formControlName="thirdEscalationTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.thirdEscalationTime.errors }" id="thirdEscalationTime"pattern="[0-9]{1,10}" required [(ngModel)]="escalationMatrix.thirdEscalationTime" placeholder="Enter Day "/>
+                       <span *ngIf="submitted && f.thirdEscalationTime.errors" class="invalid-feedback">
+                                       <div *ngIf="f.thirdEscalationTime.errors.required">Time is required</div>
+                                       <div *ngIf="f.thirdEscalationTime.errors.pattern">Third Escalation Time must be Only Number</div>
+           
+                       </span>
+                </div>
+                <div class="col-md-2 col-sm-12 cell">
+                    Name :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" name="thirdEscalationName"  formControlName="thirdEscalationName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.thirdEscalationName.errors }"  id="thirdEscalationName"  required pattern="^[a-z A-Z]{2,45}"required [(ngModel)]="escalationMatrix.thirdEscalationName" placeholder="Enter Name "/>
+                         <span *ngIf="submitted && f.thirdEscalationName.errors" class="invalid-feedback">
+                                         <div *ngIf="f.thirdEscalationName.errors.required">Name is required</div>
+                                         <div *ngIf="f.thirdEscalationName.errors.pattern">Name should contain only character</div>
+           
+                         </span>
+                </div>
+                <div class="col-md-3 col-sm-12 cell">
+                    E-mail :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" name="thirdEscalationEmail"  formControlName="thirdEscalationEmail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.thirdEscalationEmail.errors }"  id="thirdEscalationEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required [(ngModel)]="escalationMatrix.thirdEscalationEmail" placeholder="Enter Email "/>
+                         <span *ngIf="submitted && f.thirdEscalationEmail.errors" class="invalid-feedback">
+                                         <div *ngIf="f.thirdEscalationEmail.errors.required">Time is required</div>
+                                         <div *ngIf="f.thirdEscalationEmail.errors.pattern">Email should be in pattern</div>
+           
+                         </span>
+                </div>
+                <div class="col-md-3 col-sm-12 cell">
+                    Mobile Number * :
+                    <input type="text" name="thirdEscalationMobile"  formControlName="thirdEscalationMobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.thirdEscalationMobile.errors }"   id="thirdEscalationMobile" required 
+                         required pattern="^((\\+91-?)|0)?[0-9]{10}$" [(ngModel)]="escalationMatrix.thirdEscalationMobile" placeholder="Enter Mobile No "/>
+                         <span *ngIf="submitted && f.thirdEscalationMobile.errors" class="invalid-feedback">
+                                         <div *ngIf="f.thirdEscalationMobile.errors.required">Mobile is required</div>
+                                         <div *ngIf="f.thirdEscalationMobile.errors.pattern">Enter 10 digit mobile number</div>
+           
+                         </span>
+                </div>                
+            </div>
+            <div class="col-md-12 col-sm-12 row">
+                <div class="col-md-4 col-sm-12 cell"><button class="btn btn-info save" type="submit"><b>Save</b></button> </div>
+                <div class="col-md-4 col-sm-12 cell"><button class="btn btn-info" (click)="myFunction()"><b>Cancel</b></button> </div>
+                <div class="col-md-4 col-sm-12 cell"><button class="btn btn-info" (click)="myFunction()"><b>Show List</b></button></div>
+            </div>
+        </form>
+    </div>
+  </div>

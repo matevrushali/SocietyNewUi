@@ -1,0 +1,57 @@
+
+<div class="col-md-1 col-sm-1 side">
+
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+	<label>
+		<h4> Vendor List</h4>
+	</label><br>
+	<label>
+		<h6><a *ngIf="showSaveButton()" (click)="rediectToPage('vendors/add_vendors')">Create New Vendor</a></h6>
+	</label>
+	<table datatable [dtOptions] = "dtOptions" [dtTrigger]="dtTrigger"  class="display nowrap" style="width:100%">
+		<thead>
+			<tr>
+
+
+				<th>Name</th>
+				<th> Address</th>
+				<th>Mobile Number</th>
+				<th>Email</th>
+				<th>PAN Number</th>
+				<th>Aadhar Number</th>
+				<th>Function</th>
+
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let vendors of vendors$">
+
+				
+				<td><a (click)="rediectToDetails('vendors/get_vendors_details', vendors.vendorId)">{{ vendors.firstName }}
+						{{ vendors.lastName }}</a></td>
+				<td>{{ vendors.addressfk.city }},{{ vendors.addressfk.state }}</td>
+				<td>{{ vendors.mobileNumber }}</td>
+				<td>{{ vendors.email }}</td>
+				<td>{{ vendors.panNumber }}</td>
+				<td>{{ vendors.aadharNumber }}</td>
+				<td>{{ vendors.function }}</td>
+				
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</tfoot>
+	</table>
+</div>

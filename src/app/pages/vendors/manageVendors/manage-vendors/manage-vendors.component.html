@@ -1,0 +1,55 @@
+
+<div class="col-md-1 col-sm-1 side">
+
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+	<label>
+		<h4> Vendor List</h4>
+	</label><br>
+	<label>
+		<!-- <h6><a *ngIf="showSaveButton()" (click)="rediectToPage('vendors/add_vendors')">Create New Vendor</a></h6> -->
+	</label>
+	<table datatable [dtOptions] = "dtOptions" [dtTrigger]="dtTrigger"  class="display nowrap" style="width:100%">
+		<thead>
+			<tr>
+
+
+                <th>Vendors Name</th>
+                <th>Opening Balance</th>
+                <th>Group</th>
+                <th>GSTN</th>
+				
+
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let vendors of vendors$">
+
+				
+				<td><a (click)="rediectToDetails('vendors/get_vendors_details', vendors.vendorId)">{{ vendors.accountName }}
+						</a></td>
+				<td>{{ vendors.amountType }}</td>
+				<!-- <td>{{ vendors.openingBalance }}</td> -->
+				<td>{{ vendors.groupIdFk.groupName }}</td>
+                <!-- <td>{{ vendors.ledgerType }}</td> -->
+                <td></td>
+				
+				
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<!-- <th></th>
+				<th></th>
+				<th></th> -->
+			</tr>
+		</tfoot>
+	</table>
+</div>

@@ -1,0 +1,111 @@
+<h4><b>Bill NO.-{{ getDetails.billStartNumber }}-{{ getDetails.billNoPrefix }}-{{ getDetails.billNoSuffix }}</b></h4>
+<table class="table role">
+         
+   
+    <tr [hidden]="!exceptedFlat">
+      <th>Member :</th>
+      <td>{{ occ.wingBuilding }} - {{occ.flatNumber}}</td>
+    </tr>
+    <tr [hidden]="!blockTower">
+      <th>Member :</th>
+      <td>{{ occ.wingBuilding }}</td>
+    </tr>
+    <tr [hidden]="!singleMultiple">
+      <th>Member :</th>
+      <td>{{ getDetails.singleMultipleFlat }} </td>
+    </tr>
+    <tr>
+      <th>Bill Type :</th>
+      <td>{{ getDetails.billingHeadIdFk.billName }}</td>
+    </tr>
+  
+    <tr>
+      <th>Date:</th>
+      <td>{{ getDetails.date  | date:'yyyy/MM/dd' }}</td>
+    </tr>
+    <tr>
+      <th>Due Date :</th>
+      <td>{{ getDetails.dueDate }}</td>
+    </tr>
+    <tr>
+        <th>Recieved Amount :</th>
+        <td>{{ getDetails.recievedAmount }}</td>
+      </tr>
+      <tr>
+        <th>Pending Amount :</th>
+        <td>{{ getDetails.pendingAmount }}</td>
+      </tr>
+
+
+   
+  </table>
+  <table class="table table-striped  table-header-fixed">
+    <thead class="scroll">
+      <tr>
+       
+        
+        <th scope="col">Bill Date</th>
+       
+        <!-- <th scope="col">Payable</th> -->
+        <th scope="col">Recieves</th>
+        <!-- <th scope="col">Dues</th> -->
+        <!-- <th scope="col">Operations</th> -->
+
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of  entries$">
+      <tr>
+         <td>{{ user.recievedDate | date:'dd/MM/yyyy' }}</td>
+       
+        <!-- <td>{{user.billingAmount}}</td> -->
+        <td>{{user.recieveAmount}}</td>
+        <!-- <td>{{user.pendingAmount}}</td> -->
+      <!--  <td>
+        <button (click)="rediectToPage('billing_heads/pay',user.generateBillsId)" type="button" class="btn btn-link">PAY</button>
+       </td> -->
+       
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="getDetails.pendingAmount > 0">
+    <form  (ngSubmit)="onFillingDetails()" name="generateBill">
+        <table class="table  role">
+  
+  
+          <tr>
+            <td class="lbl"> Recieved Date :</td>
+            <td><input type="date" 
+                name="date" id="date" required
+                [(ngModel)]="generateBill.date" placeholder="Enter date" />
+             
+  
+            </td>
+            <td></td>
+          </tr>
+         
+          <tr>
+            <td class="lbl"> Amount To Be Recieved :</td>
+            <td><input type="text" 
+                 name="recievedAmount" id="recievedAmount"
+                required [(ngModel)]="generateBill.recievedAmount"  />
+             
+            </td>
+            <td></td>
+          </tr>
+  
+        
+          <tr>
+            <td colspan="3"><button class="btn btn-info save" type="submit"><b>Save</b></button>
+              <!-- <button class="btn btn-info" (click)="rediectToListDetails('billing_heads/generate_bill')"><b>Cancel</b></button>
+              <button class="btn btn-info" (click)="rediectToListDetails('billing_heads/generate_bill')"><b>Show List</b></button> -->
+              </td>
+          </tr>
+  
+        </table>
+    
+    </form>
+        
+       
+  
+      
+</div>

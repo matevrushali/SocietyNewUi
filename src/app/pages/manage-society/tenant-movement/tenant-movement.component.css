@@ -1,0 +1,140 @@
+
+.side {
+	/* background: lightgrey; */
+	padding-top:15px;
+	height:100%;
+	width: 100%;
+	float: left;
+	font-size: 10px;
+  }
+  li{
+	font-size: 10px;
+  }
+  
+  .mid
+  {
+  
+  height:100%;
+  float: left;
+  }
+  .title{
+    height:5%;
+    /* background:grey;    */
+  }
+  .fields{
+    height:10%;
+    /* background:rgb(152, 19, 19);    */
+  }
+  .field1{
+    height:100%;
+    /* background:rgb(219, 155, 155);   */
+    float: left; 
+    padding-top: 20px;
+  }
+  .field2{
+    height:100%;
+    /* background:rgb(155, 176, 219);  */
+    float: left;  
+    padding-top: 20px; 
+  }
+  .field3{
+    height:100%;
+    /* background:rgb(155, 219, 166);    */
+    float: left;  
+    padding-top: 20px;  
+  }
+  
+  select, input[type=text],input[type=number],input[type=date] {
+    width: 50%;
+    padding: 6px 20px;
+    margin: 8px 0;
+    display: inline-block;
+   
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .form{
+      height:85% ;
+      /* background: peru; */
+  }
+  .note{
+      color: red;
+  }
+  .residentInfo{
+    height:34% ;
+    /* background: rgb(202, 20, 151); */
+    float: left;
+    border: 1px solid lightgray;
+  }
+  .a{
+    height:50% ;
+    /* background: rgb(192, 162, 183); */
+    float: left;
+   
+  }
+  .name{
+    height:100% ;
+    /* background: rgb(199, 68, 28); */
+    float: left;
+  }
+  .middle{
+    height:100% ;
+    /* background: rgb(176, 122, 105); */
+    float: left;
+  }
+  .last{
+    height:100% ;
+    /* background: rgb(116, 104, 101); */
+    float: left;
+  }
+  .type{
+    height:100% ;
+    /* background: rgb(17, 157, 52); */
+    float: left;
+  }
+  .b{
+    height:50% ;
+    /* background: rgb(28, 199, 16); */
+    float: left;
+   
+  }
+  .duesInfo{
+    height:14% ;
+    /* background: rgb(129, 135, 163); */
+    float: left;
+    border: 1px solid lightgray;
+  }
+  .x{
+    height:40% ;
+   
+    padding-left: 12%;
+    float: left;
+    border: 1px solid lightgray;
+
+  }
+  .x:hover{
+    background:lightgray;
+  }
+  /* .div2:hover{
+    background: grey;
+} */
+  .y{
+      float: left;
+
+  }
+  .z{
+    float: right;
+  }
+  .additionalInfo{
+    height:36% ;
+    /* background: rgb(8, 32, 139); */
+    float: left;
+    border: 1px solid lightgray;
+  }
+  .buttons{
+    height:10% ;
+    /* background: rgb(37, 121, 72); */
+    float: left;
+    padding-top: 10px;
+    border: 1px solid lightgray;
+  }

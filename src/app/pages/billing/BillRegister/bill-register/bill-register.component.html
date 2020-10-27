@@ -1,0 +1,88 @@
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<div class="col-md-1 col-sm-1 side">
+
+</div>
+<div class="col-md-10 col-sm-10 mid">
+  <div class="col-md-12 col-sm-12 got1">
+    <label>BILLS REGISTER</label>
+  </div>
+  <div class="col-md-12 col-sm-12 got2">
+    <div class="col-md-3  got21">
+
+        Bill Type :
+        <select (change)="callBills($event.target.value)" [(ngModel)]="billingType.billingHeadsId">
+  
+          <option *ngFor="let billingType of billing$" value="{{billingType.billingHeadsId}}"> {{billingType.billName}}
+          </option>
+        </select>
+    </div>
+    <div [hidden]="!isquarter" class="col-md-3 got21">
+
+        Month:
+        <select required [(ngModel)]="billingType.quarter" name="quarter" id="quarter" 
+             >
+          
+             <option *ngFor="let isquarter of quarterTitle">{{isquarter}}</option>
+           </select>
+    </div>
+    <div class="col-md-3 got21">
+
+        Month:
+        <select required [(ngModel)]="billingType.month" name="month" id="month" 
+             >
+            
+             <option *ngFor="let ismonth of monthTitle">{{ismonth}}</option>
+           </select>
+    </div>
+    <div class="col-md-3 got21">
+
+        Year:
+        <select required [(ngModel)]="billingType.year" name="year" id="year" 
+             >
+             <option hidden></option>
+             <option *ngFor="let isYear of yearTitle">{{isYear}}</option>
+           </select>
+      </div>
+    <div class=" col-md-3 button ">
+      <button (click)="filterContent(billingType.billingHeadsId,resident.occupancyDetailsId)"> Show Bill </button>
+    </div>
+  </div>
+  <div class="col-md-12 col-sm-12 got3">
+    <table class="table table-striped  table-header-fixed">
+      <thead class="scroll">
+        <tr>
+         
+          <th scope="col">Bill No</th>
+          <th scope="col">Flat No</th>
+          <!-- <th scope="col">Name</th> -->
+          <th scope="col">Type</th>
+          <th scope="col">Bill Date</th>
+          <th scope="col">Due On</th>
+          <th scope="col">Payable</th>
+          <th scope="col">Recieves</th>
+          <th scope="col">Dues</th>
+          <th scope="col">Operations</th>
+
+        </tr>
+      </thead>
+      <tbody *ngFor="let user of  voucherEntry$">
+        <tr>
+          <td>{{user.billStartNumber}}-{{user.billNoSuffix}}</td>
+          <td>{{ user.singleMultipleFlat }}</td>
+          <td>{{ user.billingHeadIdFk.billName }} </td>
+          <td>{{ user.date }}</td>
+          <td>{{user.dueDate}}</td>
+          <td>{{user.billingAmount}}</td>
+          <td>{{user.recievedAmount}}</td>
+          <td>{{user.pendingAmount}}</td>
+         <td>
+          <button (click)="rediectToPage('billing_heads/payNew',user.generateBillsId)" type="button" class="btn btn-link">PAY</button>
+         </td>
+         
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

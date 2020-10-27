@@ -1,0 +1,42 @@
+
+<body>
+	<div class="col-md-1 col-sm-1 side">
+	
+	</div>
+	<div class="col-md-10 col-sm-10 mid">
+
+
+		<label>
+			<h5>Ledger List</h5>
+		</label><br>
+		<label>
+			<h6><a *ngIf="showSaveButton()" (click)="rediectToPage('ledgers/create_ledgers')">Create New</a></h6>
+		</label>
+		<table id="ledger" class="display nowrap" style="width:100%">
+			<thead>
+				<tr>
+
+					<th>Account Name </th>
+					<th>Group</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let user of ledgers$">
+                    
+					<td><a (click)="rediectToDetails('ledgers/get_ledger_details', user.ledgersId)">{{ user.accountName }}</a>
+					</td>
+					<td>{{ user.groupIdFk.groupName }}</td>
+					
+					
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+						<th></th>
+						<th></th>
+				</tr>
+			</tfoot>
+		</table>
+
+	</div>

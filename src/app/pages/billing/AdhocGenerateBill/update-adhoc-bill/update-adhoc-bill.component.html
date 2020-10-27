@@ -1,0 +1,206 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side">
+    
+  </div>
+  <div class="col-md-10 col-sm-10 mid">
+  
+  
+    <div class="content">
+      <div class="col-md-12 header">
+        <h2>Update Adhoc Generate Bill</h2>
+      </div>
+      <div class="col-md-3 a">
+        <div class="col-md-3 user">
+           
+        </div>
+      </div>
+      <div class="col-md-9 b">
+        <form [formGroup]="registerForm" class="col-md-12" (ngSubmit)="onSubmit()" name="generateBill">
+          <table class="table col-md-12  role">
+  
+            <tr class="form-group">
+              <td class="lbl">Bill Type:</td>
+  
+  
+              <td>
+                <select required [(ngModel)]="adhocBill.billingHeadIdFk.billingHeadsId" name="billingHeadIdFk"
+                  id="billingHeadIdFk" formControlName="billingHeadIdFk" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.billingHeadIdFk.errors }"
+                  value="{{ adhocGenerateBill$.billType }}">
+                  <option *ngFor="let bill of billingHead$" value="{{bill.billingHeadsId}}">{{ bill.billName }}</option>
+                </select>
+                <span *ngIf="submitted && f.billingHeadIdFk.errors" class="invalid-feedback">
+                  <div *ngIf="f.billingHeadIdFk.errors.required">Select Billing Type</div>
+                </span>
+              </td>
+  
+  
+            </tr>
+  
+            <tr class="form-group">
+              <td class="lbl">Bill For:</td>
+  
+              <td>
+  
+                <select required [(ngModel)]="adhocBill.billFor" name="billFor" id="billFor" formControlName="billFor"
+                  class="form-control" (change)="callFlatBlock($event.target.value)"
+                  [ngClass]="{ 'is-invalid': submitted && f.billFor.errors }" value="{{ adhocGenerateBill$.billFor }}">
+                  <option *ngFor="let isBillFor of typeBillFor">{{isBillFor}}</option>
+                </select>
+                <span *ngIf="submitted && f.billFor.errors" class="invalid-feedback">
+                  <div *ngIf="f.billFor.errors.required">Select Billing Type</div>
+                </span>
+              </td>
+            </tr>
+  
+            <tr [hidden]="!isBlockTower" class="form-group">
+              <td class="lbl">Block/Tower# :</td>
+  
+              <td>
+  
+                <select required [(ngModel)]="adhocBill.blockTower" name="blockTower" id="blockTower"
+                  formControlName="blockTower">
+                  <option *ngFor="let occ of occupancyBlock$" value="{{occ}}">{{ occ}}</option>
+                </select>
+  
+              </td>
+            </tr>
+  
+            <tr [hidden]="!isExcludeFlat" class="form-group">
+              <td class="lbl">Exclude Flat:</td>
+  
+              <td>
+  
+                <!-- <input type="text" required formControlName="excludeFlat" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.excludeFlat.errors }" name="excludeFlat" list="staticUserIds"
+                  [(ngModel)]="adhocBill.excludeFlat" />
+                <datalist id="staticUserIds">
+                  <option *ngFor="let occ of occupancy$" value="{{occ.occupancyDetailsId}}">
+                    {{ occ.wingBuilding }}-{{occ.flatNumber}}</option>
+  
+                </datalist> -->
+  
+  
+                <select required [(ngModel)]="adhocBill.excludeFlat" name="excludeFlat" id="excludeFlat"
+                formControlName="excludeFlat" class="form-control">
+                <option *ngFor="let occ of occupancy$" value="{{occ.occupancyDetailsId}}">
+                  {{ occ.wingBuilding }}-{{occ.flatNumber}}</option>
+              </select>
+              </td>
+            </tr>
+            <tr [hidden]="!isSingleMultiple" class="form-group">
+              <td class="lbl">Single/Multiple Flat:</td>
+  
+              <td>
+  
+                <select required [(ngModel)]="adhocBill.singleMultipleFlat" name="singleMultipleFlat"
+                  formControlName="singleMultipleFlat">
+                  <option *ngFor="let occ of occupancy$" value="{{occ.occupancyDetailsId}}">
+                    {{ occ.wingBuilding }}-{{occ.flatNumber}}</option>
+                </select>
+              </td>
+            </tr>
+  
+  
+  
+  
+  
+  
+            <tr class="form-group">
+              <td class="lbl"> Date :</td>
+  
+              <td>
+  
+                <input type="text" name="date" onfocus="(this.type='date')" formControlName="date" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.date.errors }" name="date" id="date" required
+                  [(ngModel)]="adhocBill.date" value="{{ adhocGenerateBill$.date }}" />
+                <span *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                  <div *ngIf="f.date.errors.required">Date is required</div>
+                </span>
+              </td>
+  
+            </tr>
+            <tr class="form-group">
+              <td class="lbl"> Due Date :</td>
+              <td>
+  
+                <select required [(ngModel)]="adhocBill.dueDate" name="dueDate" id="dueDate" formControlName="dueDate"
+                  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dueDate.errors }"
+                  (change)="callDueDate($event.target.value)" value="{{ adhocGenerateBill$.dueDate }}">
+                  <option *ngFor="let isDueDate of DueDate">{{isDueDate}}</option>
+                </select>
+                <span *ngIf="submitted && f.dueDate.errors" class="invalid-feedback">
+                  <div *ngIf="f.dueDate.errors.required">Select Due Date</div>
+                </span>
+              </td>
+            </tr>
+            <tr [hidden]="!isChooseDueDate" class="form-group">
+                <td class="lbl"> Choose Due Date :</td>
+    
+                <td>
+    
+                  <input type="text" onfocus="(this.type='date')"  name="chooseDueDate" id="chooseDueDate"
+                    formControlName="chooseDueDate" [(ngModel)]="adhocBill.chooseDueDate"
+                    value="{{ adhocGenerateBill$.chooseDueDate }}" >
+    
+    
+                </td> 
+            </tr>
+            <tr class="form-group">
+              <td class="lbl">Grace Period :</td>
+              <td>
+  
+                <select required [(ngModel)]="adhocBill.gracePeriod" name="gracePeriod" id="gracePeriod"
+                  formControlName="gracePeriod" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.gracePeriod.errors }"
+                  value="{{ adhocGenerateBill$.gracePeriod }}">
+                  <option *ngFor="let isGracePeriod of GracePeriod">{{isGracePeriod}}</option>
+                </select>
+                <span *ngIf="submitted && f.gracePeriod.errors" class="invalid-feedback">
+                  <div *ngIf="f.gracePeriod.errors.required">Select Grace Period</div>
+                </span>
+              </td>
+            </tr>
+           
+              <tr class="form-group">
+              <td class="lbl"> Bill No. Prefix :</td>
+              <td>
+                <input type="text" formControlName="billNoPrefix" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.billNoPrefix.errors }" maxlength="15" minlength="1"name="billNoPrefix" id="billNoPrefix"
+                  required [(ngModel)]="adhocBill.billNoPrefix" value="{{ adhocGenerateBill$.billNoPrefix }}" />
+                <span *ngIf="submitted && f.billNoPrefix.errors" class="invalid-feedback">
+                  <div *ngIf="f.billNoPrefix.errors.required">Bill No Prefix is required</div>
+                </span>
+              </td>
+            </tr>
+  
+            <tr class="form-group">
+              <td class="lbl"> Bill Start No. :</td>
+              <td>
+                <input type="text" formControlName="billStartNumber" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.billStartNumber.errors }" name="billStartNumber"
+                  id="billStartNumber" required pattern="[0-9]{1,15}" required [(ngModel)]="adhocBill.billStartNumber"
+                  value="{{ adhocGenerateBill$.billStartNumber }}" />
+                <span *ngIf="submitted && f.billStartNumber.errors" class="invalid-feedback">
+                  <div *ngIf="f.billStartNumber.errors.required">Bill Start Number is required</div>
+                  <div *ngIf="f.billStartNumber.errors.pattern">Bill Start No Invalid</div>
+  
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"><button class="btn btn-info save" type="submit"><b>Update</b></button> 
+                <button class="btn btn-info" (click)="rediectToListDetails('billing_heads/adhoc_generate_bill')"><b>Cancel</b></button>
+                <button class="btn btn-info" (click)="rediectToListDetails('billing_heads/adhoc_generate_bill')"><b>Show List</b></button></td>
+  
+            </tr>
+  
+          </table>
+        </form>
+      </div>
+  
+    </div>
+  
+  </div>

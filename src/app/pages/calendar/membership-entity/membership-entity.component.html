@@ -1,0 +1,39 @@
+<h2>Membership Entity</h2>
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Membership Entity Name</label>
+      <input type="email"   [(ngModel)]="membershipEntity.membershipEntityName" [ngModelOptions]="{standalone: true}" class="form-control" id="membershipEntityName"
+        placeholder="Membership Entity Name">
+     
+    </div>
+
+  </div>
+  <div class="form-group">
+    <div class="form-group purple-border">
+      <label for="exampleFormControlTextarea4">Membership Description</label>
+      <textarea [(ngModel)]="membershipEntity.membershipEntityDescription" class="form-control"
+        [ngModelOptions]="{standalone: true}" rows="3"></textarea>
+    </div>
+
+  </div>
+
+  <div class="form-row">
+    <!-- <div class="form-group col-md-6">
+      <label for="inputCity">Membership Type</label>
+      <select required name="membershipType"  [(ngModel)]="membershipEntity.membershipType" [ngModelOptions]="{standalone: true}"
+        class="form-control">
+        <option hidden></option>
+        <option *ngFor="let isMembershipType of membershipTypeTitle">{{ isMembershipType}}</option>
+      </select>
+    </div> -->
+    <div class="form-group col-md-6">
+      <label for="inputCity"> Charges</label>
+      <input type="number" [(ngModel)]="membershipEntity.membershipCharges" [ngModelOptions]="{standalone: true}"
+        class="form-control" id="membershipCharges">
+    </div>
+
+  </div>
+  <button (click)="saveMembershipEntity()" class="btn btn-primary">Save</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary">Cancel</button>
+</form>

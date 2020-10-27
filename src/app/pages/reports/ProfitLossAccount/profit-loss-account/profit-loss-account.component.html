@@ -1,0 +1,107 @@
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  
+  </head>
+  <div class="col-md-1 col-sm-1 side">
+  
+  </div>
+  
+  <div class="col-md-10 col-sm-10 mid">
+    <div class="header col-md-12">
+      <h4>Profit & Loss A/C</h4>
+    </div>
+    <div  class="col-md-12 col-sm-12 div">
+      Financial Year:
+     <select required [(ngModel)]="balance.year"  name="year" id="year"(change)="onChangeYear($event.target.value)" >
+       <option  *ngFor="let isYear of yearPeriod" >{{isYear}}</option>
+       </select>
+   </div>
+    <div class="content col-md-12">
+     <div  class="col-md-12 col-sm-12 div1">
+       
+        <div class="col-md-12 col-sm-12 div2" [hidden]=!isProfitLossSlot1>
+        
+         <div class="col-md-6 col-sm-12 temp">
+           <div class="col-md-12 col-sm-12 div3">
+            INCOME
+           </div>
+           <div class="col-md-12 col-sm-12 div4">
+          <div *ngFor="let income of profitLoss$.income " class="row">
+            <div class="col-md-8 group">{{income.groupName}}</div>
+            <div class="col-md-4 amount">{{income.amount}}</div>
+           
+          </div>
+        </div>
+           <div class="col-md-12 col-sm-12 div5">
+  
+             <div class="col-md-8 a">Total</div>
+             <div class="col-md-4 b">{{profitLoss$.incomeTotal}}</div>
+           </div>
+         </div>
+         <div class="col-md-6 col-sm-12 temp1">
+            <div class="col-md-12 col-sm-12 div3">
+                EXPENSES
+              </div>
+              <div class="col-md-12 col-sm-12 div4">
+             <div *ngFor="let expenses of profitLoss$.expense" class="row">
+               <div class="col-md-8 group">{{expenses.groupName}}</div>
+               <div class="col-md-4 amount">{{expenses.amount}}</div>
+             </div>
+           </div>
+              <div class="col-md-12 col-sm-12 div5">
+     
+                <div class="col-md-8 a">Total</div>
+                <div class="col-md-4 b">{{profitLoss$.expnseTotal}}</div>
+              </div>
+         </div>
+  
+        </div>
+        <div class="col-md-12 col-sm-12 div2" [hidden]=!isProfitLossSlot2>
+        
+          <div class="col-md-6 col-sm-12 temp">
+            <div class="col-md-12 col-sm-12 div3">
+             INCOME
+            </div>
+            <div class="col-md-12 col-sm-12 div4">
+           <div *ngFor="let income of profitLossSlot$.income " class="row">
+             <div class="col-md-8 group">{{income.groupName}}</div>
+             <div class="col-md-4 amount">{{income.amount}}</div>
+            
+           </div>
+         </div>
+            <div class="col-md-12 col-sm-12 div5">
+   
+              <div class="col-md-8 a">Total</div>
+              <div class="col-md-4 b">{{profitLossSlot$.incomeTotal}}</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 temp1">
+             <div class="col-md-12 col-sm-12 div3">
+                 EXPENSES
+               </div>
+               <div class="col-md-12 col-sm-12 div4">
+              <div *ngFor="let expenses of profitLossSlot$.expense" class="row">
+                <div class="col-md-8 group">{{expenses.groupName}}</div>
+                <div class="col-md-4 amount">{{expenses.amount}}</div>
+              </div>
+            </div>
+               <div class="col-md-12 col-sm-12 div5">
+      
+                 <div class="col-md-8 a">Total</div>
+                 <div class="col-md-4 b">{{profitLossSlot$ .expnseTotal}}</div>
+               </div>
+          </div>
+   
+         </div>
+       
+     
+      
+    
+  
+  
+      
+  
+     </div>
+    </div>
+  </div>

@@ -1,0 +1,47 @@
+<h2>Amenities</h2>
+<form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Amenities Name</label>
+        <input type="email" [ngModelOptions]="{standalone: true}" [(ngModel)]="newAmeneities.amenitiesName" class="form-control" id="inputEmail4" placeholder="Amenity Name">
+      </div>
+      
+    </div>
+    <div class="form-group">
+        <div class="form-group purple-border">
+            <label for="exampleFormControlTextarea4">Amenities Description</label>
+            <textarea [ngModelOptions]="{standalone: true}" class="form-control" [(ngModel)]="newAmeneities.amenitiesDescription" id="exampleFormControlTextarea4" rows="3"></textarea>
+          </div>
+     
+    </div>
+   
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">Full Day Charges</label>
+        <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="newAmeneities.fullDayPrice" class="form-control" id="inputCity1">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputCity">Hourly Charges</label>
+        <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="newAmeneities.hourlyPrice" class="form-control" id="inputCity2">
+      </div>
+     
+    </div>
+
+    <div class="row"> 
+        <a class="btn" (click)="addNewRow()">Add new</a>
+      </div>
+      <div class="row">
+    
+        <table>
+            <tbody>
+                <tr *ngFor="let _data of termsAndConditions">
+                  
+                    <td><input class="form-control" [(ngModel)]="_data.term" [ngModelOptions]="{standalone: true}"></td>
+                </tr>
+            </tbody>
+           
+        </table>
+    </div>
+    <button  (click)="saveAminity()" class="btn btn-primary">Save</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary">Cancel</button>
+  </form>
+

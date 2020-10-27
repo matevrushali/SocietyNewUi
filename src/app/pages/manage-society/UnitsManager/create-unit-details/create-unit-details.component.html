@@ -1,0 +1,184 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<div class="col-md-1 col-sm-1 side">
+
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+
+	<div class="content">
+		<div class="col-md-12 header">
+			<h2>New Unit Details</h2>
+		</div>
+		<div class="col-md-3 a">
+			<div class="col-md-3 user"> </div>
+		</div>
+		<div class="col-md-9 b">
+			<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+				<table class="table  role">
+					<tr>
+						<td class="lbl"> Society Name :</td>
+						<td><select required [(ngModel)]="occupancy.societyOccId.societyId" name="societyOccId"
+								id="societyOccId" formControlName="societyOccId" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.societyOccId.errors }">
+								<option *ngFor="let society of society$" value="{{society.societyId}}">
+									{{society.societyName}}</option>
+							</select>
+							<span *ngIf="submitted && f.societyOccId.errors" class="invalid-feedback">
+								<div *ngIf="f.societyOccId.errors.required">Select society Name</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Meter No:</td>
+						<td><input type="text" maxlength="6" formControlName="meterNo" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.meterNo.errors }" name="meterNo" id="meterNo"
+								required pattern="[+-]?([0-9]*[.])?[0-9]+" required [(ngModel)]="occupancy.meterNo"
+								placeholder="Enter meter no" />
+							<span *ngIf="submitted && f.meterNo.errors" class="invalid-feedback">
+								<div *ngIf="f.meterNo.errors.required">Meter No is required</div>
+								<div *ngIf="f.meterNo.errors.pattern">Meter Number Is Invalid</div>
+								<div *ngIf="f.meterNo.errors.maxlength">Meter Number Is Not More Than 6 Digit</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Flat Number:</td>
+						<td><input type="text" formControlName="flatNumber" maxlength="4" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.flatNumber.errors }" name="flatNumber"
+								id="flatNumber" required pattern="[0-9]{1,10}" required
+								[(ngModel)]="occupancy.flatNumber" placeholder="Enter flat number" />
+							<span *ngIf="submitted && f.flatNumber.errors" class="invalid-feedback">
+								<div *ngIf="f.flatNumber.errors.required">Flat Number is required</div>
+								<div *ngIf="f.flatNumber.errors.pattern">Flat Number Is Invalid</div>
+								<div *ngIf="f.flatNumber.errors.maxlength">Flat Number Is Not More Than 6 Digit</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td class="lbl">Floor Number:</td>
+						<td><input type="text" maxlength="2" formControlName="floorNumber" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.floorNumber.errors }" name="floorNumber"
+								id="floorNumber" required pattern="[0-9]{1,10}" required
+								[(ngModel)]="occupancy.floorNumber" placeholder="Enter floor number" />
+							<span *ngIf="submitted && f.floorNumber.errors" class="invalid-feedback">
+								<div *ngIf="f.floorNumber.errors.required">Floor Number is required</div>
+								<div *ngIf="f.floorNumber.errors.pattern">Floor Number Is Invalid</div>
+								<div *ngIf="f.floorNumber.errors.maxlength">Floor Number should be more than 2 digit
+								</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Wing / Building: </td>
+						<td><input type="text" formControlName="wingBuilding" class="form-control" maxlength="4"
+								[ngClass]="{ 'is-invalid': submitted && f.wingBuilding.errors }" name="wingBuilding"
+								id="wingBuilding" required [(ngModel)]="occupancy.wingBuilding"
+								placeholder="Enter wing building" />
+							<span *ngIf="submitted && f.wingBuilding.errors" class="invalid-feedback">
+								<div *ngIf="f.wingBuilding.errors.required">Wing Building is required</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Flat Carpet Area:</td>
+						<td><input type="text" formControlName="flatCarpetArea" class="form-control" maxlength="5"
+								[ngClass]="{ 'is-invalid': submitted && f.flatCarpetArea.errors }" name="flatCarpetArea"
+								id="flatCarpetArea" required pattern="[+-]?([0-9]*[.])?[0-9]+" required
+								[(ngModel)]="occupancy.flatCarpetArea" placeholder="Enter flat carpet area" />
+							<span *ngIf="submitted && f.flatCarpetArea.errors" class="invalid-feedback">
+								<div *ngIf="f.flatCarpetArea.errors.required">Flat Carpet Area is required</div>
+								<div *ngIf="f.flatCarpetArea.errors.pattern">Flat Carpet Area Is Invalid</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Total Builtup Area: </td>
+						<td><input type="text" formControlName="totalBuiltupArea" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.totalBuiltupArea.errors }" maxlength="5"
+								name="totalBuiltupArea" id="totalBuiltupArea" required pattern="[+-]?([0-9]*[.])?[0-9]+"
+								required [(ngModel)]="occupancy.totalBuiltupArea"
+								placeholder="Enter total built up area" />
+							<span *ngIf="submitted && f.totalBuiltupArea.errors" class="invalid-feedback">
+								<div *ngIf="f.totalBuiltupArea.errors.required">Total Builtup Area is required</div>
+								<div *ngIf="f.totalBuiltupArea.errors.pattern">Total Builtup Area Is Invalid</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td class="lbl">Flat Occupancy Type:</td>
+						<td><select required [(ngModel)]="occupancy.flatOccupancyType" name="flatOccupancyType"
+								id="flatOccupancyType" formControlName="flatOccupancyType" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.flatOccupancyType.errors }">
+
+								<option hidden></option>
+								<option *ngFor="let isFlatProperty of Flatproperty">{{isFlatProperty}}</option>
+							</select>
+							<span *ngIf="submitted && f.flatOccupancyType.errors" class="invalid-feedback">
+								<div *ngIf="f.flatOccupancyType.errors.required">Select fla tOccupancy Type</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Sanctioned Load:</td>
+						<td><input type="text" maxlength="4" formControlName="sanctionedLoad" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.sanctionedLoad.errors }" name="sanctionedLoad"
+								id="sanctionedLoad" required pattern="[+-]?([0-9]*[.])?[0-9]+" required maxlength="5"
+								[(ngModel)]="occupancy.sanctionedLoad" placeholder="Enter sanctioned load" />
+							<span *ngIf="submitted && f.sanctionedLoad.errors" class="invalid-feedback">
+								<div *ngIf="f.sanctionedLoad.errors.required">Sanctioned Load is required</div>
+								<div *ngIf="f.sanctionedLoad.errors.pattern">Sanctioned Load Is Invalid</div>
+								<div *ngIf="f.sanctionedLoad.errors.maxlength">Sanctioned Load should be max 4 digit
+								</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">sanctioned DgLoad:</td>
+						<td><input type="text" formControlName="sanctionedDgLoad" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.sanctionedDgLoad.errors }"
+								name="sanctionedDgLoad" id="sanctionedDgLoad" required pattern="[+-]?([0-9]*[.])?[0-9]+"
+								required [(ngModel)]="occupancy.sanctionedDgLoad" maxlength="5"
+								placeholder="Enter sanctionedDg load" />
+							<span *ngIf="submitted && f.sanctionedDgLoad.errors" class="invalid-feedback">
+								<div *ngIf="f.sanctionedDgLoad.errors.required">SanctionedDg Load is required</div>
+								<div *ngIf="f.sanctionedDgLoad.errors.pattern">SanctionedDg Load Is Invalid</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td colspan="3"><button class="btn btn-info save" type="submit"><b>Save</b></button>
+
+							<button class="btn btn-info" (click)="rediectToListDetails('society/unit_manager')"><b>Cancel</b></button>
+							<button class="btn btn-info" (click)="rediectToListDetails('society/unit_manager')"><b>Show List</b></button> </td>
+					</tr>
+
+				</table>
+			</form>
+		</div>
+
+	</div>
+
+
+</div>

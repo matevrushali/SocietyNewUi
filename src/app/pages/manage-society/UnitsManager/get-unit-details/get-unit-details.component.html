@@ -1,0 +1,84 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<div class="col-md-1 col-sm-1 side">
+
+</div>
+<div class="col-md-10 col-sm-10 mid">
+	<div class="content col-md-12 col-sm-12">
+		<div class="col-md-3 col-sm-2 a">
+			<div class="col-md-3 col-sm-2 user">
+
+			</div>
+			<!-- <h4><b>{{  occupancy.occupancyDetailsId }}</b></h4> -->
+		</div>
+		<div class="col-md-9 col-sm-9 b">
+			<h4>Details of Society: </h4>
+
+			<table class="table  role societyClass  col-md-12 col-sm-12">
+
+				<tr>
+					<th>Flat Number :</th>
+					<td>{{ occupancy.flatNumber }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Floor Number:</th>
+					<td>{{ occupancy.floorNumber }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Flat Carpet Area:</th>
+					<td>{{ occupancy.flatCarpetArea }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Total Builtup Area:</th>
+					<td>{{ occupancy.totalBuiltupArea }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Flat Occupancy Type:</th>
+					<td>{{ occupancy.flatOccupancyType }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Sanctioned Load:</th>
+					<td>{{ occupancy.sanctionedLoad }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Sanctioned DG Load:</th>
+					<td>{{ occupancy.sanctionedDgLoad }}</td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<th>Meter No:</th>
+					<td>{{ occupancy.meterNo }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Society Name:</th>
+					<td>{{ occupancy.societyOccId.societyName }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="3">
+
+						<a *ngIf="showUpdateButton()"
+							(click)="rediectToUpdate('society/update_unit_manager', occupancy.occupancyDetailsId)"><i
+								class="fa fa-edit" style="font-size:22px"></i></a>
+						<button *ngIf="showDeleteButton()" style="font-size:13px"
+							(click)="callSweetAlert(occupancy.occupancyDetailsId)"
+							 type="button" class="btn btn-link"> <i
+								class="material-icons">delete</i></button>
+						<button class="btn btn-link" (click)="rediectToPage('society/unit_manager')"><i
+								class="fa fa-arrow-left" aria-hidden="true"></i></button> </td>
+
+				</tr>
+
+			</table>
+		</div>
+	</div>
+</div>

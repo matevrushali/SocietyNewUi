@@ -1,0 +1,33 @@
+<h2>Board/Committee </h2>
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Select Residents</label>
+     
+        <select required class="form-control" [(ngModel)]="boardCommittee.residentId" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let user of usersForm$" value="{{user.usersFormId}}">
+            {{user.firstName}}&nbsp;{{user.middleName}}&nbsp;{{user.lastName}}....[{{user.unitDetailsIdFk.wingBuilding}}-{{user.unitDetailsIdFk.flatNumber}}]
+          </option>
+        </select>
+    </div>
+
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Designation</label>
+      <select required name="membershipType" (change)="callOther($event.target.value)" [(ngModel)]="boardCommittee.designation" [ngModelOptions]="{standalone: true}"
+        class="form-control">
+        <option hidden></option>
+        <option *ngFor="let isBoardType of boardCommitteeTitle">{{ isBoardType}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row" [hidden]="other">
+  <div class="form-group col-md-6">
+    <label for="inputCity"> Other</label>
+    <input type="text"  [(ngModel)]="boardCommittee.otherDesignation" [ngModelOptions]="{standalone: true}"  class="form-control" id="membershipCharges">
+  </div>
+</div>
+  <button (click)="saveBoardCommittee()" class="btn btn-primary">Save</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary">Cancel</button>
+</form>

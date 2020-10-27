@@ -1,0 +1,36 @@
+<div class="col-md-1 col-sm-1 side">
+	
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+	<label><h5>Notice List</h5></label><br>
+	<label><h6><a (click)="rediectToPage('society/add_notice_manager')">Create Notice</a></h6></label>
+	<table id="noticeManager" class="display nowrap" style="width:100%">
+		<thead>
+			<tr>
+
+				<th>Recipients</th>
+				<th>Notice Subject</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let user of notice$">
+                
+				<td><a (click)="rediectToDetails('society/get_notice_manager_details', user.noticeManagerId)">{{ user.recipients }}</a>
+				</td>
+				<td>{{user.noticeSubject}}</td>
+				
+				
+				
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+					<th></th>
+					<th></th>
+					
+			</tr>
+		</tfoot>
+	</table>
+</div>

@@ -1,0 +1,83 @@
+
+<div class="col-md-1 col-sm-1 side">
+    
+  </div>
+  <div class="col-md-10 col-sm-10 mid">
+  
+    <h5 class="header"> Cash Book</h5>
+    <table id="cashBook" class="display nowrap" style="width:100%">
+      <thead>
+        <tr>
+  
+          <th>Date </th>
+          <th>Voucher Type</th>
+          <th>Particulars</th>
+          <th>Voucher No</th>
+          <th>Debit</th>
+          <th>Credit</th>
+          <th>Balance</th>
+  
+        </tr>
+      </thead>
+      <tbody>
+       
+  
+        <tr>
+          <td></td>
+          <td></td>
+          <td class="a">Opening Balance</td>
+          <td></td>
+          <td>00,00,000.00</td>
+          <td></td>
+          <td>00,00,000.00</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr *ngFor="let user of  cashBook$ ">
+          <td>{{ user.date | date:'yyyy/MM/dd' }}</td>
+          <td>{{ user.voucherType }}</td>
+          <td>
+            <div class="a">By &nbsp;{{ user.creditorLedgerName }}</div>
+            <div> Voucher no:{{ user.referenceNumber }}-{{ user.narration }}</div>
+          </td>
+          <td>{{ user.referenceNumber }}</td>
+          <td>{{ user.amount }}</td>
+          <td></td>
+          <td>00,00,000.00</td>
+        </tr>
+      
+        <tr>
+          <td></td>
+          <td></td>
+          <td class="a"> By closing balance c/f</td>
+          <td></td>
+          <td></td>
+          <td>{{ cashAmount$ }}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td class="a">Total</td>
+          <td></td>
+          <td>{{ cashAmount$ }}</td>
+          <td>{{ cashAmount$ }}</td>
+          <td></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+  
+      </tfoot>
+    </table>
+  
+  </div>

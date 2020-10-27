@@ -1,0 +1,96 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side">
+    
+  </div>
+  <div class="col-md-10 col-sm-10 mid">
+  
+    <div class="content col-md-12 col-sm-12">
+      <div class="col-md-3 col-sm-2 a">
+        <div class="col-md-12 col-sm-2 user">
+  
+          <img src="../../../assets/img/user.png" class="img-rounded" alt="Cinque Terre" width="200" height="200">
+        </div>
+        <h4><b></b></h4>
+      </div>
+      <div class="col-md-9 col-sm-9 b">
+        <h4>Details of Voucher: </h4>
+  
+        <table class="table role col-md-12 col-sm-12">
+          <tr>
+            <th>Voucher Type :</th>
+            <td>{{ voucherEntry$.voucherType }}</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>Reference Number :</th>
+            <td>{{ voucherEntry$.referenceNumber }}</td>
+            <td></td>
+            <td></td>
+  
+          </tr>
+          <tr>
+            <th>Creditor :</th>
+            <td>{{ voucherEntry$.creditor }}</td>
+            <td></td>
+            <td></td>
+  
+          </tr>
+          <tr>
+            <th>Debtor :</th>
+            <td>{{ voucherEntry$.debitor }}</td>
+            <td></td>
+            <td></td>
+  
+          </tr>
+          <tr>
+            <th>Date :</th>
+            <td>{{ voucherEntry$.date | date:'yyyy/MM/dd' }}</td>
+            <td></td>
+            <td></td>
+  
+          </tr>
+          <tr>
+            <th>Credit/Debit Amount :</th>
+            <td>{{ voucherEntry$.amount }}</td>
+            <td></td>
+            <td></td>
+  
+          </tr>
+  
+          <tr>
+            <th>Naration :</th>
+            <td>{{ voucherEntry$.narration }}</td>
+            <td></td>
+            <td></td>
+  
+          </tr>
+          <tr [hidden]="!cheque">
+            <th>Cheque Number :</th>
+            <td>{{ voucherEntry$.chequeNumber }}</td>
+            <td></td>
+            <td></td>
+  
+          </tr>
+  
+  
+          <tr>
+            <td colspan="4" class="buttonspace">
+             <button class="btn btn-success" style="font-size:15px" (click)="updateChequeStatusToCleared(voucherEntry$.voucherId)"><b>Clear</b></button> 
+            <button class="btn btn-danger bounce" style="font-size:15px" (click)="updateChequeStatusToBounced(voucherEntry$.voucherId)"><b>Bounce</b></button>
+             
+              <button style="font-size:20px" class="btn btn-link" (click)="myFunction()"><i class="fa fa-arrow-left"
+                  aria-hidden="true"></i></button></td>
+  
+  
+  
+          </tr>
+         
+        </table>
+      </div>
+    </div>
+  
+  
+  </div>

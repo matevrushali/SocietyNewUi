@@ -1,0 +1,83 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<div class="col-md-1 col-sm-1 side">
+	
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+	<div class="content">
+		<div class="col-md-12 header">
+			<h4>Update Cheque Status</h4>
+		</div>
+
+		<div class="col-md-12 b">
+			<form #usersForm="ngForm" class="userForm">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm">
+							<tr>
+								<div> <label for="unitdetails"> Resident Name :</label>&nbsp;&nbsp;
+
+									<select required [(ngModel)]="ledgers.ledgersId" name="unitDetailsIdFk">
+										<option *ngFor="let ledgers of ledgers$" value="{{ledgers.ledgersId}}">
+											{{ledgers.accountName}}</option>
+									</select>
+								</div>
+							</tr>
+						</div>
+					</div>
+				</div>
+				<tr>
+					<button class="btn btn-info btn-sm" (click)="filterContent(ledgers.ledgersId)"><b>Get Available
+							Cheque Entry</b></button>
+				</tr>
+
+			</form>
+		</div>
+	</div>
+	<div class="contenttable">
+		<table id="checkBounce" class="display nowrap" style="width:100%">
+			<thead>
+				<tr>
+
+					<th>Date </th>
+					<th>Particulars</th>
+					<th>Voucher Type</th>
+					<th>Credit Amount</th>
+					<th>Debit Amount</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let user of voucherEntry$">
+					<td>{{ user.date  | date:'yyyy/MM/dd' }}</td>
+					<td><a (click)="rediectToDetails('transaction/bounced_cleared_cheque', user.voucherId)">
+							<div class="div1">{{ user.debtorLedgerName }}</div>
+							<div class="div2">{{ user.creditorLedgerName }}</div>
+
+							<div class="div3">{{ user.narration }}
+								{{ user.referenceNumber }}
+								{{ user.chequeNumber }}</div>
+						</a>
+					</td>
+					<td>{{ user.voucherType }}</td>
+					<td>{{ user.amount }}</td>
+					<td>{{ user.amount }}</td>
+
+
+
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>

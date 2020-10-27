@@ -1,0 +1,291 @@
+
+<div class="col-md-1 col-sm-1 side">
+
+</div>
+<div class="col-md-10 col-sm-10 mid">
+	<div class="content">
+		<div class="col-md-12 header">
+			<h4>New Bill </h4>
+		</div>
+
+		<div class="col-md-12 b">
+			<form  class="billingHeadForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+				<table class="table ">
+					<tr>
+						<td class="lbl"> Bill Type * : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<select required [(ngModel)]="billing.billType" name="billType" id="billType"
+								formControlName="billType" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.billType.errors }">
+								<option hidden></option> 
+								<option *ngFor="let isBillType of BillType">{{isBillType}}</option>
+							</select>
+							<span *ngIf="submitted && f.billType.errors" class="invalid-feedback">
+								<div *ngIf="f.billType.errors.required">Select Billing Type</div>
+							</span>
+						</td>
+						<td class="lbl"> Bill Cycle * : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<select required [(ngModel)]="billing.billCycle" name="billCycle" id="billCycle"
+								formControlName="billCycle" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.billCycle.errors }">
+								<option hidden></option> 
+								<option *ngFor="let isbillCycle of BillCycle">{{isbillCycle}}</option>
+							</select>
+							<span *ngIf="submitted && f.billCycle.errors" class="invalid-feedback">
+								<div *ngIf="f.billCycle.errors.required">Select Billing Cycle</div>
+							</span>
+						</td>
+						<td class="lbl"> Bill Method * :
+							<select required [(ngModel)]="billing.billingMethod" name="billingMethod" id="billingMethod"
+								formControlName="billingMethod" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.billingMethod.errors }">
+								<option hidden></option> 
+								<option *ngFor="let isBillingMethod of BillingMethod">{{isBillingMethod}}</option>
+							</select>
+							<span *ngIf="submitted && f.billingMethod.errors" class="invalid-feedback">
+								<div *ngIf="f.billingMethod.errors.required">Select Billing Method</div>
+							</span>
+						</td>
+						<td class="lbl"> Bill Name * : &nbsp;
+							<input type="text" formControlName="billName" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.billName.errors }" name="billName"
+								id="billName" required [(ngModel)]="billing.billName" placeholder="Enter bill name" />
+							<span *ngIf="submitted && f.billName.errors" class="invalid-feedback">
+								<div *ngIf="f.billName.errors.required"> Bill Name is required</div>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="lbl"> Round Off * :
+							<select required [(ngModel)]="billing.roundOff" name="roundOff" id="roundOff"
+								formControlName="roundOff" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.roundOff.errors }">
+								<option hidden></option> 
+								<option *ngFor="let isRoundOff of RoundOff">{{isRoundOff}}</option>
+							</select>
+							<span *ngIf="submitted && f.roundOff.errors" class="invalid-feedback">
+								<div *ngIf="f.roundOff.errors.required"> Round Off is required</div>
+							</span>
+						</td>
+						<td class="lbl"> Generate Bill of Zero Amount * :
+							<select required [(ngModel)]="billing.billOfZeroAmount" name="billOfZeroAmount"
+								id="billOfZeroAmount" formControlName="billOfZeroAmount" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.billOfZeroAmount.errors }">
+								<option hidden></option> 
+								<option *ngFor="let isBillOfZeroAmount of BillOfZeroAmount">{{isBillOfZeroAmount}}
+								</option>
+							</select>
+							<span *ngIf="submitted && f.billOfZeroAmount.errors" class="invalid-feedback">
+								<div *ngIf="f.billOfZeroAmount.errors.required"> Field is required</div>
+							</span>
+						</td>
+						<td class="lbl"> Pick Last Bill Arrears * :
+							<select required [(ngModel)]="billing.pickLastBillArrears" name="pickLastBillArrears"
+								id="pickLastBillArrears" formControlName="pickLastBillArrears" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.pickLastBillArrears.errors }">
+								<option hidden></option> 
+								<option *ngFor="let isPickLastBillArrears of PickLastBillArrears">
+									{{isPickLastBillArrears}}</option>
+							</select>
+							<span *ngIf="submitted && f.pickLastBillArrears.errors" class="invalid-feedback">
+								<div *ngIf="f.pickLastBillArrears.errors.required"> Field is required</div>
+							</span>
+						</td>
+
+
+						<td class="lbl"> Reading Dependency * :
+							<select required [(ngModel)]="billing.readingDependencies" name="readingDependencies"
+								id="readingDependencies" formControlName="readingDependencies" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.readingDependencies.errors }">
+								<option hidden></option> 
+								<option *ngFor="let isReadingDependencies of ReadingDependencies">
+									{{isReadingDependencies}}</option>
+							</select>
+							<span *ngIf="submitted && f.readingDependencies.errors" class="invalid-feedback">
+								<div *ngIf="f.readingDependencies.errors.required"> Field is required</div>
+							</span>
+						</td>
+						
+					</tr>
+					<tr>
+						<td class="lbl"> Show Bills to Tenant * :
+							<select required [(ngModel)]="billing.showBillToTenants" name="showBillToTenants"
+								id="showBillToTenants" formControlName="showBillToTenants" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.showBillToTenants.errors }">
+								<option hidden></option> 
+								<option *ngFor="let isShowBillToTenants of ShowBillToTenants">{{isShowBillToTenants}}
+								</option>
+							</select>
+							<span *ngIf="submitted && f.showBillToTenants.errors" class="invalid-feedback">
+								<div *ngIf="f.showBillToTenants.errors.required"> Field is required</div>
+							</span>
+						</td>
+						<td class="lbl"> Cheque Dishonour Charges * :
+							<input type="number" formControlName="chequeDishonourCharges" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.chequeDishonourCharges.errors }"
+								name="chequeDishonourCharges" id="chequeDishonourCharges" required
+								[(ngModel)]="billing.chequeDishonourCharges"
+								placeholder="Enter cheque dishonour charges" />
+							<span *ngIf="submitted && f.chequeDishonourCharges.errors" class="invalid-feedback">
+								<div *ngIf="f.chequeDishonourCharges.errors.required"> Field is required</div>
+							</span>
+						</td>
+						<td class="lbl"> Calculation Base on Possession Date * :
+							<select required [(ngModel)]="billing.calculationBasedOnPossessionDate"
+								name="calculationBasedOnPossessionDate" id="calculationBasedOnPossessionDate"
+								formControlName="calculationBasedOnPossessionDate" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.calculationBasedOnPossessionDate.errors }">
+								<option hidden></option> 
+								<option
+									*ngFor="let isCalculationBasedOnPossessionDate of CalculationBasedOnPossessionDate">
+									{{isCalculationBasedOnPossessionDate}}</option>
+							</select>
+							<span *ngIf="submitted && f.calculationBasedOnPossessionDate.errors"
+								class="invalid-feedback">
+								<div *ngIf="f.calculationBasedOnPossessionDate.errors.required"> Field is required</div>
+							</span>
+						</td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td><b>Interest Details</b></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Interest Type * :
+
+							<select required [(ngModel)]="billing.interestType" name="interestType" id="interestType"
+								formControlName="interestType" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.interestType.errors }">
+								<option hidden></option> 
+								<option *ngFor="let isInterestType of InterestType">{{isInterestType}}</option>
+							</select>
+							<span *ngIf="submitted && f.interestType.errors" class="invalid-feedback">
+								<div *ngIf="f.interestType.errors.required"> Field is required</div>
+							</span>
+						</td>
+						<td class="lbl"> Interest Calculation Method * :
+
+							<select required [(ngModel)]="billing.interestCalculationMethod"
+								name="interestCalculationMethod" id="interestCalculationMethod"
+								formControlName="interestCalculationMethod" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.interestCalculationMethod.errors }">
+								<option hidden></option> 
+								<option *ngFor="let isInterestCalculationMethod of InterestCalculationMethod">
+									{{isInterestCalculationMethod}}</option>
+							</select>
+							<span *ngIf="submitted && f.interestCalculationMethod.errors" class="invalid-feedback">
+								<div *ngIf="f.interestCalculationMethod.errors.required"> Field is required</div>
+							</span>
+						</td>
+						<td class="lbl"> Rate of Interest * :
+							<input type="text" formControlName="rateOfInterest" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.rateOfInterest.errors }" name="rateOfInterest"
+								id="rateOfInterest" pattern="[0-9]{1,15}" required [(ngModel)]="billing.rateOfInterest"
+								placeholder="Enter rate of interest" />
+							<span *ngIf="submitted && f.rateOfInterest.errors" class="invalid-feedback">
+								<div *ngIf="f.rateOfInterest.errors.required"> Field is required</div>
+								<div *ngIf="f.rateOfInterest.errors.pattern">Rate Of Interest must be Number</div>
+
+							</span>
+						</td>
+						<td class="lbl"> Interest Exemption Limit * :
+							<input type="text" formControlName="interestExemptionLimit" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.interestExemptionLimit.errors }"
+								name="interestExemptionLimit" id="interestExemptionLimit" pattern="[0-9]{1,15}" required
+								[(ngModel)]="billing.interestExemptionLimit"
+								placeholder="Enter interest exemption limit" />
+							<span *ngIf="submitted && f.interestExemptionLimit.errors" class="invalid-feedback">
+								<div *ngIf="f.interestExemptionLimit.errors.required"> Field is required</div>
+								<div *ngIf="f.interestExemptionLimit.errors.pattern">Interest Exemption Limit must be
+									Number</div>
+
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Tax Details</b></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> SGST Rate * :
+							<input type="number" formControlName="sgstRate" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.sgstRate.errors }" name="sgstRate"
+								id="sgstRate" required [(ngModel)]="billing.sgstRate" placeholder="Enter sgst rate" />
+							<span *ngIf="submitted && f.sgstRate.errors" class="invalid-feedback">
+								<div *ngIf="f.sgstRate.errors.required"> Field is required</div>
+							</span>
+						</td>
+						<td class="lbl"> CGST Rate * : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="number" formControlName="cgstRate" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.cgstRate.errors }" name="cgstRate"
+								id="cgstRate" required [(ngModel)]="billing.cgstRate" placeholder="Enter cgst rate" />
+							<span *ngIf="submitted && f.cgstRate.errors" class="invalid-feedback">
+								<div *ngIf="f.cgstRate.errors.required"> Field is required</div>
+							</span>
+						</td>
+						<td class="lbl"> Tax Exemption Limit * :
+							<input type="text" formControlName="taxExemptionLimit" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.taxExemptionLimit.errors }"
+								name="taxExemptionLimit" id="taxExemptionLimit" pattern="[0-9]{1,15}" required
+								[(ngModel)]="billing.taxExemptionLimit" placeholder="Enter tax exemption limit" />
+							<span *ngIf="submitted && f.taxExemptionLimit.errors" class="invalid-feedback">
+								<div *ngIf="f.taxExemptionLimit.errors.required"> Field is required</div>
+								<div *ngIf="f.taxExemptionLimit.errors.pattern">Tax Exemption Limit must be Number</div>
+
+							</span>
+						</td>
+						<td class="lbl"> Tax on Cheque Dishonour Charges * :
+
+							<select required [(ngModel)]="billing.taxOnChequeDishonourCharges"
+								name="taxOnChequeDishonourCharges" id="taxOnChequeDishonourCharges"
+								formControlName="taxOnChequeDishonourCharges" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.taxOnChequeDishonourCharges.errors }">
+								<option hidden></option> 
+								<option *ngFor="let isTaxOnChequeDishonourCharges of TaxOnChequeDishonourCharges">
+									{{isTaxOnChequeDishonourCharges}}</option>
+							</select>
+							<span *ngIf="submitted && f.taxOnChequeDishonourCharges.errors" class="invalid-feedback">
+								<div *ngIf="f.taxOnChequeDishonourCharges.errors.required"> Field is required</div>
+							</span>
+						</td>
+						
+						
+					</tr>
+					<tr>
+						<td class="lbl"> Tax on Interest * :
+
+							<select required [(ngModel)]="billing.taxOnInterest" name="taxOnInterest" id="taxOnInterest"
+								formControlName="taxOnInterest" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.taxOnInterest.errors }">
+								<option hidden></option> 
+								<option *ngFor="let isTaxOnInterest of TaxOnInterest">{{isTaxOnInterest}}</option>
+							</select>
+							<span *ngIf="submitted && f.taxOnInterest.errors" class="invalid-feedback">
+								<div *ngIf="f.taxOnInterest.errors.required"> Field is required</div>
+
+							</span>
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td></td>
+						<td><button class="btn btn-info save" type="submit"><b>Save</b></button> </td>
+						<td><button class="btn btn-info" (click)="rediectToListDetails('billing_heads/billing_heads_list')"><b>Cancel</b></button> </td>
+						<td><button class="btn btn-info" (click)="rediectToListDetails('billing_heads/billing_heads_list')"><b>Show List</b></button> </td>
+						<td></td>
+					</tr>
+
+				</table>
+			</form>
+		</div>
+
+	</div>
+</div>

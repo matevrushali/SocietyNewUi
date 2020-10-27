@@ -1,0 +1,106 @@
+<body>
+    <label>
+        <h5>HELPDESK LIST</h5>
+    </label><br>
+    <label>
+        <h6><a *ngIf="showSaveButton()" routerLink="createHelpdesk">Add Helpdesk</a></h6>
+    </label>
+    <div class="content">
+        <div class=" sidebar">
+            <div class="hack1">
+                <div class="hack2">
+                    <div class="tabback">
+
+                        <div class="row">
+                            <div class="class1">
+                                <button class="btn btn-primary" (click)="filterContent('')">All Complaints</button>
+                            </div>
+                            <div class="class1">
+                                <button class="btn btn-primary" (click)="filterContent('in-progress')">In
+                                    Progress</button>
+                            </div>
+                            <div class="class1">
+                                <button class="btn btn-primary" (click)="filterContent('resolved')">Resolved</button>
+                            </div>
+                            <div class="class1">
+                                <button class="btn btn-primary" (click)="filterContent('hold')">Hold</button>
+                            </div>
+                            <div class="class1">
+                                <button class="btn btn-primary" (click)="filterContent('in-cancel')">Cancelled</button>
+                            </div>
+                            <div class="class1">
+                                <button class="btn btn-primary" (click)="filterContent('reopened')">Reopened</button>
+                            </div>
+                        </div>
+
+                        <!-- all complaints-->
+                        <div class="row">
+                            <div class="all-complaints">
+                                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="display nowrap"
+                                    style="width:100%">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Resident/Other</th>
+                                            <th>Other Amenities</th>
+                                            <th>Resident Name</th>
+                                            <th>Category</th>
+                                            <th>Sub Category</th>
+                                            <th>Calling Person</th>
+                                            <th>Calling Person Mobile No</th>
+                                            <th>Describe Here</th>
+                                            <th>Priority</th>
+                                            <th>Status</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let user of filteredHelpdesk">
+
+                                            <td><a
+                                                    routerLink="getHelpdeskById/{{ user.helpdeskId }}">{{ user.residentOther }}</a>
+                                            </td>
+                                            <td>{{ user.otherAminities }}</td>
+                                            <td>{{ user.residentUserId}}</td>
+                                            <td>{{ user.category }}</td>
+                                            <td>{{ user.subCategory }}</td>
+                                            <td>{{ user.callingPerson }}</td>
+                                            <td>{{ user.callingPersonMobile }}</td>
+                                            <td>{{ user.description }}</td>
+                                            <td>{{ user.priority }}</td>
+                                            <td>{{ user.status }}</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</body>

@@ -1,0 +1,40 @@
+.page{
+    background: blueviolet;
+    height: 100vh;
+}
+.photo{
+    background: rgb(187, 170, 202);
+    height: 100vh; 
+    float: left;  
+}
+.field1{
+    background: rgb(85, 10, 48);
+    height: 100vh; 
+    float: left;  
+}
+.field11{
+    background: rgb(119, 106, 113);
+    height: 30vh; 
+    float: left;  
+}
+.field12{
+    background: rgb(107, 106, 119);
+    height: 30vh; 
+    float: left;  
+}
+.field13{
+    background: rgb(194, 63, 133);
+    height: 30vh; 
+    float: left;  
+}
+.field2{
+    background: rgb(41, 30, 194);
+    height: 100vh; 
+    float: left;  
+   
+}
+.field3{
+    background: rgb(37, 10, 61);
+    height: 100vh; 
+    float: right;     
+}

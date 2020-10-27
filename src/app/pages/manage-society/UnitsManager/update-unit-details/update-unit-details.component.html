@@ -1,0 +1,192 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<div class="col-md-1 col-sm-1 side">
+
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+
+	<div class="content">
+		<div class="col-md-12 header">
+			<h2>Update Unit Details</h2>
+		</div>
+		<div class="col-md-3 a">
+			<div class="col-md-3 user">
+                 </div>
+		</div>
+		<div class="col-md-9 b">
+			<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+				<table class="table role">
+					<tr>
+						<td class="lbl"> Society Name :</td>
+						<!-- <td><select required [(ngModel)]="occ.societyOccId.societyId" name="societyName">
+												<option  *ngFor = "let society of society" value="{{society.societyId}}">{{society.societyName}}</option>
+												</select>
+											</td> -->
+						<td><select required [(ngModel)]="occ.societyOccId.societyId" name="societyOccId"
+								id="societyOccId" formControlName="societyOccId" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.societyOccId.errors }">
+								<option *ngFor="let society of society" value="{{society.societyId}}">
+									{{society.societyName}}</option>
+							</select>
+							<span *ngIf="submitted && f.societyOccId.errors" class="invalid-feedback">
+								<div *ngIf="f.societyOccId.errors.required">Select society Name</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Meter No:</td>
+						<td><input type="text" formControlName="meterNo" class="form-control" maxlength="6"
+								[ngClass]="{ 'is-invalid': submitted && f.meterNo.errors }" name="meterNo" id="meterNo"
+								required pattern="[+-]?([0-9]*[.])?[0-9]+" required [(ngModel)]="occ.meterNo" />
+							<span *ngIf="submitted && f.meterNo.errors" class="invalid-feedback">
+								<div *ngIf="f.meterNo.errors.required">Meter No is required</div>
+								<div *ngIf="f.meterNo.errors.pattern">Meter Number Is Invalid</div>
+
+							</span>
+						</td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="lbl">Flat Number:</td>
+						<!-- <td><input type="text" name="flatNumber"  id="flatNumber" required [(ngModel)]="occ.flatNumber" value="{{ occupancy$.flatNumber }}" /> </td>				 -->
+						<td><input type="text" formControlName="flatNumber" class="form-control" maxlength="4"
+								[ngClass]="{ 'is-invalid': submitted && f.flatNumber.errors }" name="flatNumber"
+								id="flatNumber" required pattern="[0-9]{1,10}" required [(ngModel)]="occ.flatNumber"
+								value="{{ occupancy$.flatNumber }}" />
+							<span *ngIf="submitted && f.flatNumber.errors" class="invalid-feedback">
+								<div *ngIf="f.flatNumber.errors.required">Flat Number is required</div>
+								<div *ngIf="f.flatNumber.errors.pattern">Flat Number Is Invalid</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td class="lbl">Floor Number:</td>
+						<!-- <td><input type="text" name="floorNumber"  id="floorNumber" required [(ngModel)]="occ.floorNumber" value="{{ occupancy$.floorNumber }}" /> </td>				 -->
+						<td><input type="text" formControlName="floorNumber" class="form-control"  maxlength="2"
+								[ngClass]="{ 'is-invalid': submitted && f.floorNumber.errors }" name="floorNumber"
+								id="floorNumber" required pattern="[0-9]{1,10}" required [(ngModel)]="occ.floorNumber"
+								value="{{ occupancy$.floorNumber }}" />
+							<span *ngIf="submitted && f.floorNumber.errors" class="invalid-feedback">
+								<div *ngIf="f.floorNumber.errors.required">Floor Number is required</div>
+								<div *ngIf="f.floorNumber.errors.pattern">Floor Number Is Invalid</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Wing / Building: </td>
+						<!-- <td><input type="text" name="wingBuilding"  id="wingBuilding" required [(ngModel)]="occ.wingBuilding" value="{{ occupancy$.wingBuilding }}"/> </td>				 -->
+						<td><input type="text" formControlName="wingBuilding" class="form-control" maxlength="4"
+								[ngClass]="{ 'is-invalid': submitted && f.wingBuilding.errors }" name="wingBuilding"
+								id="wingBuilding" required [(ngModel)]="occ.wingBuilding"
+								value="{{ occupancy$.wingBuilding }}" />
+							<span *ngIf="submitted && f.wingBuilding.errors" class="invalid-feedback">
+								<div *ngIf="f.wingBuilding.errors.required">Wing Building is required</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Flat Carpet Area:</td>
+						<!-- <td><input type="text" name="flatCarpetArea"  id="flatCarpetArea" required [(ngModel)]="occ.flatCarpetArea" value="{{ occupancy$.flatCarpetArea }}" /> </td>				 -->
+						<td><input type="text" formControlName="flatCarpetArea" class="form-control"  maxlength="5"
+								[ngClass]="{ 'is-invalid': submitted && f.flatCarpetArea.errors }" name="flatCarpetArea"
+								id="flatCarpetArea" required pattern="[+-]?([0-9]*[.])?[0-9]+" required
+								[(ngModel)]="occ.flatCarpetArea" value="{{ occupancy$.flatCarpetArea }}" />
+							<span *ngIf="submitted && f.flatCarpetArea.errors" class="invalid-feedback">
+								<div *ngIf="f.flatCarpetArea.errors.required">Flat Carpet Area is required</div>
+								<div *ngIf="f.flatCarpetArea.errors.pattern">Flat Carpet Area Is Invalid</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Total Builtup Area: </td>
+						<!-- <td><input type="text" name="totalBuiltupArea"  id="totalBuiltupArea" required [(ngModel)]="occ.totalBuiltupArea" value="{{ occupancy$.totalBuiltupArea }}" /> </td>				 -->
+						<td><input type="text" formControlName="totalBuiltupArea" class="form-control" maxlength="5"
+								[ngClass]="{ 'is-invalid': submitted && f.totalBuiltupArea.errors }"
+								name="totalBuiltupArea" id="totalBuiltupArea" required pattern="[+-]?([0-9]*[.])?[0-9]+"
+								required [(ngModel)]="occ.totalBuiltupArea" value="{{ occupancy$.totalBuiltupArea }}" />
+							<span *ngIf="submitted && f.totalBuiltupArea.errors" class="invalid-feedback">
+								<div *ngIf="f.totalBuiltupArea.errors.required">Total Builtup Area is required</div>
+								<div *ngIf="f.totalBuiltupArea.errors.pattern">Total Builtup Area Is Invalid</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td class="lbl">Flat Occupancy Type:</td>
+						<!-- <td><select required [(ngModel)]="occ.flatOccupancyType" name="flatOccupancyType">
+							<option  *ngFor = "let isFlatProperty of Flatproperty">{{isFlatProperty}}</option>
+							</select> </td>	 -->
+						<td><select required [(ngModel)]="occ.flatOccupancyType" name="flatOccupancyType"
+								id="flatOccupancyType" formControlName="flatOccupancyType" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.flatOccupancyType.errors }">
+								<option *ngFor="let isFlatProperty of Flatproperty">{{isFlatProperty}}</option>
+							</select>
+							<span *ngIf="submitted && f.flatOccupancyType.errors" class="invalid-feedback">
+								<div *ngIf="f.flatOccupancyType.errors.required">Select fla tOccupancy Type</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">Sanctioned Load:</td>
+						<!-- <td><input type="text" name="sanctionedLoad"  id="sanctionedLoad" required [(ngModel)]="occ.sanctionedLoad"  value="{{ occupancy$.sanctionedLoad }}"/> </td>				 -->
+						<td><input type="text" formControlName="sanctionedLoad" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.sanctionedLoad.errors }" name="sanctionedLoad"
+								id="sanctionedLoad" required pattern="[+-]?([0-9]*[.])?[0-9]+" required
+								[(ngModel)]="occ.sanctionedLoad" value="{{ occupancy$.sanctionedLoad }}" />
+							<span *ngIf="submitted && f.sanctionedLoad.errors" class="invalid-feedback">
+								<div *ngIf="f.sanctionedLoad.errors.required">Sanctioned Load is required</div>
+								<div *ngIf="f.sanctionedLoad.errors.pattern">Sanctioned Load Is Invalid</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl">sanctioned DgLoad:</td>
+						<!-- <td><input type="text" name="sanctionedDgLoad"  id="sanctionedDgLoad" required [(ngModel)]="occ.sanctionedDgLoad"value="{{ occupancy$.sanctionedDgLoad }}" /> </td>				 -->
+						<td><input type="text" formControlName="sanctionedDgLoad" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.sanctionedDgLoad.errors }"
+								name="sanctionedDgLoad" id="sanctionedDgLoad" required pattern="[+-]?([0-9]*[.])?[0-9]+"
+								required [(ngModel)]="occ.sanctionedDgLoad" value="{{ occupancy$.sanctionedDgLoad }}" />
+							<span *ngIf="submitted && f.sanctionedDgLoad.errors" class="invalid-feedback">
+								<div *ngIf="f.sanctionedDgLoad.errors.required">SanctionedDg Load is required</div>
+								<div *ngIf="f.sanctionedDgLoad.errors.pattern">SanctionedDg Load Is Invalid</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td colspan="3"><button class="btn btn-info save" type="submit"><b>Save</b></button>
+
+                            <button class="btn btn-info" (click)="rediectToListDetails('society/unit_manager')"><b>Cancel</b></button>
+							<button class="btn btn-info" (click)="rediectToListDetails('society/unit_manager')"><b>Show List</b></button> </td>
+					</tr>
+
+				</table>
+			</form>
+		</div>
+
+	</div>
+
+
+
+
+
+</div>

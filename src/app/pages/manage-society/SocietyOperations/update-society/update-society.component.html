@@ -1,0 +1,338 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<div class="col-md-1 col-sm-1 side">
+	
+</div>
+<div class="col-md-10 col-sm-10 mid">
+	<div class="content">
+		<div class="col-md-12 header">
+			<h4>Edit Society Information</h4>
+		</div>
+		<div class="col-md-3 a">
+			<!-- <div class="col-md-3 user"><img src="../../../assets/img/user.png" class="img-rounded" alt="Cinque Terre"
+					width="200" height="200"> </div> -->
+		</div>
+		<div class="col-md-9 b">
+			<form [formGroup]="societyFormGroup" (ngSubmit)="onSubmit()">
+				<table class="table  role">
+					<tr class="form-group">
+						<td class="lbl"> Society Name :</td>
+
+						<td>
+							<input type="text" formControlName="societyName" class="form-control" maxlength="45"
+								[ngClass]="{ 'is-invalid': submitted && f.societyName.errors }" name="societyName"
+								id="societyName" required pattern="^[a-z A-Z]{2,45}"
+								[(ngModel)]="society.societyName" />
+							<span *ngIf="submitted && f.societyName.errors" class="invalid-feedback">
+								<div *ngIf="f.societyName.errors.required">*Society Name is required</div>
+								<div ngIf="f.societyName.errors.pattern"> Society Name should be in alphabets</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Society Unique Name :</td>
+
+						<td class="form-group">
+							<input type="text" formControlName="societyUniqueName" maxlength="45"
+								(onfocus)="societyunique($event.target.value)" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.societyUniqueName.errors }"
+								name="societyUniqueName" id="societyUniqueName" required pattern="^[a-z A-Z]{2,45}"
+								[(ngModel)]="society.societyUniqueName" />
+							<span *ngIf="submitted && f.societyUniqueName.errors" class="invalid-feedback">
+								<div *ngIf="f.societyUniqueName.errors.required">*Society Unique Name is required</div>
+								<div ngIf="f.societyUniqueName.errors.pattern"> Society Unique Name should be in
+									alphabets</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Society Registration Number :</td>
+
+						<td class="form-group">
+							<input type="text" formControlName="societyRegistrationNumber" class="form-control" maxlength="15"
+								[ngClass]="{ 'is-invalid': submitted && f.societyRegistrationNumber.errors }"
+								name="societyRegistrationNumber" id="societyRegistrationNumber" required
+								pattern="^[a-z A-Z 0-9]{10,15}" [(ngModel)]="society.societyRegistrationNumber" />
+							<span *ngIf="submitted && f.societyRegistrationNumber.errors" class="invalid-feedback">
+								<div *ngIf="f.societyRegistrationNumber.errors.required">*Society Registration Number is
+									required</div>
+								<div ngIf="f.societyRegistrationNumber.errors.pattern"> Society Registration Number
+									should be minimum 10 and maximum 15 digit number</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Channel Partner :</td>
+
+						<td>
+							<select required [(ngModel)]="society.channelPartnerSocietyId.channelPartnerId"
+								formControlName="channelPartnerSocietyId" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.channelPartnerSocietyId.errors }"
+								name="channelPartnerSocietyId" id="channelPartnerSocietyId" required>
+								<option *ngFor="let channel of channelPartner$" value="{{ channel.channelPartnerId }}">
+									{{ channel.channelPartnerName }}</option>
+							</select>
+
+							<span *ngIf="submitted && f.channelPartnerSocietyId.errors" class="invalid-feedback">
+								<div *ngIf="f.channelPartnerSocietyId.errors.required">*Channel Partner is mandetory
+								</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Number Of Wings :</td>
+
+						<td class="form-group">
+							<input type="text" formControlName="wingsNumberOfBuildings" class="form-control"
+								maxlength="4" [ngClass]="{ 'is-invalid': submitted && f.wingsNumberOfBuildings.errors }"
+								name="wingsNumberOfBuildings" id="wingsNumberOfBuildings" required
+								pattern="^[0-9]{1,10}" [(ngModel)]="society.wingsNumberOfBuildings" />
+							<span *ngIf="submitted && f.wingsNumberOfBuildings.errors" class="invalid-feedback">
+								<div *ngIf="f.wingsNumberOfBuildings.errors.required">*Number of Wings is required</div>
+								<div ngIf="f.wingsNumberOfBuildings.errors.pattern"> Number of Wings should be in number
+								</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Number Of Flats :</td>
+
+						<td class="form-group">
+							<input type="text" formControlName="numberOfFlats" maxlength="4" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.numberOfFlats.errors }" name="numberOfFlats"
+								id="numberOfFlats" required pattern="^[0-9]{1,10}"
+								[(ngModel)]="society.numberOfFlats" />
+							<span *ngIf="submitted && f.numberOfFlats.errors" class="invalid-feedback">
+								<div *ngIf="f.numberOfFlats.errors.required">*Number of Flats is required</div>
+								<div ngIf="f.numberOfFlats.errors.pattern"> Number of Flats should be in number</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Flat Property Type :</td>
+						<!-- <td><input type="text" name="typeOfPropertyFlatType"  id="typeOfPropertyFlatType" required value="{{ society.typeOfPropertyFlatType }}" [(ngModel)]="society.typeOfPropertyFlatType" /></td> -->
+						<td class="form-group">
+							<input type="text" formControlName="typeOfPropertyFlatType" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.typeOfPropertyFlatType.errors }"
+								name="typeOfPropertyFlatType" id="typeOfPropertyFlatType" required maxlength="45"
+								pattern="^[a-z A-Z]{1,45}" [(ngModel)]="society.typeOfPropertyFlatType" />
+							<span *ngIf="submitted && f.typeOfPropertyFlatType.errors" class="invalid-feedback">
+								<div *ngIf="f.typeOfPropertyFlatType.errors.required">*Flat Property Types is required
+								</div>
+								<div ngIf="f.typeOfPropertyFlatType.errors.pattern"> Flat Property Type should be in
+									alphabets</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> GST Number :</td>
+
+						<td class="form-group">
+							<input type="text" formControlName="gstNumber" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.gstNumber.errors }" name="gstNumber"
+								id="gstNumber" required maxlength="15"
+								pattern="^([0-9]){2}([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}([0-9]){1}([Z]){1}([0-9]){1} ?$"
+								[(ngModel)]="society.gstNumber" />
+							<span *ngIf="submitted && f.gstNumber.errors" class="invalid-feedback">
+								<div *ngIf="f.gstNumber.errors.required">*GST Number is required</div>
+								<div ngIf="f.gstNumber.errors.pattern"> GST Number should be 15 digit number including
+									alphabets and number</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> TAN Number :</td>
+						<!-- <td><input type="text" name="tanNumber"  id="tanNumber" required value="{{ society$.tanNumber }}" [(ngModel)]="society.tanNumber" /></td> -->
+						<td class="form-group">
+							<input type="text" formControlName="tanNumber" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.tanNumber.errors }" name="tanNumber" maxlength="10"
+								id="tanNumber" required pattern="^([a-zA-Z]){4}([0-9]){5}([a-zA-Z]){1}?$"
+								[(ngModel)]="society.tanNumber" />
+							<span *ngIf="submitted && f.tanNumber.errors" class="invalid-feedback">
+								<div *ngIf="f.tanNumber.errors.required">*TAN Number is required</div>
+								<div ngIf="f.tanNumber.errors.pattern"> TAN Number should be 10 digit number including
+									alphabets and number</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> PAN Number :</td>
+
+						<td class="form-group">
+							<input type="text" formControlName="panNumber" class="form-control" maxlength="10"
+								[ngClass]="{ 'is-invalid': submitted && f.panNumber.errors }" name="panNumber"
+								id="panNumber" required pattern="^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$"
+								[(ngModel)]="society.panNumber" />
+							<span *ngIf="submitted && f.tanNumber.errors" class="invalid-feedback">
+								<div *ngIf="f.panNumber.errors.required">*PAN Number is required</div>
+								<div ngIf="f.panNumber.errors.pattern"> PAN Number should be 10 digit number including
+									alphabets and number</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td class="lbl"> Address Line 1 :</td>
+
+						<td>
+							<input type="text" formControlName="addressLine1" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.addressLine1.errors }" name="addressLine1"
+								id="addressLine1" required pattern="^[a-z A-Z 0-9]{1,45}" maxlength="45"
+								[(ngModel)]="society.societyAddressIdFk.addressLine1" />
+							<span *ngIf="submitted && f.addressLine1.errors" class="invalid-feedback">
+								<div *ngIf="f.addressLine1.errors.required">*Address Line 1 is required</div>
+								<div ngIf="f.addressLine1.errors.pattern"> Address Line 1 should be 15 digit number
+									including alphabets and number</div>
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Address Line 2 :</td>
+
+						<td>
+							<input type="text" formControlName="addressLine2" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.addressLine2.errors }" name="addressLine2"
+								id="addressLine2" required pattern="^[a-z A-Z 0-9]{1,45}" maxlength="45"
+								[(ngModel)]="society.societyAddressIdFk.addressLine2" />
+							<span *ngIf="submitted && f.addressLine2.errors" class="invalid-feedback">
+								<div *ngIf="f.addressLine2.errors.required">*Address Line 2 is required</div>
+								<div ngIf="f.addressLine2.errors.pattern"> Address Line 2 should be 15 digit number
+									including alphabets and number</div>
+							</span>
+						</td>
+
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> State :</td>
+
+						<td>
+							<select formControlName="state" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.state.errors }" name="state" id="state"
+								required required [(ngModel)]="society.societyAddressIdFk.state">
+								<option *ngFor="let isState of State">{{isState}}</option>
+							</select>
+
+							<span *ngIf="submitted && f.state.errors" class="invalid-feedback">
+								<div *ngIf="f.state.errors.required">*State is required</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> District :</td>
+
+						<td>
+							<select formControlName="district" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.district.errors }" name="district"
+								id="district" required [(ngModel)]="society.societyAddressIdFk.district">
+								<option *ngFor="let isDistrict of District">{{isDistrict}}</option>
+							</select>
+							<span *ngIf="submitted && f.district.errors" class="invalid-feedback">
+								<div *ngIf="f.district.errors.required">*District is required</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Tehsil :</td>
+
+						<td>
+							<select required [(ngModel)]="society.societyAddressIdFk.tehsil" formControlName="tehsil"
+								class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tehsil.errors }"
+								name="tehsil" id="tehsil">
+								<option *ngFor="let isTehsil of Tehsil">{{isTehsil}}</option>
+							</select>
+							<span *ngIf="submitted && f.tehsil.errors" class="invalid-feedback">
+								<div *ngIf="f.tehsil.errors.required">*Tehsil is required</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> City :</td>
+
+						<td>
+							<input type="text" name="city" id="city" formControlName="city" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.city.errors }" required maxlength="45"
+								[(ngModel)]="society.societyAddressIdFk.city" />
+
+							<span *ngIf="submitted && f.city.errors" class="invalid-feedback">
+								<div *ngIf="f.city.errors.required">*City is required</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="lbl"> Area :</td>
+
+						<td>
+							<input type="text" name="area" id="area" required
+								[(ngModel)]="society.societyAddressIdFk.area" formControlName="area" maxlength="45"
+								class="form-control" [ngClass]="{ 'is-invalid': submitted && f.area.errors }"
+								required />
+							<span *ngIf="submitted && f.area.errors" class="invalid-feedback">
+								<div *ngIf="f.area.errors.required">*Area is required</div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+					<tr>
+						<td class="lbl">Monthly Maintenance Charges: </td>
+						<td>
+							<input type="text"  name="monthlyMaintenanceCharges"  id="monthlyMaintenanceCharges"formControlName="monthlyMaintenanceCharges"  class="form-control"[ngClass]="{ 'is-invalid': submitted && f.monthlyMaintenanceCharges.errors }"  required [(ngModel)]="society.monthlyMaintenanceCharges" />
+							<span *ngIf="submitted && f.monthlyMaintenanceCharges.errors" class="invalid-feedback">
+								<div *ngIf="f.monthlyMaintenanceCharges.errors.required">*Pin Code is required</div>
+							
+							</span>
+						</td>
+						<td></td>
+					</tr>         
+<tr>
+						<td class="lbl"> Pin Code :</td>
+
+						<td>
+							<input type="text" name="pinCode" id="pinCode" formControlName="pinCode"
+								pattern="[0-9]{6,6}" class="form-control" maxlength="6"
+								[ngClass]="{ 'is-invalid': submitted && f.pinCode.errors }" required
+								[(ngModel)]="society.societyAddressIdFk.pinCode" />
+							<span *ngIf="submitted && f.pinCode.errors" class="invalid-feedback">
+								<div *ngIf="f.pinCode.errors.required">*Pin Code is required</div>
+								<div *ngIf="f.pinCode.errors.pattern">*Pin Code shoulde be 6 digits only </div>
+
+							</span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td colspan="3"><button class="btn btn-info save" type="submit"><b>Save</b></button>
+
+							<button class="btn btn-info" (click)="rediectToListDetails('society/manage_society')"><b>Cancel</b></button>
+							<button class="btn btn-info" (click)="rediectToListDetails('society/manage_society')"><b>Show List</b></button> </td>
+					</tr>
+
+				</table>
+			</form>
+		</div>
+
+	</div>
+</div>

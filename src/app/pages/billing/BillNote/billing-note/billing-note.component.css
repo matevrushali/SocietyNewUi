@@ -1,0 +1,134 @@
+.content
+{
+	height:100%;
+	width:100%;
+}
+.a{
+ 
+	height: 112.5%;
+   float: left;
+   
+	text-align: center;
+  }
+  .b
+  {
+	
+	float: right;
+	height: 100%;  
+  }
+  .Deferment
+  {
+    height:100%;
+    width:100%;
+    /* background: yellow; */
+  }
+  .header{
+	  height:10%;
+	  /* background: rgb(163, 163, 72); */
+    /* text-align:center; */
+    float: left;
+  }
+ 
+  
+  .sub
+  {
+	  text-align: center;
+  }
+  input[type=text],  input[type=date],select, input[type=number] {
+  width: 50%;
+  padding: 6px 20px;
+  margin: 8px 0;
+  display: inline-block;
+ 
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.area {
+  padding-left: 20%;
+}
+textarea{
+  width: 50%;
+  padding: 6px 20px;
+  margin: 8px 0;
+  display: inline-block;
+ 
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.side {
+  /* background: lightgrey; */
+  padding-top:15px;
+  height:100%;
+  width: 100%;
+  float: left;
+
+  font-size: 10px;
+}
+li{
+  font-size: 10px;
+}
+
+.mid
+{
+
+height:100%;
+float: left;
+}
+.listheading{
+  float: left;
+}
+
+.button{
+  float: right;
+  /* padding-top: 1%; */
+  margin-top: 1%;
+}
+.role{
+  height: 100%;
+  width: 100%;
+}
+
+.row{
+  height:10%;
+  /* background: yellowgreen; */
+
+}
+.form{
+  height:100%;
+  /* background: pink; */
+}
+.title{
+  margin-top: 1%;
+ height: 100%;
+ float: left;
+  /* background: yellow; */
+}
+
+.con{
+  height: 100%;
+  margin:0%;
+  padding:0%; 
+  
+  /* background: palegreen; */
+}
+
+.save {
+  margin-left: 40%;
+  /* background: orchid; */
+}
+.row1{
+  height:20%;
+  /* background: olive; */
+}
+.title1{
+  height: 100%;
+  /* background: orange; */
+  float: left;
+}
+.con1{
+  height:100%;
+  float: left;
+}
+.textarea{
+  margin-left: 22%;
+}

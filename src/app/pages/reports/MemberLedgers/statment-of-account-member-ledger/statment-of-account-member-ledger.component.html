@@ -1,0 +1,112 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side">
+    
+  </div>
+  
+  <div class="col-md-10 col-sm-10 mid">
+    <div class="col-md-12  div1">
+      <div class="col-md-12  div11">
+        <h4>STATEMENT OF ACCOUNT</h4>
+      </div>
+      <div class="col-md-12 col-sm-12 divicon">
+        <i class="fa fa-print abc" style="font-size:35px"></i></div>
+  
+    </div>
+   
+    <div class="col-md-12  div2">
+      <table class="col-md-12 maintable">
+        <td class="col-md-6 table1">
+          <table class="col-md-12 table11">
+            <tr>
+              <th>Society:</th>
+              <td>Swaraj Sahakari Gruhrachana Sanstha Maryadit</td>
+            </tr>
+            <tr>
+              <th>Account Name:</th>
+              <td>{{ ledgers.accountName }}</td>
+            </tr>
+            <tr>
+              <th>Unit #:</th>
+              <td>{{ ledgers.flatsDetails }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Period:</th>
+              <td>(01-Apr-2019 - 31-Mar-2020)</td>
+            </tr>
+          </table>
+  
+  
+        </td>
+        <td class="col-md-6 table2">
+          <table class="col-md-12 table12">
+            <tr></tr>
+            <tr>
+              <th>Group Name:</th>
+              <td>{{ ledgers.groupIdFk.groupName }}</td>
+  
+            </tr>
+            <tr>
+              <th>Account #:</th>
+              <td>{{ ledgers.ledgersId }}</td>
+  
+            </tr>
+            <tr>
+  
+            </tr>
+          </table>
+        </td>
+      </table>
+  
+    </div>
+    <div class="col-md-12 col-sm-12 dateDiv">
+  <!-- Place For Search By Date -->
+      </div>
+    <div class="col-md-12 div3">
+        <h4><b> Ledger of {{ ledgers.accountName }} </b></h4>
+      <table class="table  css-serial table-header-fixed">
+        <thead class="scroll">
+          <tr>
+  
+            <th class="date">Date</th>
+  
+  
+            <th class="particular">Particulars</th>
+            <th class="vouchertype">Voucher Type</th>
+            <th class="credit">Credit Amount</th>
+            <th class="debit">Debit Amount</th>
+          
+  
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of voucherEntry$">
+  
+            <td class="date">{{ user.date | date:'yyyy/MM/dd' }}</td>
+            <td class="particular">
+              <!-- <a routerLink="/getVoucherEntryById/{{ user.voucherId }}"> -->
+                <div class="div1">{{ user.debtorLedgerName }}</div>
+                <div class="div2">{{ user.creditorLedgerName }}</div>
+                <div class="div3">{{ user.narration }} {{ user.referenceNumber }}{{ user.chequeNumber }}</div>
+              <!-- </a> -->
+  
+            </td>
+            <td class="vouchertype">{{ user.voucherType }}</td>
+  
+            <td class="credit">{{ user.amount }}</td>
+            <td class="debit">{{ user.amount }}</td>
+            <!-- <td class="debit"></td>
+            <td class="debit"></td> -->
+          </tr>
+        </tbody>
+      </table>
+  
+  
+  
+    </div>
+  
+  </div>

@@ -1,0 +1,91 @@
+
+<div class="col-md-1 col-sm-1 side">
+   
+  </div>
+  <div class="col-md-10 col-sm-10 mid">
+  
+    <h4 class="header">Bank Book</h4>
+    <table id="bankBook" class="display nowrap" style="width:100%">
+      <thead>
+        <tr>
+  
+          <th>Date</th>
+          <th>Voucher Type</th>
+  
+  
+          <th>Particulars</th>
+          <th>Voucher No</th>
+          <th>Debit</th>
+          <th>Credit</th>
+          <th>Ledger Balance</th>
+          <th>Clear Balance</th>
+  
+  
+  
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+  
+          <td></td>
+          <td></td>
+          <td class="a">Opening Balance</td>
+          <td></td>
+          <td>00,00,000.00</td>
+          <td></td>
+          <td>00,00,000.00</td>
+          <td>0.00</td>
+        </tr>
+        <tr *ngFor="let user of   bankBook$ ">
+  
+          <td>{{ user.date | date:'yyyy/MM/dd' }}</td>
+          <td>{{ user.voucherType }}</td>
+  
+          <td>
+            <div class="a">By &nbsp;{{ user.creditorLedgerName }}</div>
+            <div>voucher no:{{ user.referenceNumber }}-{{user.narration}}</div>
+  
+  
+          </td>
+          <td>{{ user.referenceNumber }}</td>
+          <td>{{ user.amount }}</td>
+          <td></td>
+          <td>00,00,000.00</td>
+          <td>0.00</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td class="a">By closing Blance C/F</td>
+          <td></td>
+          <td></td>
+          <td>{{ bankAmount$ }}</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td class="a">total</td>
+          <td></td>
+          <td>{{ bankAmount$ }}</td>
+          <td>{{ bankAmount$ }}</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </tfoot>
+    </table>
+  
+  </div>

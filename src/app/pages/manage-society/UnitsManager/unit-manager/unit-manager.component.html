@@ -1,0 +1,61 @@
+
+<div class="col-md-1 col-sm-1 side">
+
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+	<label><h5> Unit Details List</h5></label><br>
+	<label><h6><a *ngIf="showSaveButton()" (click)="rediectToPage('society/create_unit_manager')">Create New</a></h6></label>
+	<table datatable [dtOptions] = "dtOptions" [dtTrigger]="dtTrigger"  class="display nowrap" style="width:100%">
+		<thead>
+			<tr>
+
+				<th>Flat Number </th>
+				<th>Floor Number</th>
+				<th>Flat Carpet Area</th>
+				<th>Total Builtup Area</th>
+				<th>Society</th>
+				<th>Flat Occupancy Type</th>
+				<th>Sanctioned Load</th>
+				<th>Sanctioned DG Load</th>
+				<th>Meter No</th>
+			
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let occupancy of occupancy$">
+                
+				<td><a (click)="rediectToDetails('society/get_unit_details', occupancy.occupancyDetailsId)">{{ occupancy.flatNumber}}</a>
+				</td>
+				<td>{{ occupancy.floorNumber }}</td>
+				<td>{{ occupancy.flatCarpetArea }}</td>
+				<td>{{ occupancy.totalBuiltupArea }}</td>
+				<td>{{ occupancy.societyOccId.societyName }}</td>
+				<td>{{ occupancy.flatOccupancyType }}</td>
+				<td>{{ occupancy.sanctionedLoad }}</td>
+				<td>{{ occupancy.sanctionedDgLoad }}</td>
+				<td>{{ occupancy.meterNo }}</td>
+				
+				
+				<!-- <td><a routerLink="/updateParkingById/{{user.parkingId }}"><i class="fa fa-edit"
+																	style="font-size:22px"></i></a>
+				<button style="font-size:14px"(click)="openConfirmationDialog(user.parkingId)" ng-confirm-click="do you relly want to delete this?" type="button" class="btn btn-link"> <i class="material-icons">delete</i></button>
+				</td> -->
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</tfoot>
+	</table>
+</div>

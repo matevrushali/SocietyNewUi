@@ -1,0 +1,87 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side">
+   
+  </div>
+  <div class="col-md-10 col-sm-10 mid">
+    <div class="content col-md-12">
+      <div class="col-md-12 col-sm-12 header">
+        <div class="listheading col-md-6">
+          <h2>BILL NOTE</h2>
+        </div>
+  
+      </div>
+      <div class="col-md-12 a">
+        <form (ngSubmit)="onSubmit()" class="col-md-12 form ">
+          <div class="row col-md-12">
+            <div class="col-md-2 title">
+              Bill Type :
+            </div>
+            <div class="col-md-10 con">
+  
+              <select required [(ngModel)]="billing.billType" name="billType" id="billType" (change)="onMonthChange($event.target.value)">
+                <option *ngFor="let isBillType of BillingHead">{{isBillType}}
+                </option>
+              </select>
+            </div>
+  
+          </div>
+          <div class="row col-md-12" [hidden]="!isMonthPeriod">
+            <div class="col-md-2 title">
+              Bill Period :
+            </div>
+            <div class="col-md-10 con">
+              <select required [(ngModel)]="billing.billPeriod" name="billPeriod" id="billPeriod" >
+                <option *ngFor="let isBillPeriod of BillPeriod">{{isBillPeriod}}</option>
+              </select>
+            </div>
+  
+          </div>
+          <div class="row col-md-12" [hidden]="!isMonth">
+              <div class="col-md-2 title">
+                Bill Period :
+              </div>
+              <div class="col-md-10 con">
+                <select required [(ngModel)]="billing.billPeriod" name="billPeriod" id="billPeriod">
+                  <option *ngFor="let isMonths of Months">{{isMonths}}</option>
+                </select>
+              </div>
+    
+            </div>
+  
+          <div class="row col-md-12">
+            <div class="col-md-2 title">
+              Year :
+            </div>
+  
+            <div class="col-md-10 con">
+              <select required [(ngModel)]="billing.year" name="year" id="year">
+                <option *ngFor="let isYear of Year">{{isYear}}</option>
+              </select>
+            </div>
+  
+          </div>
+          <div class="row1 col-md-12">
+              <div class="col-md-2 title1">
+                  Note Description :
+              </div>
+              <div class="col-md-10 con1">
+                  <textarea type="text" name="noteDescription" placeholder="Description"  id="noteDescription" required
+                  [(ngModel)]="billing.noteDescription" [(ngModel)]='noteDescription' rows="10" cols="90">
+              </textarea>
+              <!-- <textarea type="text" name="description" placeholder="Description"  id="description" 
+              [(ngModel)]="billing.noteDescription" rows="6" cols="50">
+                                    </textarea>   -->
+              <!-- <ejs-richtexteditor class="textarea"  [(ngModel)]="billing.noteDescription" placeholder="Enter Description"></ejs-richtexteditor> -->
+              </div>
+          </div>
+          <div class=" col-md-12">
+            <button class="btn btn-info save" type="submit"><b>Submit</b></button>
+  
+          </div>
+  
+        </form>
+      </div>
+    </div>
+  </div>

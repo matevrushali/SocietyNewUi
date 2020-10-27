@@ -1,0 +1,74 @@
+<head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></head>
+<div class="content">
+	<div class="col-md-3 a">
+		<!-- <div class="col-md-3 user"><img src="../../../assets/img/user.png" class="img-rounded" alt="Cinque Terre" width="200" height="200"> </div> -->
+		
+		<h5><b>{{ helpdesk$.residentOther }}</b></h5>
+	</div>
+	<div class="col-md-9 b">
+		<h4>HelpDesk Details: </h4>
+		<table class="table  role">
+				
+				     <tr>
+						<th>Resident/Other :</th>
+						<td>{{ helpdesk$.residentOther }}</td>
+						<td></td>
+					</tr>	
+					 <tr [hidden]="!isOtherAmenities"> 
+						<th>Other Amenities :</th>
+						<td>{{ helpdesk$.otherAminities }}</td>
+						<td></td>
+					</tr>	
+					 <tr [hidden]="!isResidentName">
+						<th>Resident Name :</th>
+
+						<td>{{ helpdesk$.residentUserId }}</td>
+						<!-- <td>{{ user.residentUsersIdFk.title }}.{{ user.residentUsersIdFk.firstName}} {{ user.residentUsersIdFk.lastName }}</td> -->
+						<td></td>
+					</tr>	
+					<tr>
+						<th>Category :</th>
+						<td>{{ helpdesk$.category }}</td>
+						<td></td>
+					</tr>	
+				   <tr>
+						<th> Sub Category :</th>
+						<td>{{ helpdesk$.subCategory }}</td>
+						<td></td>
+					</tr>	
+					<tr>
+						<th>Calling Person :</th>
+						<td>{{ helpdesk$.callingPerson }}</td>
+						<td></td>
+					</tr>	
+					<tr>
+						<th>Calling Person Mobile No :</th>
+						<td>{{ helpdesk$.callingPersonMobile }}</td>
+						<td></td>
+
+					</tr>	
+					<tr>
+						<th>Description :</th>
+						<td>{{ helpdesk$.description }}</td>
+						<td></td>
+
+					</tr>	
+					<tr>
+						<th>Priority :</th>
+						<td>{{ helpdesk$.priority }}</td>
+						<td></td>
+					</tr>	
+					
+					
+					<tr>
+						<td colspan="3"><a *ngIf="showUpdateButton()" routerLink="/updateHelpdeskById/{{ helpdesk$.helpdeskId }}"><i class="fa fa-edit" style="font-size:30px"></i></a>
+                        <!-- <button *ngIf="showDeleteButton()" style="font-size:14px"(click)="openConfirmationDialog( helpdesk$.helpdeskId )"  ng-confirm-click="do you relly want to delete this?" type="button" class="btn btn-link"> <i class="material-icons">delete</i></button>
+                         -->
+                         <button *ngIf="showDeleteButton()"  type="button" style="font-size:30px" (click)="callSweetAlert(helpdesk$.helpdeskId)" class="btn btn-link"><i class="fa fa-trash"></i></button>
+						<button style="font-size:20px" class="btn btn-link" (click)="myFunction()"><i class="fa fa-arrow-left" aria-hidden="true"></i></button></td>
+
+					</tr>
+					  <!-- </tbody> -->
+			</table>
+	</div>
+</div>

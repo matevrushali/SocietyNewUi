@@ -1,0 +1,95 @@
+.content
+{
+	height:100%;
+	width:100%;
+}
+.a{
+ 
+	height: 112.5%;
+   float: left;
+   
+	text-align: center;
+  }
+  .b
+  {
+	
+	float: right;
+	height: 112.5%;
+  
+  }
+  .header{
+	  height:10%;
+	  background: rgb(207, 207, 205);
+	  text-align:center;
+  }
+  td1
+  {
+	  border:1px solid blue;
+  }
+  /* .lbl
+  {	
+	
+	//padding-left: 10%;
+  } */
+
+  .sub
+  {
+	  text-align: center;
+  }
+  input[type=text], select, input[type=number] {
+  width: 80%;
+  padding: 6px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.Selector
+{
+color: red;
+}
+.billingHeadForm
+{
+	height:100%;
+	width:100%;
+}
+.side {
+  /* background: lightgrey; */
+  padding-top:15px;
+  height:100%;
+  width: 100%;
+  float: left;
+  font-size: 10px;
+}
+li{
+  font-size: 10px;
+}
+
+.mid
+{
+
+height:100%;
+float: left;
+}
+
+
+.escalationMatrix{
+  height:100%;
+}
+.row{
+  height:20%;
+  float: left;
+  /* background: yellow; */
+  padding: 2%
+}
+.cell{
+  /* background: blueviolet; */
+  float: left;
+}
+h5{
+  padding-top:2%;
+  border-bottom: 1px solid lightgray;
+}
+.manditory{
+  font-size:10px;
+}

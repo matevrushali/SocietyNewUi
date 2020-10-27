@@ -1,0 +1,159 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side"> </div>
+  <div class="col-md-10 col-sm-10 mid">
+  
+        <div class="content">
+                <div class="col-md-12 header"><h4>Edit Staff Manager Service</h4> </div>
+                  <div class="col-md-3 a">
+                          <div class="col-md-3 user">
+                             
+                            </div>
+                  </div>
+                  <div class="col-md-9 b">
+                          <form  [formGroup]="registerForm"  (ngSubmit)="onSubmit()">	
+                      <table class="table role">
+                            
+                              <tr>
+                                  <td class="lbl">Name:</td>
+                                  <!-- <td><input type="text" name="name"  id="name" required [(ngModel)]="staffManager.name" /></td> -->
+                                  <td><input type="text"  formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" name="name"  id="name" required pattern="^[a-z A-Z]{2,45}" required [(ngModel)]="staffManager.name" />
+                                      <span *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                          <div *ngIf="f.name.errors.required">Name is required</div>
+                                          <div *ngIf="f.name.errors.pattern">Name should contain only character</div>
+          
+                                      </span>
+                                  </td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                  <td class="lbl">Mobile Number:</td>
+                                  <!-- <td><input type="text" name="mobileNumber"  id="mobileNumber" required [(ngModel)]="staffManager.mobileNumber" /></td> -->
+                                  <td><input type="text"  formControlName="mobileNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" name="mobileNumber" maxlength="10" id="mobileNumber" required pattern="^((\\+91-?)|0)?[0-9]{10}$" required [(ngModel)]="staffManager.mobileNumber"/>
+                                      <span *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+                                          <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required</div>
+                                          <div *ngIf="f.mobileNumber.errors.pattern">Enter 10 digit mobile number</div>
+          
+                                      </span>
+                                  </td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                  <td class="lbl">Designation:</td>
+                                  <!-- <td><input type="text" name="designation"  id="designation" required [(ngModel)]="staffManager.designation" /></td> -->
+                                  <td><input type="text"  formControlName="designation" maxlength="45" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.designation.errors }" name="designation"  id="designation"required pattern="^[a-z A-Z]{2,45}" required [(ngModel)]="staffManager.designation"/>
+                                      <span *ngIf="submitted && f.designation.errors" class="invalid-feedback">
+                                          <div *ngIf="f.designation.errors.required"> Designation is required</div>
+                                          <div *ngIf="f.designation.errors.pattern">Designation should contain only character</div>
+          
+                                      </span>
+                                  </td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                  <td class="lbl">Vendor:</td>
+                                  <td>
+                                      <!-- <input type="text"  formControlName="vendor" class="form-control" maxlength="45" [ngClass]="{ 'is-invalid': submitted && f.vendor.errors }" name="vendor"  id="vendor"required pattern="^[a-z A-Z]{2,45}" required [(ngModel)]="staffManager.vendor" />
+                                      <span *ngIf="submitted && f.vendor.errors" class="invalid-feedback">
+                                          <div *ngIf="f.vendor.errors.required">Vendor is required</div>
+                                          <div *ngIf="f.vendor.errors.pattern">Vendor should contain only character</div>
+          
+                                      </span> -->
+                                      <select required [(ngModel)]="staffManager.vendorIdFK.vendorId"  name="vendorIdFK" id="vendorIdFK" formControlName="vendorIdFK" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.vendorIdFK.errors }">
+                                            <option hidden></option> 
+                                            <option  *ngFor="let vendor of vendor$" value="{{vendor.vendorId}}">{{vendor.firstName}}&nbsp;{{vendor.lastName}}</option>
+                                                </select>
+                                                <span *ngIf="submitted && f.vendorIdFK.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.venvendorIdFKdorIdFK.errors.required">Select Vendors</div>
+                                                </span>
+                                  </td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                  <td class="lbl">From Time:</td>
+                                  <!-- <td><input type="text" name="fromTime"  id="fromTime" required [(ngModel)]="staffManager.fromTime" /></td> -->
+                                  <td><input type="text"  formControlName="fromTime" class="form-control" maxlength="2" [ngClass]="{ 'is-invalid': submitted && f.fromTime.errors }" name="fromTime"  id="fromTime" required [(ngModel)]="staffManager.fromTime" />
+                                      <span *ngIf="submitted && f.fromTime.errors" class="invalid-feedback">
+                                          <div *ngIf="f.fromTime.errors.required">From Time is required</div>
+                                      </span>
+                                  </td>
+                                  <td></td>
+                              </tr>
+                              
+                              <tr>
+                                  <td class="lbl">To Time:</td>
+                                  <!-- <td><input type="text" name="toTime"  id="toTime" required [(ngModel)]="staffManager.toTime" /></td> -->
+                                  <td><input type="text"  formControlName="toTime" class="form-control" maxlength="2" [ngClass]="{ 'is-invalid': submitted && f.toTime.errors }" name="toTime"  id="toTime" required [(ngModel)]="staffManager.toTime" />
+                                      <span *ngIf="submitted && f.toTime.errors" class="invalid-feedback">
+                                          <div *ngIf="f.toTime.errors.required">To Time is required</div>
+                                      </span>
+                                  </td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                  <td class="lbl">Date Of Card Issue :</td>
+                                  <!-- <td><input type="date" name="dateOfCardIssue"  id="dateOfCardIssue" required [(ngModel)]="staffManager.dateOfCardIssue" /></td> -->
+                                  <td><input type="text" onfocus="(this.type='date')"formControlName="dateOfCardIssue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dateOfCardIssue.errors }" name="dateOfCardIssue"  id="dateOfCardIssue" required [(ngModel)]="staffManager.dateOfCardIssue" />
+                                      <span *ngIf="submitted && f.dateOfCardIssue.errors" class="invalid-feedback">
+                                          <div *ngIf="f.dateOfCardIssue.errors.required">Date Of Card Issue is required</div>
+                                      </span>
+                                  </td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                  <td class="lbl">Valid Upto:</td>
+                               <!-- <td><input type="date" name="validUpto"  id="validUpto" required [(ngModel)]="staffManager.validUpto" /></td>	 -->
+                               <td><input type="text" onfocus="(this.type='date')"formControlName="validUpto" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.validUpto.errors }" name="validUpto"  id="validUpto" required [(ngModel)]="staffManager.validUpto" />
+                                  <span *ngIf="submitted && f.validUpto.errors" class="invalid-feedback">
+                                      <div *ngIf="f.validUpto.errors.required">Valid Upto is required</div>
+                                  </span>
+                              </td>
+                              <td></td>
+                          </tr>
+                          <tr>
+                                  <td class="lbl">Category:</td>
+                                     
+                          <td><select required [(ngModel)]="staffManager.category" name="category" id="category" formControlName="category" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                              <option  *ngFor = "let isCategory of categoryTitle">{{isCategory}}</option>
+                              </select>
+                              <span *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                                  <div *ngIf="f.category.errors.required">Select category</div>
+                              </span>
+                          </td>
+                          <td></td>
+                          </tr>
+                          <tr>
+                                  <td class="lbl">Date Of Birth:</td>
+                               <td><input type="text"  onfocus="(this.type='date')" formControlName="dateOfBirth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }" name="dateOfBirth"  id="dateOfBirth" required [(ngModel)]="staffManager.dateOfBirth"/>
+                                  <span *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
+                                      <div *ngIf="f.dateOfBirth.errors.required">Date Of Birth is required</div>
+                                  </span>
+                              </td>	
+                              <td></td>
+                          </tr>
+                          <tr>
+                                  <td class="lbl">Address:</td>
+                               <!-- <td><input type="text" name="address"  id="address" required [(ngModel)]="staffManager.address" /></td>	 -->
+                               <td><input type="text"  formControlName="address" class="form-control" maxlength="225" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" name="address"  id="address" required [(ngModel)]="staffManager.address" />
+                                  <span *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                      <div *ngIf="f.address.errors.required">Address is required</div>
+                                  </span>
+                              </td>	
+                              <td></td>
+                          </tr>
+                              
+                          <tr>
+                            <td colspan="3"><button class="btn btn-info save" type="submit"><b>Save</b></button> 
+                          
+                                <button class="btn btn-info" (click)="rediectToListDetails('society/staff_manager')"><b>Cancel</b></button>
+                                <button class="btn btn-info" (click)="rediectToListDetails('society/staff_manager')"><b>Show List</b></button> </td>
+                    </tr>
+                              
+                          </table>
+                          </form>
+                  </div>
+          
+            </div>
+
+  </div>

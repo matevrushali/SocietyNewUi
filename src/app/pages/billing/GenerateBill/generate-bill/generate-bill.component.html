@@ -1,0 +1,67 @@
+<div class="col-md-1 col-sm-1 side">
+	
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+	<label>
+		<h5> Recurring Bill List</h5>
+	</label><br>
+	<label>
+		<h6><a *ngIf="showSaveButton()" (click)="rediectToPage('billing_heads/create_bill')">Add Recurring Bill</a></h6>
+	</label>
+	<table  datatable [dtOptions] = "dtOptions" [dtTrigger]="dtTrigger"  class="display nowrap" style="width:100%">
+		<thead>
+			<tr>
+
+				<th>Bill For</th>
+				<th>Bill Type</th>
+				<th>Bill Period</th>
+				<th>Year</th>
+				<th>Date</th>
+				<th>Due Date</th>
+				<th>Grace Period</th>
+				<th>Bill Start Number</th>
+				<th>Bill No Sufix</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Bill No Prefix</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let user of generateBill$">
+               
+				<td><a  (click)="rediectToDetails('billing_heads/get_generate_bill_details', user.generateBillsId)">{{ user.billFor }}</a>
+				</td>
+				<td>{{ user.billingHeadIdFk.billName }}</td>
+				<td>{{ user.billPeriod }}</td>
+				<td>{{ user.year }}</td>
+				<td>{{ user.date | date:'yyyy/MM/dd' }}</td>
+				<td>{{ user.dueDate }}</td>
+				<td>{{ user.gracePeriod }}</td>
+				<td>{{ user.billStartNumber }}</td>
+				<td>{{ user.billNoSuffix }}</td>
+				<td>{{ user.startDate | date:'yyyy/MM/dd'}}</td>
+				<td>{{ user.endDate | date:'yyyy/MM/dd' }}</td>
+				<td>{{ user.billNoPrefix }}</td>
+
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</tfoot>
+	</table>
+
+</div>

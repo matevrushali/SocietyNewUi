@@ -1,0 +1,54 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side">
+   
+  </div>
+  
+  <div class="col-md-10 col-sm-10 mid">
+    <div class="col-md-12 div1">
+  
+      <h4>LIST OF ACCOUNTS</h4>
+    </div>
+    <div class="col-md-12 ">
+  
+      <i class="fa fa-print  div2 " style="font-size:36px"></i>
+  
+  
+  
+  
+  
+    </div>
+    <div class="col-md-12  div3">
+      <table class="table table-striped css-serial table-header-fixed">
+        <thead>
+          <tr>
+            <th scope="col">Sr.No</th>
+            <th scope="col">Account Name</th>
+            <th scope="col">Account #</th>
+            <th scope="col">Group</th>
+  
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of ledgers$">
+            <td class="filterable-cell"></td>
+           
+            <td><a *ngIf="showStatementOfAccount()"  (click)="rediectToDetails('reports/statment_of_account_ledgers', user.ledgersId)">{{ user.accountName }}</a></td>
+            
+            <!-- <td><a routerLink="/statementsOfAccounts">{{ user.accountName }}</a></td> -->
+            <td>{{ user.ledgersId }}</td>
+            <td>{{user.groupIdFk.groupName}}</td>
+  
+          </tr>
+  
+        </tbody>
+  
+      </table>
+      <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+  
+    </div>
+  
+  
+  </div>

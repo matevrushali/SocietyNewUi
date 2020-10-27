@@ -1,0 +1,100 @@
+  <div class="col-md-1 col-sm-1 side"> </div>
+  <div class="col-md-10 col-sm-10 mid">
+  
+
+
+	<div class="content">
+		<div class="col-md-12 header"><h4>Update Ledgers</h4> </div>
+		  <div class="col-md-3 a">
+				  <div class="col-md-3 user">
+                     
+                    </div>
+		  </div>
+		  <div class="col-md-9 b">
+			<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">	
+			  <table class="table role">
+					  <tr>
+						  <td class="lbl"> Account Name :</td>
+						  <!-- <td><input type="text" name="accountName"  id="accountName" required  [(ngModel)]="ledgers.accountName" value="{{ ledgers.accountName }}" /></td> -->
+						  <td><input type="text"  formControlName="accountName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.accountName.errors }" name="accountName"  id="accountName" 
+							required pattern="^[a-z A-Z]{2,45}" required [(ngModel)]="ledgers.accountName" value="{{ ledgers.accountName }}"/>
+						<span *ngIf="submitted && f.accountName.errors" class="invalid-feedback">
+														<div *ngIf="f.accountName.errors.required">Account Name is required</div>
+														<div *ngIf="f.accountName.errors.pattern">Name should contain only character*</div>
+
+						</span>
+					</td><td></td>
+						</tr>
+					
+				
+
+					  <tr>
+						<td class="lbl"> Amount Cr/Dr :</td>
+					
+						<td><select required [(ngModel)]="ledgers.amountType" name="amountType" id="amountType" formControlName="amountType" class="form-control" value="{{ ledgers.amountType }}" [ngClass]="{ 'is-invalid': submitted && f.amountType.errors }">
+							<option *ngFor="let isType of typeTitle">{{isType}}</option>
+						</select>
+							<span *ngIf="submitted && f.amountType.errors" class="invalid-feedback">
+								<div *ngIf="f.amountType.errors.required">Select Amount Type</div>
+							</span>
+						</td>
+						<td></td>
+					  </tr>
+			
+					<tr>
+						<td class="lbl"> Groups :</td>
+					
+								<td>
+										
+	
+									<select [(ngModel)]="ledgers.groupIdFk.groupId" name="groupIdFk" id="groupIdFk" value="{{occupancy.groupId}}" formControlName="groupIdFk" class="form-control" >
+										<option *ngFor="let led of group$" value="{{led.groupId}}"> {{led.groupName}}</option>
+									</select>
+								</td><td></td>
+					</tr>
+					
+					<tr>
+						<td class="lbl"> Opening Balance :</td>
+						
+						<td><input type="text" name="openingBalance"  id="openingBalance"  pattern="[0-9]{1,18}" formControlName="openingBalance" class="form-control" value="{{ ledgers.openingBalance }}" [ngClass]="{ 'is-invalid': submitted && f.openingBalance.errors }" required [(ngModel)]="ledgers.openingBalance"/>
+							<span *ngIf="submitted && f.openingBalance.errors" class="invalid-feedback">
+															<div *ngIf="f.openingBalance.errors.required">Opening  Balance is required</div>
+															<!-- <div *ngIf="f.openingBalance.errors.minlength">Opening  Balance must be at least 6 characters</div> -->
+															<div *ngIf="f.openingBalance.errors.pattern">Opening  Balance must be Number</div>
+							</span>
+						</td>
+						<td></td>
+						<!-- <td><input type="text" name="openingBalance"  id="openingBalance" required [(ngModel)]="ledgers.openingBalance" value="{{ ledgers.openingBalance }}"/></td> -->
+					</tr>
+					<tr>
+						<td class="lbl"> Ledgers Type:</td>
+					<td><select required [(ngModel)]="ledgers.ledgerType"  name="ledgerType" id="ledgerType" formControlName="ledgerType" value="{{ ledgers.ledgerType }}" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ledgerType.errors }">
+								<option  *ngFor="let isLedger of ledgerTitle" >{{ isLedger}}</option>
+								</select>
+								<span *ngIf="submitted && f.ledgerType.errors" class="invalid-feedback">
+									<div *ngIf="f.ledgerType.errors.required">Select Ledger Type</div>
+								</span>
+							</td><td></td>
+					</tr>
+					<tr>
+						<td colspan="3"><button class="btn btn-info save" type="submit"><b>Save</b></button> 
+                            <button class="btn btn-info" (click)="rediectToListDetails('ledgers/ledgers_list')"><b>Cancel</b></button>
+                            <button class="btn btn-info" (click)="rediectToListDetails('ledgers/ledgers_list')"><b>Show List</b></button> </td>
+               
+						
+					  </tr>
+				  </table>
+				  </form>
+		  </div>
+	
+	</div>  
+
+  </div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,103 @@
+.content
+{
+	height:100%;
+	width:100%;
+}
+.a{
+ 
+	height: 112.5%;
+   float: left;
+   
+	text-align: center;
+  }
+  .b
+  {
+	
+	float: right;
+	height: 112.5%;
+  
+  }
+  .header{
+	  height:10%;
+	  background: rgb(207, 207, 205);
+	  text-align:center;
+  }
+  td1
+  {
+	  border:1px solid blue;
+  }
+  
+
+  .sub
+  {
+	  text-align: center;
+  }
+  input[type=text], select, input[type=number], textarea[type=text] {
+  width: 80%;
+  padding: 6px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+textarea[type=text]
+{
+width: 100%;
+  padding: 6px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.Selector
+{
+color: red;
+}
+.billingHeadForm
+{
+	height:100%;
+	width:100%;
+}
+p {
+  font-family: Lato;
+}
+
+img {
+  height: 200px;
+  width: 200px;
+  border: 5px solid #000;
+  border-radius: 50%;
+}
+.side {
+  /* / background: lightgrey; / */
+  padding-top:15px;
+  height:100%;
+  width: 100%;
+  float: left;
+  font-size: 10px;
+}
+li{
+  font-size: 10px;
+}
+
+.mid
+{
+
+height:100%;
+float: left;
+}
+
+.row1{
+  height:10%;
+  float: left;
+  
+  padding: 2%
+}
+.cell{
+  /* / background: lightgreen; / */
+  float: left;
+}
+.radio-button{
+  margin:1%;
+}

@@ -1,0 +1,243 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side">
+  
+  </div>
+  <div class="col-md-10 col-sm-10 mid">
+    <div class="content">
+      <div class="col-md-12 col-sm-12 header">
+        <h4>Generate Recurring Bill</h4>
+      </div>
+      <div class="col-md-3 a">
+        <div class="col-md-3  user">
+             </div>
+      </div>
+      <div class="col-md-9 b">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" name="generateBill">
+          <table class="table role">
+  
+            <tr class="col-md-12">
+              <td class="">Bill For :
+              <td>
+                <mat-radio-group aria-labelledby="radio-group-label" class="radio-group"
+                  [(ngModel)]="generateBill.billFor" value="{{ generateBill$.billFor }}"
+                  [ngModelOptions]="{standalone: true}">
+                  <mat-radio-button class="radio-button" *ngFor="let option of option" [value]="option"
+                    (change)="callFlatBlock(option)">
+                    <div class="options">{{option}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                  </mat-radio-button>
+                </mat-radio-group>
+              </td>
+              <td></td>
+            </tr>
+            <tr [hidden]="!isExcludeFlat">
+              <td class="lbl">Exclude Flat :</td>
+  
+              <td>
+                <select required [(ngModel)]="generateBill.excludeFlat" name="excludeFlat" id="excludeFlat"
+                  formControlName="excludeFlat" class="form-control">
+                  <option *ngFor="let occ of occupancy$" value="{{occ.occupancyDetailsId}}">
+                    {{ occ.wingBuilding }}-{{occ.flatNumber}}</option>
+                </select>
+  
+              </td>
+            </tr>
+            <tr [hidden]="!isBlockTower">
+                <td class="lbl">Block/Tower :</td>
+                <td>
+                    <select required [(ngModel)]="generateBill.blockTower" name="blockTower" id="blockTower"
+                    formControlName="blockTower" class="form-control">
+                      <option *ngFor="let occ of occupancy$" value="{{occ.wingBuilding}}">{{ occ.wingBuilding }}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr [hidden]="!isSingleMultiple" >
+                <td  class="lbl">single/Multiple Flat:</td>
+                 <td>
+                    <select required [(ngModel)]="generateBill.singleMultipleFlat" name="singleMultipleFlat" id="singleMultipleFlat"
+                    formControlName="singleMultipleFlat" class="form-control" >
+                      <option *ngFor="let occ of occupancy$" value="{{occ.occupancyDetailsId}}">
+                        {{ occ.wingBuilding }}-{{occ.flatNumber}}</option>
+                    </select>
+                  </td>
+            </tr>
+            <tr>
+              <td class="lbl"> Bill Type :</td>
+  
+              <td><select required [(ngModel)]="generateBill.billingHeadIdFk.billingHeadsId" name="billingHeadIdFk"
+                  id="billingHeadIdFk" formControlName="billingHeadIdFk" class="form-control"
+                  (change)="callBillType($event.target.value)"
+                  [ngClass]="{ 'is-invalid': submitted && f.billingHeadIdFk.errors }">
+                  <option *ngFor="let bill of billingHead$" value="{{bill.billingHeadsId}}">{{ bill.billName }}</option>
+                </select>
+                <span *ngIf="submitted && f.billingHeadIdFk.errors" class="invalid-feedback">
+                  <div *ngIf="f.billingHeadIdFk.errors.required">Select Billing Type</div>
+                </span>
+              </td>
+              <td></td>
+            </tr>
+            <tr [hidden]="!isBillType">
+              <td class="lbl"> Bill Period :</td>
+              <td>
+  
+                <select required [(ngModel)]="generateBill.billPeriod" name="billPeriod" id="billPeriod"
+                  formControlName="billPeriod" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.billPeriod.errors }">
+                  <option *ngFor="let isOwnership of OwnershipTitle">{{isOwnership}}</option>
+                </select>
+                <span *ngIf="submitted && f.billPeriod.errors" class="invalid-feedback">
+                  <div *ngIf="f.billPeriod.errors.required">Select Bill Period</div>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="lbl"> Year:</td>
+              <td><select required [(ngModel)]="generateBill.year" name="year" id="year" formControlName="year"
+                  class="form-control">
+                  <option *ngFor="let isYear of yearTitle">{{isYear}}</option>
+                </select>
+  
+              </td>
+              <td></td>
+            </tr>
+  
+            <tr>
+              <td class="lbl"> Date :</td>
+              <!-- <td> <input type="date" name="date" [(ngModel)]="generateBill.date" value="{{ generateBill$.date }}" ></td> -->
+  
+              <td> <input type="text" onfocus="(this.type='date')" formControlName="date" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.date.errors }" name="date" id="date" required
+                  [(ngModel)]="generateBill.date" placeholder="Enter date" />
+                <span *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                  <div *ngIf="f.date.errors.required">Date is required</div>
+                </span>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="lbl"> Due Date :</td>
+              <!-- <td><select required [(ngModel)]="generateBill.dueDate" name="dueDate" value="{{ generateBill$.dueDate }}"(change)="callDueDate($event.target.value)">
+                    <option *ngFor="let isDueDate of DueDate">{{isDueDate}}</option>
+                  </select> -->
+              <td> <select required [(ngModel)]="generateBill.dueDate" name="dueDate" id="dueDate"
+                  formControlName="dueDate" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.dueDate.errors }" (change)="callDueDate($event.target.value)">
+                  <option *ngFor="let isDueDate of DueDate">{{isDueDate}}</option>
+                </select>
+                <span *ngIf="submitted && f.dueDate.errors" class="invalid-feedback">
+                  <div *ngIf="f.dueDate.errors.required">Select Due Date</div>
+                </span>
+  
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td [hidden]="!isChooseDueDate" class="lbl"> Choose Due Date :
+                <input type="date" name="chooseDueDate" id="chooseDueDate" formControlName="chooseDueDate"
+                  [(ngModel)]="generateBill.chooseDueDate" value="{{ generateBill$.chooseDueDate }}"></td>
+            </tr>
+            <tr>
+              <td class="lbl"> Grace Period :</td>
+              <td>
+                <!-- <select required [(ngModel)]="generateBill.gracePeriod" name="dueDate"value="{{ generateBill$.gracePeriod }}">
+                    <option *ngFor="let isGracePeriod of GracePeriod">{{isGracePeriod}}</option>
+                  </select> -->
+                <select required [(ngModel)]="generateBill.gracePeriod" name="gracePeriod" id="gracePeriod"
+                  formControlName="gracePeriod" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.gracePeriod.errors }">
+                  <option *ngFor="let isGracePeriod of GracePeriod">{{isGracePeriod}}</option>
+                </select>
+                <span *ngIf="submitted && f.gracePeriod.errors" class="invalid-feedback">
+                  <div *ngIf="f.gracePeriod.errors.required">Select Grace Period</div>
+                </span>
+  
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="lbl"> Bill No. Prefix :</td>
+              <!-- <td><input type="text" name="billNoPrefix"  id="billNoPrefix" required [(ngModel)]="generateBill.billNoPrefix"value="{{ generateBill$.billNoPrefix }}" /></td> -->
+              <td><input type="text" formControlName="billNoPrefix" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.billNoPrefix.errors }" name="billNoPrefix" id="billNoPrefix"
+                  required [(ngModel)]="generateBill.billNoPrefix" placeholder="Enter bill no prefix" />
+                <span *ngIf="submitted && f.billNoPrefix.errors" class="invalid-feedback">
+                  <div *ngIf="f.billNoPrefix.errors.required">Bill No Prefix is required</div>
+                </span>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="lbl"> Bill Start No. :</td>
+              <!-- <td><input type="text" name="billStartNumber"  id="billStartNumber" required [(ngModel)]="generateBill.billStartNumber"value="{{ generateBill$.billStartNumber }}"  /></td> -->
+              <td><input type="text" formControlName="billStartNumber" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.billStartNumber.errors }" name="billStartNumber"
+                  id="billStartNumber" required pattern="[0-9]{1,15}" required [(ngModel)]="generateBill.billStartNumber"
+                  placeholder="Enter bill start number" />
+                <span *ngIf="submitted && f.billStartNumber.errors" class="invalid-feedback">
+                  <div *ngIf="f.billStartNumber.errors.required">Bill Start Number is required</div>
+                  <div *ngIf="f.billStartNumber.errors.pattern">Bill Start No Invalid</div>
+  
+                </span>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="lbl"> Bill No. Suffix :</td>
+              <td>
+                <!-- <input type="text" name="billNoSuffix"  id="billNoSuffix" required [(ngModel)]="generateBill.billNoSuffix" value="{{ generateBill$.billNoSuffix }}"/></td> -->
+                <input type="text" formControlName="billNoSuffix" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.billNoSuffix.errors }" name="billNoSuffix" id="billNoSuffix"
+                  required [(ngModel)]="generateBill.billNoSuffix" placeholder="Enter bill no suffix" />
+                <span *ngIf="submitted && f.billNoSuffix.errors" class="invalid-feedback">
+                  <div *ngIf="f.billNoSuffix.errors.required">Bill No Suffix is required</div>
+                </span>
+              </td>
+              <td></td>
+            </tr>
+            <!-- <tr>
+                <td class="lbl"> Bill Date :</td>
+                 <td><input type="date" name="StartDate" [(ngModel)]="generateBill.StartDate" value="{{ generateBill$.StartDate }}"></td> 
+               
+            </tr> -->
+            <tr>
+              <td class="lbl">Start Date :</td>
+              <!-- <td><input type="date" name="startDate" [(ngModel)]="generateBill.startDate" value="{{ generateBill$.startDate }}"></td> -->
+              <td><input type="text" onfocus="(this.type='date')" formControlName="startDate" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }" name="startDate" id="startDate" required
+                  [(ngModel)]="generateBill.startDate" />
+                <span *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
+                  <div *ngIf="f.startDate.errors.required">Start Date is required</div>
+                </span>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="lbl"> End Date :</td>
+  
+              <td><input type="text" onfocus="(this.type='date')" formControlName="endDate" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.endDate.errors }" name="endDate" id="endDate" required
+                  [(ngModel)]="generateBill.endDate" />
+                <span *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
+                  <div *ngIf="f.endDate.errors.required">End Date is required</div>
+                </span>
+              </td>
+              <td></td>
+            </tr>
+  
+            <tr>
+              <td colspan="3"><button class="btn btn-info save" type="submit"><b>Save</b></button>
+  
+                <button class="btn btn-info" (click)="rediectToListDetails('billing_heads/generate_bill')"><b>Cancel</b></button>
+                <button class="btn btn-info" (click)="rediectToListDetails('billing_heads/generate_bill')"><b>Show List</b></button> </td>
+            </tr>
+  
+          </table>
+        </form>
+      </div>
+  
+    </div>
+  
+  
+  
+  </div>

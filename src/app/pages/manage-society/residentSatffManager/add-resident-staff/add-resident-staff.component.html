@@ -1,0 +1,82 @@
+<h2>ADD RESIDENTS STAFF</h2>
+<form>
+
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            upload profile space
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputCity">Card No.</label>
+            <input type="text"  [(ngModel)]="residentStaffManager.cardNo" [ngModelOptions]="{standalone: true}" class="form-control" id="inputCity2">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputCity">Name</label>
+            <input type="text" [(ngModel)]="residentStaffManager.residentStaffName" [ngModelOptions]="{standalone: true}" class="form-control" id="inputCity2">
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputCity">Mobile Number</label>
+            <input type="number" [(ngModel)]="residentStaffManager.mobileNumber" [ngModelOptions]="{standalone: true}" class="form-control" id="inputCity1">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputCity">Designation </label>
+            <select required name="designation" [(ngModel)]="residentStaffManager.designation" [ngModelOptions]="{standalone: true}" class="form-control">
+                <option hidden></option>
+                <option *ngFor="let isDesignation of DesignationTypeTitle">{{ isDesignation}}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputCity">Vendor</label>
+          
+            <select required name="designation" [(ngModel)]="residentStaffManager.vendor" [ngModelOptions]="{standalone: true}" class="form-control">
+								<option hidden></option>
+                              <option *ngFor="let ven of vendor$ " value="{{ ven.firstName }}&nbsp;{{ven.lastName}}">
+									{{ ven.firstName }}&nbsp;{{ven.lastName}}</option>
+							</select>
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputCity">From </label>
+            <input type="number" [(ngModel)]="residentStaffManager.fromTime" [ngModelOptions]="{standalone: true}" class="form-control" id="inputCity1">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputCity">To </label>
+            <input type="number"[(ngModel)]="residentStaffManager.toTime"[ngModelOptions]="{standalone: true}" class="form-control" id="inputCity2">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputCity">Date of Card Issue</label>
+            <input type="date" [(ngModel)]="residentStaffManager.dateOfCardIssue" [ngModelOptions]="{standalone: true}" class="form-control" id="inputCity2">
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputCity">Valid Upto</label>
+            <input type="date" [(ngModel)]="residentStaffManager.validUpto" [ngModelOptions]="{standalone: true}" class="form-control" id="inputCity1">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputCity">Date Of Birth</label>
+            <input type="date" [(ngModel)]="residentStaffManager.dateOfBirth" [ngModelOptions]="{standalone: true}" class="form-control" id="inputCity2">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputCity">Aadhaar No</label>
+            <input type="number" [(ngModel)]="residentStaffManager.adharNumber" [ngModelOptions]="{standalone: true}" class="form-control" id="inputCity2">
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="form-group purple-border">
+            <label for="exampleFormControlTextarea4">Address</label>
+            <textarea [(ngModel)]="residentStaffManager.address" [ngModelOptions]="{standalone: true}" class="form-control" id="exampleFormControlTextarea4"
+                rows="3"></textarea>
+        </div>
+
+    </div>
+    <button (click)="saveResidentStaff()" class="btn btn-primary">Save</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary">Cancel</button>
+</form>

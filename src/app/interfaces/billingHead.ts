@@ -1,0 +1,25 @@
+export class BillingHead
+{
+    billingHeadsId:number;
+billType:string;
+billCycle:string;
+billingMethod:string;
+roundOff:number;
+billOfZeroAmount:string;
+pickLastBillArrears:string;
+readingDependencies:string;
+showBillToTenants:string;
+calculationBasedOnPossessionDate:string;
+interestType:string;
+interestCalculationMethod:string;
+rateOfInterest:number;
+interestExemptionLimit:number;
+sgstRate:number;
+cgstRate:number;
+taxExemptionLimit:number;
+taxOnChequeDishonourCharges:string;
+taxOnInterest:string;
+chequeDishonourCharges:number;
+billName:string
+description:string;
+}

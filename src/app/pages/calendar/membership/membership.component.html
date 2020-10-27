@@ -1,0 +1,48 @@
+<h2>Subscribe Membership </h2>
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Member</label>
+     
+        <select required class="form-control" [(ngModel)]="membership.memberId" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let user of usersForm$" value="{{user.usersFormId}}">
+            {{user.firstName}}&nbsp;{{user.middleName}}&nbsp;{{user.lastName}}....[{{user.unitDetailsIdFk.wingBuilding}}-{{user.unitDetailsIdFk.flatNumber}}]
+          </option>
+        </select>
+    </div>
+
+  </div>
+  <div class="form-group">
+    <div class="form-group purple-border">
+      <label for="exampleFormControlTextarea4">Select Membership</label>
+      <select required name="membershipType"  [(ngModel)]="membership.membershipEntityId" (change)="callCharges($event.target.value)" [ngModelOptions]="{standalone: true}"
+        class="form-control">
+        <option hidden></option>
+        <option *ngFor="let isMembershipType of member$" value="{{isMembershipType.membershipEntityId}}">{{ isMembershipType.membershipEntityName}}</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Select Membership Type</label>
+      <select required name="membershipType"  [(ngModel)]="membership.membershipType" [ngModelOptions]="{standalone: true}"
+        class="form-control">
+        <option hidden></option>
+        <option *ngFor="let isMembershipType of membershipTypeTitle">{{ isMembershipType}}</option>
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputCity"> Charges</label>
+      <input type="number"  [(ngModel)]="membership.totalCharges" [ngModelOptions]="{standalone: true}" value="{{membershipEnityDetails.membershipCharges}}" class="form-control" id="membershipCharges">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputCity"> Subscription Date</label>
+      <input type="date" [(ngModel)]="membership.bookingDate" [ngModelOptions]="{standalone: true}" class="form-control" id="membershipCharges">
+    </div>
+   
+  </div>
+  <button (click)="saveMembership()" class="btn btn-primary">Save</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary">Cancel</button>
+</form>

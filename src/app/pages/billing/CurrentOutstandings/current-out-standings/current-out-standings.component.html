@@ -1,0 +1,80 @@
+<div class="col-md-1 col-sm-1 side">
+
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+	<label>
+		<h5> Current Outstandings</h5> Bill Type :
+		<select (change)="callBillsNew(billingType.billingHeadsId,resident.occupancyDetailsId)"
+		 [(ngModel)]="billingType.billingHeadsId">
+			<option *ngFor="let billingType of billing$" value="{{billingType.billingHeadsId}}">
+				{{billingType.billName}}
+			</option>
+		</select>
+		Resident Name :
+		<select (change)="callBillsNew(billingType.billingHeadsId,resident.occupancyDetailsId)" [(ngModel)]="resident.occupancyDetailsId">
+			<option *ngFor="let resident of occupancy$" value="{{resident.occupancyDetailsId}}">
+				[{{resident.wingBuilding}}-{{resident.flatNumber}}] </option>
+		</select>
+
+	</label><br>
+	<label>
+
+	</label>
+	<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="display nowrap" style="width:100%">
+		<thead>
+			<tr>
+
+				<th> Bill No</th>
+				<th>Bill Date</th>
+				<th>Member Name</th>
+				<th>Bill Area</th>
+				<th>Reference</th>
+				<th>Mobile Number</th>
+				<th>Email</th>
+				<th>Bill Type</th>
+				<th>Total</th>
+				<th>Arrear</th>
+				<th>Penalty</th>
+				<th>Receipts</th>
+				<th>Dues/Advance</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let user of Entries$">
+				<td>{{user.billStartNumber}}-{{user.billNoSuffix}}-{{user.billNoPrefix}}</td>
+				<td>{{user.date}}</td>
+				<td>{{user.excludeFlat}}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>{{user.billingHeadIdFk.billName}}</td>
+				<td>{{user.billingAmount}}</td>
+				<td></td>
+				<td></td>
+				<td>{{user.recievedAmount}}</td>
+				<td>{{user.pendingAmount}}</td>
+
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th>TOTAL :</th>
+				<th>{{totalBillingAmount$.totalBilling}}</th>
+				<th></th>
+				<th></th>
+				<th>{{totalRecievedAmount$.totalRecieved}}</th>
+				<th>{{totalPendingAmount$.totalPending}}</th>
+			</tr>
+		</tfoot>
+	</table>
+
+</div>

@@ -1,0 +1,126 @@
+<div class="container-fluid">
+	<div class="">
+		<button *ngIf="showSaveButton()" class="btn btn-primary" (click)="rediectToPage('society/create_resident_manager')">Add New Resident</button>&nbsp;
+		<button *ngIf="arr_selectedUsers.length > 0" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Assign Staff</button>
+	</div>
+
+	<div class="mt-4">
+		<table datatable [dtOptions] = "dtOptions" [dtTrigger]="dtTrigger"  class="table table-bordered" style="width:100%">
+			<thead>
+				<tr>
+
+					<th><input type="checkbox" [(ngModel)]="allSelectedUsers_bool" (change)="selectAllUsers(allSelectedUsers_bool)"/></th>
+					<th>Full Name </th>
+					<th>Mobile Number</th>
+					<th>Alternate Number</th>
+					<th>Email Address</th>
+					<th>Ownership</th>
+					<th>Club Membership</th>
+					<th>Billing Address</th>
+					<!-- <th>Unit Details</th> -->
+					<th>Member</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let user of usersForm$ ">
+					<td><input type="checkbox" [(ngModel)]="user.bool" (change)="checkUserSelectoin(user)"/></td>
+					<td><a (click)="rediectToDetails('society/get_resident_details', user.usersFormId)">{{ user.firstName }} {{ user.middleName }} {{ user.lastName }}</a>
+					</td>
+					<td>{{ user.mobileNumber }}</td>
+					<td>{{ user.alternateNumber }}</td>
+					<td>{{ user.emailAddress }}</td>
+					<td>{{ user.ownership }}</td>
+					<td>{{ user.clubMembership }}</td>
+					<td>{{ user.billingAddress }}</td>
+					<!-- <td>{{ user.unitDetailsIdFk.wingBuilding }}-{{user.unitDetailsIdFk.flatNumber}}</td> -->
+					<td>{{ user.member }}</td>
+					
+					<!-- <td><a routerLink="/updateParkingById/{{user.parkingId }}"><i class="fa fa-edit"
+																		style="font-size:22px"></i></a>
+					<button style="font-size:14px"(click)="openConfirmationDialog(user.parkingId)" ng-confirm-click="do you relly want to delete this?" type="button" class="btn btn-link"> <i class="material-icons">delete</i></button>
+					</td> -->
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+
+
+	  <!-- Modal -->
+	  <div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-lg">
+		
+		  <!-- Modal content-->
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h4 class="modal-title  mr-auto">Assign Staff</h4>
+			</div>
+			<div class="modal-body">
+			  
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label for="inputCity">Designation </label>
+						<select  class="form-control"[(ngModel)]="selectedDesignation" (ngModelChange)="filterList($event)">
+							<option hidden></option>
+							<option  *ngFor="let isDesignation of DesignationTypeTitle">{{ isDesignation}}</option>
+						</select>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputCity">Resident Staff </label>
+						<select  class="form-control"  [(ngModel)]="residentStaffFkId" >
+							<!-- <option  *ngFor="let obj of residentStaffManager" value="{{obj.residentStaffName}}">
+							  {{ obj.residentStaffName }} </option>
+						  </select> -->
+						  <option  *ngFor="let obj of listToshow" value="{{obj.residentStaffId}}" >
+							{{ obj.residentStaffName }} </option>
+						</select>
+						
+					</div>
+				
+					<!-- <div class="form-group col-md-6">
+						<label for="inputCity">Resident Staff </label>
+						<select  class="form-control">
+							<option *ngFor="let obj of list$" value="{{obj.residentStaffName}}">
+							  {{ obj.residentStaffName }} </option>
+						  </select>
+					</div> -->
+					
+						
+				</div>
+
+				<div class="col-12 mt-4">
+						<div class="row">
+							<div class="col-9">Selected Members</div>
+							<div class="col-3 text-right ml-auto"><button class="btn btn-link" (click)="toggleList = !toggleList">Toggle List</button></div>
+						</div>
+				</div>
+				<div class="col-12" *ngIf="toggleList">
+					<div class="table-responsive">
+								<ul *ngFor="let _obj of arr_selectedUsers;let i = index;">
+									<li><button class="btn btn-link text-danger" (click)="removeFromSelectedList(_obj, i)"><i class="fa fa-trash" aria-hidden="true"></i></button> &nbsp; {{i+1}}. {{_obj.firstName}} {{_obj.middleName}} {{_obj.lastName}}</li>
+								</ul>
+						
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" (click)="allocateStaffToResident()" class="btn btn-primary" data-dismiss="modal">Save</button>
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+</div>

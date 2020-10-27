@@ -1,0 +1,56 @@
+
+<div class="col-md-1 col-sm-1 side">
+
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+	<label>
+		<h5>Service Staff Manager</h5>
+	</label><br>
+	<label>
+		<h6><a *ngIf="showSaveButton()" (click)="rediectToPage('society/add_staff_manager')"
+            >Add Staff Manager</a></h6>
+	</label>
+	<table datatable [dtOptions] = "dtOptions" [dtTrigger]="dtTrigger"  class="display nowrap" style="width:100%">
+		<thead>
+			<tr>
+
+				<th>Name</th>
+				<th>Mobile Number</th>
+				<th>Designation</th>
+				<th>Vendor</th>
+				<th>From Time</th>
+				<th>To Time</th>
+				<th>Category</th>
+				<th>Address</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let user of staffManager$">
+                
+				<td><a (click)="rediectToDetails('society/get_staff_details', user.staffManagerId)">{{ user.name }}</a>
+				</td>
+				<td>{{ user.mobileNumber }}</td>
+				<td>{{ user.designation }}</td>
+				<td>{{ user.vendorIdFK.firstName }}&nbsp;{{ user.vendorIdFK.lastName }}</td>
+				<td>{{ user.fromTime }}</td>
+				<td>{{ user.toTime }}</td>
+				<td>{{ user.category }}</td>
+				<td>{{ user.address }}</td>
+		</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</tfoot>
+	</table>
+</div>

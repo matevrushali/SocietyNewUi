@@ -1,0 +1,69 @@
+.side {
+    /* background: lightgrey; */
+    padding-top:15px;
+    height:100%;
+    width: 100%;
+    float: left;
+    font-size: 10px;
+  }
+  li{
+    font-size: 10px;
+  }
+  
+  .mid
+  {
+  
+  height:100%;
+  float: left;
+  }
+  .content
+  {
+      height:100%;
+      width:100%;
+  }
+  .a{
+   
+      height: 112.5%;
+     float: left;
+     
+      text-align: center;
+    }
+    .table{
+      font-size: 13px;
+    }
+    .b
+    {
+      
+      float: right;
+      height: 112.5%;
+    
+    }
+
+    button
+    {
+      margin-left:15%;
+    }
+    .header{
+        height:10%;
+        /* background: rgb(207, 207, 205); */
+        text-align:center;
+    }
+    td1
+    {
+        border:1px solid blue;
+    }
+  
+    .sub
+    {
+        text-align: center;
+    }
+    input[type=text], select, input[type=number],input[type=date] {
+    width: 100%;
+    padding: 6px 20px;
+    margin: 8px 0;
+    display: inline-block;
+   
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+    

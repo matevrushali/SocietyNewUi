@@ -1,0 +1,107 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side">
+   
+  </div>
+  
+  <div class="col-md-10 col-sm-10 mid">
+    <div class="header col-md-12">
+      <h4>Balance Sheets</h4>
+    </div>
+    <div  class="col-md-12 col-sm-12 div">
+      Financial Year:
+     <select required [(ngModel)]="balance.year"  name="year" id="year"(change)="onChangeYear($event.target.value)" >
+       <option  *ngFor="let isYear of yearPeriod" >{{isYear}}</option>
+       </select>
+   </div>
+
+   <!-- <button class="btn btn-info save" type="submit" (click)="deleteMethod()" ><b>Delete</b></button> -->
+
+    <div class="content col-md-12">
+     <div  class="col-md-12 col-sm-12 div1">
+       
+        <div class="col-md-12 col-sm-12 div2" [hidden]=!isBalanceSheetSlot1>
+        
+         <div class="col-md-6 col-sm-12 temp">
+           <div class="col-md-12 col-sm-12 div3">
+            
+              LIABILITIES
+           </div>
+           <div class="col-md-12 col-sm-12 div4">
+          <div *ngFor="let liability of  balanceSheet$.liabilities" class="row">
+            <div class="col-md-8 group">{{liability.groupName}}</div>
+            <div class="col-md-4 amount">{{liability.amount}}</div>
+          </div>
+        </div>
+           <div class="col-md-12 col-sm-12 div5">
+  
+             <div class="col-md-8 a">Total</div>
+             <div class="col-md-4 b">{{balanceSheet$.liabilitiesTotal}}</div>
+           </div>
+         </div>
+         <div class="col-md-6 col-sm-12 temp1">
+            <div class="col-md-12 col-sm-12 div3">
+                ASSETS
+              </div>
+              <div class="col-md-12 col-sm-12 div4">
+             <div *ngFor="let assets of  balanceSheet$.assets" class="row">
+               <div class="col-md-8 group">{{assets.groupName}}</div>
+               <div class="col-md-4 amount">{{assets.amount}}</div>
+             </div>
+           </div>
+              <div class="col-md-12 col-sm-12 div5">
+     
+                <div class="col-md-8 a">Total</div>
+                <div class="col-md-4 b">{{balanceSheet$.assetsTotal}}</div>
+              </div>
+         </div>
+  
+        </div>
+        <div class="col-md-12 col-sm-12 div2" [hidden]=!isBalanceSheetSlot2>
+        
+          <div class="col-md-6 col-sm-12 temp">
+            <div class="col-md-12 col-sm-12 div3">
+             
+               LIABILITIES
+            </div>
+            <div class="col-md-12 col-sm-12 div4">
+           <div *ngFor="let liability of  balanceSheetSlot$.liabilities" class="row">
+             <div class="col-md-8 group">{{liability.groupName}}</div>
+             <div class="col-md-4 amount">{{liability.amount}}</div>
+           </div>
+         </div>
+            <div class="col-md-12 col-sm-12 div5">
+   
+              <div class="col-md-8 a">Total</div>
+              <div class="col-md-4 b">{{ balanceSheetSlot$.liabilitiesTotal}}</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 temp1">
+             <div class="col-md-12 col-sm-12 div3">
+                 ASSETS
+               </div>
+               <div class="col-md-12 col-sm-12 div4">
+              <div *ngFor="let assets of balanceSheetSlot$.assets" class="row">
+                <div class="col-md-8 group">{{assets.groupName}}</div>
+                <div class="col-md-4 amount">{{assets.amount}}</div>
+              </div>
+            </div>
+               <div class="col-md-12 col-sm-12 div5">
+      
+                 <div class="col-md-8 a">Total</div>
+                 <div class="col-md-4 b">{{ balanceSheetSlot$.assetsTotal}}</div>
+               </div>
+          </div>
+   
+         </div>
+       
+      
+    
+  
+  
+      
+  
+     </div>
+    </div>
+  </div>

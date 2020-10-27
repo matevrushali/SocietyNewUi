@@ -1,0 +1,124 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<div class="col-md-1 col-sm-1 side">
+	
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+
+
+	<div class="content col-md-12 col-sm-12">
+		<div class="col-md-3 col-sm-2 a">
+			<div class="col-md-3 col-sm-2 user">
+
+				<!-- <img src="../../../assets/img/user.png" class="img-rounded" alt="Cinque Terre" width="200" height="200"> -->
+
+			</div>
+			<h4><b>{{ usersFormDetails.firstName }} {{ usersFormDetails.middleName }}
+					{{ usersFormDetails.lastName }}</b></h4>
+		</div>
+		<div class="col-md-9 col-sm-9 b">
+			<h4>Details of Resident:</h4>
+			<table class="table  societyClass  col-md-12 col-sm-12">
+
+				<tr>
+					<th>Fast Name :</th>
+					<td>{{ usersFormDetails.firstName }}</td>
+					<td></td>
+
+				</tr>
+				<tr>
+					<th>Middle Name:</th>
+					<td>{{ usersFormDetails.middleName }}</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Last Name :</th>
+					<td>{{ usersFormDetails.lastName }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Mobile Number :</th>
+					<td>{{ usersFormDetails.mobileNumber }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Alternate Number :</th>
+					<td>{{ usersFormDetails.alternateNumber }}</td>
+					<td></td>
+				</tr>
+				<tr [hidden]="!ownerDetails">
+					<th>Possetion Date :</th>
+					<td>{{ usersFormDetails.possetionDate }}</td>
+					<td></td>
+				</tr>
+				<tr [hidden]="!ownerDetails">
+					<th>Email Address :</th>
+					<td>{{ usersFormDetails.emailAddress }}</td>
+					<td></td>
+				</tr>
+				<tr [hidden]="!ownerDetails">
+					<th>Ownership :</th>
+					<td>{{ usersFormDetails.ownership }}</td>
+					<td></td>
+				</tr>
+				<tr [hidden]="!ownerDetails">
+					<th>Club MemberShip :</th>
+					<td>{{ usersFormDetails.clubMembership }}</td>
+					<td></td>
+				</tr>
+				<tr [hidden]="!ownerDetails">
+					<th>Landline Number :</th>
+					<td>{{ usersFormDetails.landlineNumber }}</td>
+					<td></td>
+				</tr>
+				<tr [hidden]="!ownerDetails">
+					<th>Intercom Number :</th>
+					<td>{{ usersFormDetails.intercomNumber }}</td>
+					<td></td>
+				</tr>
+				<tr [hidden]="!ownerDetails">
+					<th>Property Type :</th>
+					<td>{{ usersFormDetails.propertyType }}</td>
+					<td></td>
+				</tr>
+				<tr [hidden]="!ownerDetails">
+					<th>Billing Address :</th>
+					<td>{{ usersFormDetails.billingAddress }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Unit Details :</th>
+					<td>{{ usersFormDetails.unitDetailsIdFk.wingBuilding }}-{{ usersFormDetails.unitDetailsIdFk.flatNumber }}
+					</td>
+					<td></td>
+				</tr>
+				<tr [hidden]="!tenantDetails">
+					<th>Move In Date :</th>
+					<td>{{ usersFormDetails.moveInDate }}</td>
+					<td></td>
+				</tr>
+				<tr [hidden]="!tenantDetails">
+					<th>Move Out Date :</th>
+					<td>{{ usersFormDetails.moveOutDate }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="3"><a *ngIf="showUpdateButton()" (click)="rediectToUpdateDetails('society/update_resident_manager', usersFormDetails.usersFormId)"><i
+								class="fa fa-edit" style="font-size:30px"></i></a>
+						<button *ngIf="showDeleteButton()"style="font-size:14px" (click)="callSweetAlert(usersFormDetails.usersFormId)"
+							ng-confirm-click="do you relly want to delete this?" type="button" class="btn btn-link"> <i
+								class="material-icons">delete</i></button>
+						<button style="font-size:20px" class="btn btn-link" (click)="rediectToListDetails('society/resident_manager')"><i
+								class="fa fa-arrow-left" aria-hidden="true"></i></button></td>
+
+				</tr>
+				
+			</table>
+		</div>
+	</div>
+
+
+</div>

@@ -1,0 +1,255 @@
+<head>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<div class="col-md-1 col-sm-1 side">
+	
+</div>
+<div class="col-md-10 col-sm-10 mid">
+
+	<div class="content">
+		<div class="col-md-12 header">
+			<h4>New Voucher Entry </h4>
+		</div>
+
+		<div class="col-md-12 b">
+			<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+				<div class="container">
+					<div class="row1 col-md-12 col-sm-12">
+						<div class="col-md-4 col-sm-12 cell">
+							Voucher Type :
+							<select required [(ngModel)]="voucher.voucherType" name="voucherType" class="voucherType"
+								id="voucherType" formControlName="voucherType" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.voucherType.errors }"
+								(change)="onChangeVoucherType($event.target.value)">
+								<option *ngFor="let isVoucher of voucherTitle" value="{{isVoucher}}">{{isVoucher}}
+								</option>
+							</select>
+							<span *ngIf="submitted && f.voucherType.errors" class="invalid-feedback">
+								<div *ngIf="f.voucherType.errors.required">Voucher Type is required</div>
+							</span>
+						</div>
+						<div class="col-md-4 col-sm-12 cell">
+							Reference Number :
+							<input type="text" name="referenceNumber" id="referenceNumber"
+								formControlName="referenceNumber" [(ngModel)]="voucher.referenceNumber" />
+						</div>
+						<div class="col-md-4 col-sm-12 cell">
+							Date
+							:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+							<input type="text" onfocus="(this.type='date')"  name="date" id="date" required [(ngModel)]="voucher.date"
+								class="form-control" required date id="date" formControlName="date" class="form-control"
+								[ngClass]="{ 'is-invalid': submitted && f.date.errors }" />
+							<span *ngIf="submitted && f.date.errors" class="invalid-feedback">
+								<div *ngIf="f.date.errors.required">Date is required</div>
+							</span>
+						</div>
+					</div>
+				</div>
+				<table class="col-md-12 voucherTable">
+					<thead class="td1">
+						<tr class="col-md-12 class">
+							<th scope="col" class="td1">Sr.No</th>
+							<th scope="col" class="td1">Dr./Cr.</th>
+							<th scope="col" class="td1">Particulars.</th>
+							<th scope="col" class="td1">Debit Amt.</th>
+							<th scope="col" class="td1">Credit Amt.</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr class="col-md-12">
+							<th scope="row" class="td1">1</th>
+							<td class="td1">Dr</td>
+							<!-- Bank Payment Dr -->
+							<td class="td1" [hidden]=!isBankPaymentDebitor>
+								<select required class="form-control" required Debitor id="debitor"
+									[(ngModel)]="voucher.debitor" name="debitor" formControlName="debitor"[ngClass]="{ 'is-invalid': submitted && f.debitor.errors }"
+									class="form-control">
+									<option *ngFor="let isParticular of ledgers$" value="{{isParticular.ledgersId}}">
+										{{isParticular.accountName}}</option>
+								</select>
+								<span *ngIf="submitted && f.debitor.errors" class="invalid-feedback">
+									<div *ngIf="f.debitor.errors.required">Debitor is required</div>
+								</span>
+							</td>
+							<!-- Bank Reciept Dr -->
+							<td class="td1" [hidden]=!isBankRecieptDebitor>
+
+
+								<select required class="form-control" required Debitor id="debitor"
+									[(ngModel)]="voucher.debitor" name="debitor" formControlName="debitor"[ngClass]="{ 'is-invalid': submitted && f.debitor.errors }"
+									class="form-control">
+									<option *ngFor="let isParticular of bankLedgers$"
+										value="{{isParticular.ledgersId}}">
+										{{isParticular.accountName}}</option>
+								</select>
+								<span *ngIf="submitted && f.debitor.errors" class="invalid-feedback">
+									<div *ngIf="f.debitor.errors.required">Debitor is required</div>
+								</span>
+							</td>
+							<!-- Cash Payment Dr -->
+							<td class="td1" [hidden]=!isCashPaymentDebitor>
+
+
+								<select required class="form-control" required Debitor id="debitor"[ngClass]="{ 'is-invalid': submitted && f.debitor.errors }"
+									[(ngModel)]="voucher.debitor" name="debitor" formControlName="debitor"
+									class="form-control">
+									<option *ngFor="let isParticular of ledgers$" value="{{isParticular.ledgersId}}">
+										{{isParticular.accountName}}</option>
+								</select>
+								<span *ngIf="submitted && f.debitor.errors" class="invalid-feedback">
+									<div *ngIf="f.debitor.errors.required">Debitor is required</div>
+								</span>
+							</td>
+
+							<!-- Cash Reciept Dr -->
+							<td class="td1" [hidden]=!isCashRecieptDebitor>
+
+
+								<select required class="form-control" required Debitor id="debitor"
+									[(ngModel)]="voucher.debitor" name="debitor" formControlName="debitor"[ngClass]="{ 'is-invalid': submitted && f.debitor.errors }"
+									class="form-control">
+									<option *ngFor="let isParticular of cashLedgers$" value="{{isParticular.ledgersId}}">
+										{{isParticular.accountName}}</option>
+								</select>
+								<span *ngIf="submitted && f.debitor.errors" class="invalid-feedback">
+									<div *ngIf="f.debitor.errors.required">Debitor is required</div>
+								</span>
+							</td>
+							<!-- Journal Dr -->
+							<td class="td1" [hidden]=!isJournalDebitor>
+								<select required class="form-control" required Debitor id="debitor"
+									[(ngModel)]="voucher.debitor" name="debitor" formControlName="debitor"
+									class="form-control">
+									<option *ngFor="let isParticular of ledgersAll$ " value="{{isParticular.ledgersId}}">
+										{{isParticular.accountName}}</option>
+								</select>
+
+							</td>
+
+
+							<td class="td1">
+								<input type="text" name="amount" id="amount" class="form-control" required
+									pattern="[0-9]{1,20}" id="amount" [(ngModel)]="voucher.amount"
+									formControlName="amount" class="form-control"
+									[ngClass]="{ 'is-invalid': submitted && f.amount.errors }" />
+								<span *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+									<div *ngIf="f.amount.errors.required">Credit Amount is required</div>
+									<div *ngIf="f.amount.errors.pattern">Credit Amount is Invalid </div>
+
+								</span>
+
+							</td>
+							<td class="td1"></td>
+						</tr>
+						<tr>
+							<th scope="row" class="td1">2</th>
+							<td class="td1">Cr</td>
+							<!-- Bank Payment Cr -->
+							<td class="td1" [hidden]=!isBankPaymentCreditor>
+								<select required class="form-control" required Creditor id="creditor"
+									[(ngModel)]="voucher.creditor" name="creditor" formControlName="creditor"
+									class="form-control" [ngClass]="{ 'is-invalid': submitted && f.creditor.errors }">
+									<option *ngFor="let isParticular of bankLedgers$"
+										value="{{isParticular.ledgersId}}">
+										{{isParticular.accountName}}</option>
+								</select>
+								<span *ngIf="submitted && f.creditor.errors" class="invalid-feedback">
+									<div *ngIf="f.creditor.errors.required">Creditor is required</div>
+								</span>
+							</td>
+							<!-- Bank Reciept Cr -->
+							<td class="td1" [hidden]=!isBankRecieptCreditor>
+								<select required class="form-control" required Creditor id="creditor"
+									[(ngModel)]="voucher.creditor" name="creditor" formControlName="creditor"
+									class="form-control">
+									<option *ngFor="let isParticular of ledgers$" value="{{isParticular.ledgersId}}">
+										{{isParticular.accountName}}</option>
+								</select>
+
+							</td>
+							<!-- Cash Payment Cr -->
+							<td class="td1" [hidden]=!isCashPaymentCreditor>
+								<select required class="form-control" required Creditor id="creditor"
+									[(ngModel)]="voucher.creditor" name="creditor" formControlName="creditor"
+									class="form-control">
+									<option *ngFor="let isParticular of cashLedgers$"
+										value="{{isParticular.ledgersId}}">
+										{{isParticular.accountName}}</option>
+								</select>
+
+							</td>
+
+							<!-- Cash Reciept Cr -->
+							<td class="td1" [hidden]=!isCashRecieptCreditor>
+								<select required class="form-control" required Creditor id="creditor"
+									[(ngModel)]="voucher.creditor" name="creditor" formControlName="creditor"
+									class="form-control">
+									<option *ngFor="let isParticular of ledgers$"
+										value="{{isParticular.ledgersId}}">
+										{{isParticular.accountName}}</option>
+								</select>
+
+							</td>
+							<!-- Journal Cr -->
+							<td class="td1" [hidden]=!isJournalCreditor>
+								<select required class="form-control" required Creditor id="creditor"
+									[(ngModel)]="voucher.creditor" name="creditor" formControlName="creditor"
+									class="form-control">
+									<option *ngFor="let isParticular of ledgersAll$ " value="{{isParticular.ledgersId}}">
+										{{isParticular.accountName}}</option>
+								</select>
+
+							</td>
+							<td class="td1"></td>
+							<td class="td1">
+
+								<input type="text" name="amount" id="amount" class="form-control" required
+									pattern="[0-9]{1,20}" id="amount" [(ngModel)]="voucher.amount"
+									formControlName="amount" class="form-control"
+									[ngClass]="{ 'is-invalid': submitted && f.amount.errors }" />
+								<span *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+									<div *ngIf="f.amount.errors.required">Credit Amount is required</div>
+									<div *ngIf="f.amount.errors.pattern">Credit Amount is Invalid </div>
+
+								</span>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="container">
+					<div class="row">
+
+						<div  class="col">
+							<td [hidden]=!isChequeNumber  class="lbl">Cheque Number :&nbsp;</td>
+							<td [hidden]=!isChequeNumber>
+								<input type="text" name="chequeNumber" id="chequeNumber" formControlName="chequeNumber"
+									[(ngModel)]="voucher.chequeNumber" />
+
+							</td>
+						</div>
+						<div class="col">
+							<td class="lbl"> Narration :&nbsp;</td>
+							<td>
+								<input type="text" name="narration" id="narration" required
+									[(ngModel)]="voucher.narration" formControlName="narration" class="form-control"
+									[ngClass]="{ 'is-invalid': submitted && f.narration.errors }" />
+								<span *ngIf="submitted && f.narration.errors" class="invalid-feedback">
+									<div *ngIf="f.narration.errors.required">Narration is required</div>
+								</span>
+							</td>
+						</div>
+					</div>
+				</div>
+				<tr>
+					<td><button class="btn btn-info save" type="submit"><b>Save</b></button></td>&nbsp;&nbsp;
+					<td><button style="margin-left: 10%" class="btn btn-info" (click)="rediectToList('transaction/voucher_entry_list')"><b>Cancel</b></button></td>
+					<td><button style="margin-left: 10%" class="btn btn-info" (click)="rediectToList('transaction/voucher_entry_list')"><b>Show List</b></button> </td>
+				</tr>
+
+			</form>
+		</div>
+	</div>
+</div>

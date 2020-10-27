@@ -1,0 +1,117 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <div class="col-md-1 col-sm-1 side"> 
+      </div>
+  <div class="col-md-10 col-sm-10 mid">
+  
+
+		<div class="content">
+				<div class="col-md-12 header"><h2>Update Parking Details</h2> </div>
+				  <div class="col-md-3 a">
+						  <div class="col-md-3 user">
+                               </div>
+				  </div>
+				  <div class="col-md-9 b">
+						  <form  [formGroup]="registerForm" (ngSubmit)="onSubmit()">	
+					  <table class="table role">
+						<tr>
+							<td class="lbl"> Parking Number :</td>
+							<!-- <td><input type="number" name="parkingNumber"  id="parkingNumber" required [(ngModel)]="parking.parkingNumber" value="{{ parking.parkingNumber }}" /></td> -->
+							<td><input type="text" name="parkingNumber" id="parkingNumber" 
+								pattern="[A-Za-z0-9]{6,10}"  formControlName="parkingNumber" class="form-control"
+									[ngClass]="{ 'is-invalid': submitted && f.parkingNumber.errors }" required
+									[(ngModel)]="parking.parkingNumber" value="{{ parking.parkingNumber }}"
+									placeholder="Enter Parking Number " />
+								<span *ngIf="submitted && f.parkingNumber.errors" class="invalid-feedback">
+									<div *ngIf="f.parkingNumber.errors.required">Parking Number is required</div>
+									<!-- <div *ngIf="f.parkingNumber.errors.minlength">Parking Number must be at least 6 characters</div> -->
+									<div *ngIf="f.parkingNumber.errors.pattern">Parking Number must be Number</div>
+								</span>
+							</td><td></td>
+						</tr>
+						<tr>
+							<td class="lbl"> Parking Type :</td>
+							<!-- <td><input type="text" name="parkingType"  id="parkingType" required [(ngModel)]="parking.parkingType" value="{{ parking.parkingType }}"/></td> -->
+							<td>
+									<select required [(ngModel)]="parking.parkingType"
+									name="parkingType" id="parkingType" formControlName="parkingType"
+									class="form-control"
+									[ngClass]="{ 'is-invalid': submitted && f.parkingType.errors }">
+									<option *ngFor="let isType of typeTitle">
+											{{isType}}</option>
+								</select>
+								<span *ngIf="submitted && f.parkingType.errors" class="invalid-feedback">
+									<div *ngIf="f.parkingType.errors.required">Select Flat</div>
+	
+								</span>
+
+
+								<!-- <select required [(ngModel)]="parking.parkingType" name="parkingType" id="parkingType"
+								formControlName="parkingType" class="form-control" 
+								[ngClass]="{ 'is-invalid': submitted && f.parkingType.errors }">
+								<option hidden></option>
+								<option *ngFor="let isType of typeTitle">{{isType}}</option>
+							</select>
+							<span *ngIf="submitted && f.parkingType.errors" class="invalid-feedback">
+								<div *ngIf="f.parkingType.errors.required">Select type</div>
+							</span> -->
+							</td><td></td>
+						</tr>
+	
+						<tr>
+							<td class="lbl"> Unit Details :</td>
+							<!-- <td>
+							<select required [(ngModel)]="parking.unitDetailsIdFk.occupancyDetailsId"
+								name="unitDetailsIdFk" >
+								<option *ngFor="let occupancy of flat$" value="{{occupancy.occupancyDetailsId}}">
+									{{ occupancy.wingBuilding }}-{{ occupancy.flatNumber }} </option>
+							</select>
+								</td> -->
+							<td><select required [(ngModel)]="parking.unitDetailsIdFk.occupancyDetailsId"
+									name="unitDetailsIdFk" id="unitDetailsIdFk" formControlName="unitDetailsIdFk"
+									class="form-control"
+									[ngClass]="{ 'is-invalid': submitted && f.unitDetailsIdFk.errors }">
+									<option *ngFor="let occupancy of flat$" value="{{occupancy.occupancyDetailsId}}">
+										{{ occupancy.wingBuilding }}-{{ occupancy.flatNumber }}</option>
+								</select>
+								<span *ngIf="submitted && f.unitDetailsIdFk.errors" class="invalid-feedback">
+									<div *ngIf="f.unitDetailsIdFk.errors.required">Select Flat</div>
+	
+								</span>
+							</td><td></td>
+						</tr>
+						<tr>
+							<td class="lbl"> Parking Area :</td>
+							<!-- <td><input type="number" name="parkingArea"  id="parkingArea" required [(ngModel)]="parking.parkingArea" value="{{ parking.parkingArea }}" /></td> -->
+							<td><input type="text" name="parkingArea" id="parkingArea"pattern="[+-]?([0-9]*[.])?[0-9]+"
+									formControlName="parkingArea" class="form-control"maxlength="10"	
+									[ngClass]="{ 'is-invalid': submitted && f.parkingArea.errors }" required
+									[(ngModel)]="parking.parkingArea" value="{{ parking.parkingArea }}"
+									placeholder="Enter parking Area " />
+								<span *ngIf="submitted && f.parkingArea.errors" class="invalid-feedback">
+									<div *ngIf="f.parkingArea.errors.required">Parking Area is required</div>
+									<div *ngIf="f.parkingArea.errors.minlength">Parking Area must be at least 6 characters
+									</div>
+									<div *ngIf="f.parkingArea.errors.pattern">Parking Area must be Number</div>
+								</span>
+							</td><td></td>
+						</tr>
+						<tr>
+							<td><button class="btn btn-info save" type="submit"><b>Save</b></button> </td>
+							<td><button class="btn btn-info" (click)="rediectToListPage('residents/parking_list')"><b>Cancel</b></button> </td>
+							<td><button class="btn btn-info" (click)="rediectToListPage('residents/parking_list')"><b>Show List</b></button> </td>
+	
+						</tr>
+	 
+						  </table>
+						  </form>
+				  </div>
+			
+			</div>
+			
+			
+			  
+			
+
+  </div>
